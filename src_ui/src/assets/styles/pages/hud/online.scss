@@ -1,0 +1,178 @@
+.hud_online {
+  position: absolute;
+  top: 3%;
+  right: 1vw; /* margine foarte mică de dreapta */
+  width: auto;  /* se ajustează la conținut */
+}
+
+.hud_online-logo {
+  margin-top: -10%;
+  font-family: 'Archivo Narrow', sans-serif;
+  text-align: right;
+  font-size: 1.5vw;
+  font-weight: bold;
+  line-height: 1;
+  height: 2vw;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0;
+  margin-right: 0;
+
+  /* 👇 Shadow direct pe logo */
+    text-shadow: 
+    -0 -1px 0 #0000003a,
+     0 -1px 0 #0000003a,
+    -0 1px 0 #0000003a,
+     0 1px 0 #0000003a,
+    -1px -0 0 #0000003a,
+     1px -0 0 #0000003a,
+    -1px 0 0 #0000003a,
+     1px 0 0 #0000003a,
+    -1px -1px 0 #0000003a,
+     1px -1px 0 #0000003a,
+    -1px 1px 0 #0000003a,
+     1px 1px 0 #0000003a,
+    -1px -1px 0 #0000003a,
+     1px -1px 0 #0000003a,
+    -1px 1px 0 #0000003a,
+     1px 1px 0 #0000003a;
+}
+
+
+.hud_online-logo-container {
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  //text-shadow: 0.10vw 0.10vw 0vw rgb(0, 0, 0);
+    text-shadow: 
+    -0 -1px 0 #0000003a,
+     0 -1px 0 #0000003a,
+    -0 1px 0 #0000003a,
+     0 1px 0 #0000003a,
+    -1px -0 0 #0000003a,
+     1px -0 0 #0000003a,
+    -1px 0 0 #0000003a,
+     1px 0 0 #0000003a,
+    -1px -1px 0 #0000003a,
+     1px -1px 0 #0000003a,
+    -1px 1px 0 #0000003a,
+     1px 1px 0 #0000003a,
+    -1px -1px 0 #0000003a,
+     1px -1px 0 #0000003a,
+    -1px 1px 0 #0000003a,
+     1px 1px 0 #0000003a;
+}
+
+.hud_online-logo--empire {
+  color: #ffc400;
+}
+
+.hud_online-logo--roleplay {
+  color: #ffffff;
+  margin-left: 0.5vw;
+}
+
+/* Bara cu ID și online */
+.hud_online-container {
+  width: auto;
+  height: 2vw;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  text-shadow: 
+    -0 -1px 0 #0000003a,
+     0 -1px 0 #0000003a,
+    -0 1px 0 #0000003a,
+     0 1px 0 #0000003a,
+    -1px -0 0 #0000003a,
+     1px -0 0 #0000003a,
+    -1px 0 0 #0000003a,
+     1px 0 0 #0000003a,
+    -1px -1px 0 #0000003a,
+     1px -1px 0 #0000003a,
+    -1px 1px 0 #0000003a,
+     1px 1px 0 #0000003a,
+    -1px -1px 0 #0000003a,
+     1px -1px 0 #0000003a,
+    -1px 1px 0 #0000003a,
+     1px 1px 0 #0000003a;
+  margin-top: 0.2vw;
+  padding: 0;
+  border-radius: 0.3vw;
+  color: #ffc400;
+
+  /* ✅ Contur negru subțire */
+  gap: 0.3vw; /* spațiu între ID și player count */
+}
+
+.hud_online .player-id,
+.hud_online-count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0vw 0.5vw;
+
+  /* ✅ Fiecare element are propriul chenar */
+  //border: 0.1vw solid rgba(255, 255, 255, 0.548);
+  border-radius: 0.3vw;
+  //background: rgba(0, 0, 0, 0.11);
+}
+
+.hud_online .player-id {
+  text-align: right;
+  font-size: 0.8vw;
+}
+
+.hud_online-count {
+  font-size: 0.8vw;
+}
+
+.hud_online-count span {
+  font-size: 0.8vw;
+  text-align: right;
+}
+
+.hud_online-count svg {
+  fill: #daa901;
+}
+
+
+/* Tickete */
+.hud_tickets {
+  position: absolute;         /* îl scoatem din flux */
+  top: calc(5% + 4vw);         /* sub bara de sus (ajustează în funcție de înălțimea elementelor de mai sus) */
+  right: 0.1vw;                /* lipit de marginea dreaptă */
+  
+  width: auto;
+  margin-top: -6%;
+  font-size: 0.8vw;
+  font-weight: 400;
+  line-height: 1;
+  color: #ffc400;
+  padding: 0.5vh 0.5vw;
+  text-align: right;
+  text-shadow: 
+    -0 -1px 0 #0000003a,
+     0 -1px 0 #0000003a,
+    -0 1px 0 #0000003a,
+     0 1px 0 #0000003a,
+    -1px -0 0 #0000003a,
+     1px -0 0 #0000003a,
+    -1px 0 0 #0000003a,
+     1px 0 0 #0000003a,
+    -1px -1px 0 #0000003a,
+     1px -1px 0 #0000003a,
+    -1px 1px 0 #0000003a,
+     1px 1px 0 #0000003a,
+    -1px -1px 0 #0000003a,
+     1px -1px 0 #0000003a,
+    -1px 1px 0 #0000003a,
+     1px 1px 0 #0000003a;
+  border-radius: 0.3vw;
+
+  /* Dacă vrei și border ca la ID și online */
+  //border: 0.1vw solid rgba(255, 255, 255, 0.548);
+  //background: rgba(0, 0, 0, 0.11);
+}

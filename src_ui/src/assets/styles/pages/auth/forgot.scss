@@ -1,0 +1,254 @@
+.forgotpassword-bg {
+  min-height: 100vh;
+  width: 100vw;
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('~assets/images/bg5.png') center/cover no-repeat;
+  z-index: 0;
+}
+.forgotpassword-card {
+  border-radius: 0.5vw;
+  padding: 4vh 3vw 3vh 3vw;
+  width: 29vw;
+  min-width: 24vw;
+  max-width: 40vw;
+  height: 74vh;
+  min-height: 36vh;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  z-index: 2;
+  margin: 0vh auto 0 auto;
+  right: 10%;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.4vw;
+  transition: all .3s cubic-bezier(.4,0,.2,1);
+}
+.forgotpassword-logo {
+  width: 19vw;
+  margin-bottom: 2vh;
+  filter: drop-shadow(0 0.8vh 3vw #0005);
+  max-width: 32vw;
+  min-width: 4vw;
+}
+.forgotpassword-header h2 {
+  color: #fff;
+  font-size: 1.8vw;
+  font-weight: 700;
+  margin: 0 0 1.2vh 0;
+  letter-spacing: 0.16vw;
+  text-align: center;
+}
+.forgotpassword-subtitle {
+  color: #b8b9c5;
+  font-size: 1.15vw;
+  margin-bottom: 2vh;
+  text-align: center;
+}
+.forgotpassword-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2.2vh;
+}
+.forgotpassword-row {
+  display: flex;
+  gap: 1vw;
+  width: 100%;
+}
+.forgotpassword-row .forgotpassword-field {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.forgotpassword-field {
+  display: flex;
+  align-items: center;
+  background: #22263a00;
+  border-radius: 0.5vw;
+  margin-bottom: 0.4vh;
+  padding: 0.1vh 1.1vw;
+  box-shadow: 0 0 0 0.12vw #820000;
+  transition: box-shadow .2s;
+  color: #fff;
+  position: relative;
+}
+.forgotpassword-field:focus-within {
+  box-shadow: 0 0 0 0.12vw #820000;
+  color: #fff;
+}
+.forgotpassword-icon {
+  color: #ad0000;
+  margin-right: 1vw;
+  font-size: 1.3vw;
+}
+.forgotpassword-field input,
+.forgotpassword-code-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: clamp(14px, 0.95vw, 18px); /* <- acest font-size rezolvă problema cursorului la toate inputurile, inclusiv email */
+  padding: 1.8vh 0.8vw 1.8vh 0;
+  width: 100%;
+  font-family: 'Montserrat', sans-serif;
+}
+.forgotpassword-field input::placeholder,
+.forgotpassword-code-input::placeholder {
+  color: #fff !important;
+  opacity: 1;
+}
+.forgotpassword-field input::-webkit-input-placeholder,
+.forgotpassword-code-input::-webkit-input-placeholder { color: #fff !important; opacity: 1; }
+.forgotpassword-field input::-moz-placeholder,
+.forgotpassword-code-input::-moz-placeholder { color: #fff !important; opacity: 1; }
+.forgotpassword-field input:-ms-input-placeholder,
+.forgotpassword-code-input:-ms-input-placeholder { color: #fff !important; opacity: 1; }
+.forgotpassword-field input::-ms-input-placeholder,
+.forgotpassword-code-input::-ms-input-placeholder { color: #fff !important; opacity: 1; }
+.forgotpassword-error {
+  color: #ff3232;
+  font-size: 0.98vw;
+  margin: 0 0 0.1vw 2.6vw;
+  padding: 0 0.1vw;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  text-shadow: 0 1px 8px #0008;
+}
+.forgotpassword-error-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1vw;
+}
+.forgotpassword-btn {
+  width: 100%;
+  background: #68000067;
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 0.5vw;
+  font-size: 1.4vw;
+  padding: 2.1vh 0;
+  margin-top: 1vh;
+  cursor: pointer;
+  box-shadow: 0 0 0 0.12vw #820000;
+  transition: background .15s;
+}
+.forgotpassword-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+.forgotpassword-btn:hover:enabled {
+  background: #22263a00;
+}
+
+/* Cod input + buton, inline */
+.forgotpassword-field--code-group {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  padding-right: 0;
+  margin-bottom: 0.4vh;
+  width: 100%;
+  gap: 0;
+}
+.forgotpassword-code-input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  flex: 1 1 8vw;
+  min-width: 12vw;
+  max-width: 12vw;
+}
+.forgotpassword-btn--inline {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 0.5vw;
+  border-bottom-right-radius: 0.5vw;
+  background: #68000067;
+  color: #fff;
+  font-size: 0.75vw;
+  font-weight: 700;
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 0 1.1vw;
+  box-shadow: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+.forgotpassword-btn--inline:hover {
+  background: #1453ad;
+}
+.forgotpassword-field--code-group .forgotpassword-icon {
+  margin-right: 1vw;
+}
+
+/* FOOTER btn la forgotpassword (nu afecteaza login!) */
+.forgotpassword-footer {
+  margin-top: 3vh;
+  display: flex;
+  gap: 1vw;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.forgotpassword-footer-btn {
+  background: none;
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 0.5vw;
+  padding: 0.8vh 2vw;
+  font-size: 1.15vw;
+  cursor: pointer;
+  opacity: 1;
+  transition: background .16s, color .14s, opacity .12s;
+  outline: none;
+}
+.forgotpassword-footer-btn:hover,
+.forgotpassword-footer-btn:focus {
+  background: #68000067;
+  color: #fff;
+  opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+  .forgotpassword-card {
+    width: 90vw;
+    min-width: 0;
+    font-size: 3vw;
+    padding: 6vw 4vw 4vw 4vw;
+  }
+  .forgotpassword-logo {
+    width: 55vw;
+  }
+  .forgotpassword-row {
+    flex-direction: column;
+    gap: 0.5vw;
+  }
+  .forgotpassword-error-row {
+    flex-direction: column;
+    gap: 0.2vw;
+  }
+  .forgotpassword-field--code-group {
+    flex-direction: column;
+    gap: 0;
+  }
+  .forgotpassword-code-input,
+  .forgotpassword-btn--inline {
+    max-width: none;
+    min-width: 0;
+    width: 100%;
+    border-radius: 0.5vw !important;
+  }
+}

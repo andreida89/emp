@@ -1,0 +1,1284 @@
+{
+"hats": {
+    "type": "clothes",
+    "name": "Palarie",
+    "weight": 0.1
+},
+"tops": {
+    "type": "clothes",
+    "name": "Haina de sus",
+    "weight": 0.2
+},
+"pants": {
+    "type": "clothes",
+    "name": "Pantaloni",
+    "weight": 0.2
+},
+"shoes": {
+    "type": "clothes",
+    "name": "Incaltaminte",
+    "weight": 0.2
+},
+"glasses": {
+    "type": "clothes",
+    "name": "Ochelari",
+    "weight": 0.1
+},
+"masks": {
+    "type": "clothes",
+    "name": "Masca",
+    "weight": 0.1
+},
+"accessories": {
+    "type": "clothes",
+    "name": "Accesorii",
+    "weight": 0.1
+},
+"watches": {
+    "type": "clothes",
+    "name": "Ceas",
+    "weight": 0.1
+},
+"bracelets": {
+    "type": "clothes",
+    "name": "Bratari",
+    "weight": 0.1
+},
+"ears": {
+    "type": "clothes",
+    "name": "Cercei",
+    "weight": 0.1
+},
+"tasks": {
+    "type": "clothes",
+    "name": "Veste",
+    "weight": 0.1
+},
+"torso": {
+    "type": "clothes",
+    "name": "Maini/Manusi",
+    "weight": 0.1
+},
+"undershirts": {
+    "type": "clothes",
+    "name": "Sub tricou",
+    "weight": 0.1
+},
+"burger": {
+    "type": "food",
+    "name": "Burger",
+    "weight": 0.1
+},
+"donut": {
+    "type": "food",
+    "name": "Gogoasa",
+    "weight": 0.1
+},
+"chocolate": {
+    "type": "food",
+    "name": "Ciocolata",
+    "weight": 0.1
+},
+"soda": {
+    "type": "water",
+    "name": "Cola",
+    "weight": 0.15
+},
+"water": {
+    "type": "water",
+    "name": "Apa",
+    "weight": 0.15
+},
+"cigarettes": {
+    "type": "drugs",
+    "name": "Tigarete",
+    "weight": 0.01
+},
+"beer": {
+    "type": "alcohol",
+    "name": "Bere",
+    "weight": 0.2
+},
+"wine": {
+    "type": "alcohol",
+    "name": "Vin",
+    "weight": 0.3
+},
+"whiskey": {
+    "type": "alcohol",
+    "name": "Whisky",
+    "weight": 0.3
+},
+"vodka": {
+    "type": "alcohol",
+    "name": "Vodka",
+    "weight": 0.3
+},
+"bandage": {
+    "type": "medicine",
+    "name": "Bandaj",
+    "weight": 0.1
+},
+"medkit": {
+    "type": "medicine",
+    "name": "Trusa de prim ajutor",
+    "weight": 0.5
+},
+"flashlight": {
+    "type": "weapon",
+    "name": "Lanterna",
+    "weight": 0.2
+},
+"nightstick": {
+    "type": "weapon",
+    "name": "Baston",
+    "weight": 0.5
+},
+"stungun": {
+    "type": "weapon",
+    "name": "Pistol cu electrosoc",
+    "weight": 0.3
+},
+"dagger": {
+    "type": "weapon",
+    "name": "Pumnal",
+    "weight": 0.2
+},
+"bat": {
+    "type": "weapon",
+    "name": "Bat",
+    "weight": 1
+},
+"bottle": {
+    "type": "weapon",
+    "name": "Sticla",
+    "weight": 0.1
+},
+"golfclub": {
+    "type": "weapon",
+    "name": "Crosa de golf",
+    "weight": 1
+},
+"knuckle": {
+    "type": "weapon",
+    "name": "Rozeta",
+    "weight": 0.2
+},
+"knife": {
+    "type": "weapon",
+    "name": "Cutit",
+    "weight": 0.2
+},
+"gadgetpistol": {
+    "type": "weapon",
+    "name": "Pistol",
+    "weight": 0.5
+},
+"navyrevolver": {
+    "type": "weapon",
+    "name": "Pistol",
+    "weight": 0.5
+},
+"pistol": {
+    "type": "weapon",
+    "name": "Pistol",
+    "weight": 0.5
+},
+"pistol50": {
+    "type": "weapon",
+    "name": "Pistol .50",
+    "weight": 0.6
+},
+"snspistol": {
+    "type": "weapon",
+    "name": "Pistol de buzunar",
+    "weight": 0.3
+},
+"vintagepistol": {
+    "type": "weapon",
+    "name": "Pistol vintage",
+    "weight": 0.6
+},
+"revolver": {
+    "type": "weapon",
+    "name": "Revolver greu",
+    "weight": 0.7
+},
+"doubleaction": {
+    "type": "weapon",
+    "name": "Pistol DB",
+    "weight": 0.5
+},
+"machinepistol": {
+    "type": "weapon",
+    "name": "Pistol mitraliera mic",
+    "weight": 0.9
+},
+"microsmg": {
+    "type": "weapon",
+    "name": "Micro pistol mitraliera",
+    "weight": 1
+},
+"smg": {
+    "type": "weapon",
+    "name": "Mitraliera",
+    "weight": 1.2
+},
+"minismg": {
+    "type": "weapon",
+    "name": "Mini-Pistol mitraliera",
+    "weight": 1.1
+},
+"combatpdw": {
+    "type": "weapon",
+    "name": "PDW de lupta",
+    "weight": 1.2
+},
+"assaultsmg": {
+    "type": "weapon",
+    "name": "Pistol mitraliera de asalt",
+    "weight": 1.4
+},
+"assaultrifle": {
+    "type": "weapon",
+    "name": "Fus de asalt",
+    "weight": 1.5
+},
+"carbinerifle": {
+    "type": "weapon",
+    "name": "Fus automat",
+    "weight": 1.4
+},
+"advancedrifle": {
+    "type": "weapon",
+    "name": "Fus imbunatatit",
+    "weight": 1.6
+},
+"specialcarbine": {
+    "type": "weapon",
+    "name": "Carabina speciala",
+    "weight": 1.5
+},
+"compactrifle": {
+    "type": "weapon",
+    "name": "Fus compact",
+    "weight": 1.3
+},
+"sawnoffshotgun": {
+    "type": "weapon",
+    "name": "Pusca taioasa",
+    "weight": 1.3
+},
+"pumpshotgun": {
+    "type": "weapon",
+    "name": "Pusca cu pompa",
+    "weight": 1.5
+},
+"assaultshotgun": {
+    "type": "weapon",
+    "name": "Pusca de asalt",
+    "weight": 1.6
+},
+"heavyshotgun": {
+    "type": "weapon",
+    "name": "Pusca grea",
+    "weight": 1.7
+},
+"musket": {
+    "type": "weapon",
+    "name": "Muscheta",
+    "weight": 1.8
+},
+"dbshotgun": {
+    "type": "weapon",
+    "name": "Pusca cu doua tevi",
+    "weight": 1.3
+},
+"militaryrifle": {
+    "type": "weapon",
+    "name": "Military rifle",
+    "weight": 1.3
+},
+"minigun": {
+    "type": "weapon",
+    "name": "Minigun",
+    "weight": 2
+},
+"rpg": {
+    "type": "weapon",
+    "name": "Lansator de rachete",
+    "weight": 2
+},
+"9mm": {
+    "type": "munitie",
+    "name": "Munitie 9mm",
+    "weight": 0.01
+},
+"7.62mm": {
+    "type": "munitie",
+    "name": "Munitie 7.62mm",
+    "weight": 0.02
+},
+"12gauge": {
+    "type": "munitie",
+    "name": "Munitie 12gauge",
+    "weight": 0.03
+},
+"rpgammo": {
+    "type": "munitie",
+    "name": "Munitie RPG",
+    "weight": 0.1
+},
+"jerrycan": {
+    "type": "tool",
+    "name": "Canistra",
+    "weight": 1.4
+},
+"pompa": {
+    "type": "tool",
+    "name": "Pompa",
+    "weight": 0.1
+},
+"canistraplina": {
+    "type": "tool",
+    "name": "Canistra Plina",
+    "weight": 1.4
+},
+"repair_kit": {
+    "type": "tool",
+    "name": "Kit de reparatii",
+    "weight": 2
+},
+"armor_light": {
+    "type": "armor",
+    "name": "Armura (mica)",
+    "weight": 0.2
+},
+"armor_medium": {
+    "type": "armor",
+    "name": "Armura (medie)",
+    "weight": 0.3
+},
+"armor_heavy": {
+    "type": "armor",
+    "name": "Armura (mare)",
+    "weight": 0.5
+},
+"backpack_small": {
+    "type": "backpack",
+    "name": "Geanta (mica)",
+    "weight": 0.1
+},
+"backpack_medium": {
+    "type": "backpack",
+    "name": "Geanta (medie)",
+    "weight": 0.1
+},
+"backpack_large": {
+    "type": "backpack",
+    "name": "Geanta (mare)",
+    "weight": 0.1
+},
+"lockpick": {
+    "type": "tool",
+    "name": "Lockpick",
+    "weight": 0.03
+},
+"handcuffs": {
+    "type": "tool",
+    "name": "Catuse",
+    "weight": 0.1
+},
+"cable_tie": {
+    "type": "tool",
+    "name": "Colier",
+    "weight": 0.05
+},
+"sack": {
+    "type": "tool",
+    "name": "Sac",
+    "weight": 0.1
+},
+"cocaine": {
+    "type": "drugs",
+    "name": "Pachet de cocaina",
+    "weight": 0.4
+},
+"rod": {
+    "type": "tool",
+    "name": "Undita",
+    "weight": 0.2
+},
+"rame": {
+    "type": "tool",
+    "name": "Rame",
+    "weight": 0.01
+},
+"oblete": {
+    "type": "fish",
+    "name": "Oblete",
+    "weight": 0.05
+},
+"biban": {
+    "type": "fish",
+    "name": "Biban",
+    "weight": 0.1
+},
+"caras": {
+    "type": "fish",
+    "name": "Caras",
+    "weight": 0.2
+},
+"crap": {
+    "type": "fish",
+    "name": "Crap",
+    "weight": 0.4
+},
+"clean": {
+    "type": "fish",
+    "name": "Clean",
+    "weight": 0.5
+},
+"pastrav": {
+    "type": "fish",
+    "name": "Pastrav",
+    "weight": 0.6
+},
+"salau": {
+    "type": "fish",
+    "name": "Salau",
+    "weight": 0.9
+},
+"stiuca": {
+    "type": "fish",
+    "name": "Stiuca",
+    "weight": 1.2
+},
+"dorada": {
+    "type": "fish",
+    "name": "Dorada",
+    "weight": 1.3
+},
+"calcan": {
+    "type": "fish",
+    "name": "Calcan",
+    "weight": 1.5
+},
+"ton": {
+    "type": "fish",
+    "name": "Ton",
+    "weight": 1
+},
+"rechin": {
+    "type": "fish",
+    "name": "Rechin",
+    "weight": 5
+},
+  "trufe": {
+    "type": "ciuperca",
+    "name": "Trufe",
+    "weight": 0.3
+  },
+    "hribi": {
+    "type": "ciuperca",
+    "name": "Hribi",
+    "weight": 0.2
+  },
+    "ghebe": {
+    "type": "ciuperca",
+    "name": "Ghebe",
+    "weight": 0.1
+  },
+  "champignon": {
+    "type": "ciuperca",
+    "name": "Champignon",
+    "weight": 0.08
+  },
+  "opintici": {
+    "type": "ciuperca",
+    "name": "Opintici",
+    "weight": 0.05
+  },
+    "mere": {
+    "type": "food",
+    "name": "Mere",
+    "weight": 0.4
+  },
+    "prune": {
+    "type": "food",
+    "name": "Prune",
+    "weight": 0.2
+  },
+    "afine": {
+    "type": "food",
+    "name": "Afine",
+    "weight": 0.1
+  },
+    "salata": {
+    "type": "food",
+    "name": "Salata",
+    "weight": 0.1
+  },
+    "morcovi": {
+    "type": "food",
+    "name": "Morcovi",
+    "weight": 0.2
+  },
+  "cartofi": {
+    "type": "food",
+    "name": "Cartofi",
+    "weight": 0.3
+  },
+  "ron": {
+    "type": "bani",
+    "name": "RON",
+    "weight": 0
+  },
+  "legitimatieguvern": {
+    "type": "sindicat",
+    "name": "Legitimatie Guvern",
+    "weight": 0
+  },
+  "legitimatieprimarie": {
+    "type": "primarie",
+    "name": "Legitimatie Primarie",
+    "weight": 0
+  },
+  "buletin": {
+    "type": "buletin",
+    "name": "Buletin",
+    "weight": 0
+  },
+  "politie": {
+    "type": "politie",
+    "name": "Legitimatie Politie",
+    "weight": 0
+  },
+  "smurd": {
+    "type": "smurd",
+    "name": "Legitimatie SMURD",
+    "weight": 0
+  },
+
+
+
+
+
+
+
+
+
+
+  
+"incarcatorsns": {
+  	"type": "atasament",
+  	"name": "Incarcator SNS",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_SNSPISTOL_CLIP_02",
+  	"compatibleWeapons": ["snspistol"]
+},
+"skinsns": {
+  	"type": "atasament",
+  	"name": "Skin SNS",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_SNSPISTOL_VARMOD_LOWRIDER",
+  	"compatibleWeapons": ["snspistol"]
+},
+
+"incarcatorpistol50": {
+  	"type": "atasament",
+  	"name": "Incarcator Pistol 50",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_PISTOL50_CLIP_02",
+  	"compatibleWeapons": ["pistol50"]
+},
+"lanternapistol50": {
+  	"type": "atasament",
+  	"name": "Lanterna Pistol 50",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_PI_FLSH",
+  	"compatibleWeapons": ["pistol50"]
+},
+"supresorpistol50": {
+  	"type": "atasament",
+  	"name": "Supresor Pistol 50",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_AR_SUPP_02",
+  	"compatibleWeapons": ["pistol50"]
+},
+
+"incarcatorsmg": {
+  	"type": "atasament",
+  	"name": "Incarcator SMG",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_SMG_CLIP_02",
+  	"compatibleWeapons": ["smg"]
+},
+"lanternasmg": {
+  	"type": "atasament",
+  	"name": "Lanterna SMG",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_AR_FLSH",
+  	"compatibleWeapons": ["smg"]
+},
+"supresorsmg": {
+  	"type": "atasament",
+  	"name": "Supresor SMG",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_PI_SUPP",
+  	"compatibleWeapons": ["smg"]
+},
+"lunetasmg": {
+  	"type": "atasament",
+  	"name": "Luneta SMG",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_SCOPE_MACRO_02",
+  	"compatibleWeapons": ["smg"]
+},
+
+"incarcatorassaultsmg": {
+  	"type": "atasament",
+  	"name": "Incarcator Assault SMG",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_ASSAULTSMG_CLIP_02",
+  	"compatibleWeapons": ["assaultsmg"]
+},
+"lanternaassaultsmg": {
+  	"type": "atasament",
+  	"name": "Lanterna SMG",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_AR_FLSH",
+  	"compatibleWeapons": ["assaultsmg"]
+},
+"supresorassaultsmg": {
+  	"type": "atasament",
+  	"name": "Supresor Assault SMG",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_AR_SUPP_02",
+  	"compatibleWeapons": ["assaultsmg"]
+},
+"lunetaassaultsmg": {
+  	"type": "atasament",
+  	"name": "Luneta Assault SMG",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_SCOPE_MACRO",
+  	"compatibleWeapons": ["assaultsmg"]
+},
+
+"lanternapumpshotgun": {
+  	"type": "atasament",
+  	"name": "Lanterna Pump Shotgun",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_AR_FLSH",
+  	"compatibleWeapons": ["pumpshotgun"]
+},
+"supresorpumpshotgun": {
+  	"type": "atasament",
+  	"name": "Supresor Pump Shotgun",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_SR_SUPP",
+  	"compatibleWeapons": ["pumpshotgun"]
+},
+
+"carbinerifle_mk2": {
+	"type": "weapon",
+	"name": "Carabine Rifle Mk2",
+	"weight": 1.4,
+	"stack": 1,
+	"ammo": "7.62mm",
+	"model": "w_ar_carbineriflemk2"
+},
+"incarcatorcrmk2": {
+  	"type": "atasament",
+  	"name": "Incarcator Carabine Rifle Mk2",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_CARBINERIFLE_MK2_CLIP_02",
+  	"compatibleWeapons": ["carbinerifle_mk2"]
+},
+"lanternacrmk2": {
+  	"type": "atasament",
+  	"name": "Lanterna Carabine Rifle Mk2",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_AR_FLSH",
+  	"compatibleWeapons": ["carbinerifle_mk2"]
+},
+"supresorcrmk2": {
+  	"type": "atasament",
+  	"name": "Supresor Carabine Rifle Mk2",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_AR_SUPP",
+  	"compatibleWeapons": ["carbinerifle_mk2"]
+},
+"lunetacrmk2": {
+  	"type": "atasament",
+  	"name": "Luneta Carabine Rifle Mk2",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_SCOPE_MEDIUM_MK2",
+  	"compatibleWeapons": ["carbinerifle_mk2"]
+},
+"gripcrmk2": {
+  	"type": "atasament",
+  	"name": "Grip Carabine Rifle Mk2",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_AR_AFGRIP_02",
+  	"compatibleWeapons": ["carbinerifle_mk2"]
+},
+
+"incarcatormilitaryrifle": {
+  	"type": "atasament",
+  	"name": "Incarcator Military Rifle",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_MILITARYRIFLE_CLIP_02",
+  	"compatibleWeapons": ["militaryrifle"]
+},
+"supresormilitaryrifle": {
+  	"type": "atasament",
+  	"name": "Supresor Military Rifle",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_AR_SUPP",
+  	"compatibleWeapons": ["militaryrifle"]
+},
+"lunetamilitaryrifle": {
+  	"type": "atasament",
+  	"name": "Luneta Military Rifle",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_SCOPE_SMALL",
+  	"compatibleWeapons": ["militaryrifle"]
+},
+"lanternamilitaryrifle": {
+  	"type": "atasament",
+  	"name": "Lanterna Military Rifle",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_AR_FLSH",
+  	"compatibleWeapons": ["militaryrifle"]
+},
+
+"ceramicpistol": {
+	"type": "weapon",
+	"name": "Pistol Ceramic",
+	"weight": 0.6,
+	"stack": 5,
+	"ammo": "9mm",
+	"model": "w_pi_vintage_pistol"
+},
+"incarcatorceramicpistol": {
+  	"type": "atasament",
+  	"name": "Incarcator Ceramic Pistol",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_CERAMICPISTOL_CLIP_02",
+  	"compatibleWeapons": ["ceramicpistol"]
+},
+"supresorceramicpistol": {
+  	"type": "atasament",
+  	"name": "Supresor Ceramic Pistol",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_CERAMICPISTOL_SUPP",
+  	"compatibleWeapons": ["ceramicpistole"]
+},
+
+"incarcatormicrosmg": {
+  	"type": "atasament",
+  	"name": "Incarcator Micro SMG",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_MICROSMG_CLIP_02",
+  	"compatibleWeapons": ["microsmg"]
+},
+"lanternamicrosmg": {
+  	"type": "atasament",
+  	"name": "Lanterna Micro SMG",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_PI_FLSH",
+  	"compatibleWeapons": ["microsmg"]
+},
+"lunetamicrosmg": {
+  	"type": "atasament",
+  	"name": "Luneta Micro SMG",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_SCOPE_MACRO",
+  	"compatibleWeapons": ["microsmg"]
+},
+"supresormicrosmg": {
+  	"type": "atasament",
+  	"name": "Supresor Micro SMG",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_AR_SUPP_02",
+  	"compatibleWeapons": ["microsmg"]
+},
+"skinmicrosmg": {
+  	"type": "atasament",
+  	"name": "Skin Micro SMG",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_MICROSMG_VARMOD_LUXE",
+  	"compatibleWeapons": ["microsmg"]
+},
+
+"incarcatortec": {
+  	"type": "atasament",
+  	"name": "Incarcator TEC",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_MACHINEPISTOL_CLIP_02",
+  	"compatibleWeapons": ["machinepistol"]
+},
+"supresortec": {
+  	"type": "atasament",
+  	"name": "Supresor TEC",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_PI_SUPP",
+  	"compatibleWeapons": ["machinepistol"]
+},
+
+"smg_mk2": {
+	"type": "weapon",
+	"name": "SMG Mk2",
+	"weight": 1.2,
+	"stack": 1,
+	"ammo": "9mm",
+	"model": "w_sb_smg"
+},
+"incarcatorsmgmk2": {
+  	"type": "atasament",
+  	"name": "Incarcator SMG Mk2",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_SMG_MK2_CLIP_02",
+  	"compatibleWeapons": ["smg_mk2"]
+},
+"lanternasmgmk2": {
+  	"type": "atasament",
+  	"name": "Lanterna SMG Mk2",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_AR_FLSH",
+  	"compatibleWeapons": ["smg_mk2"]
+},
+"lunetasmgmk2": {
+  	"type": "atasament",
+  	"name": "Luneta SMG Mk2",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_SCOPE_SMALL_SMG_MK2",
+  	"compatibleWeapons": ["smg_mk2"]
+},
+"supresorsmgmk2": {
+  	"type": "atasament",
+  	"name": "Supresor SMG Mk2",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_PI_SUPP",
+  	"compatibleWeapons": ["smg_mk2"]
+},
+"skin1smgmk2": {
+  	"type": "atasament",
+  	"name": "Skin Digital SMG Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_SMG_MK2_CAMO",
+  	"compatibleWeapons": ["smg_mk2"]
+},
+"skin2smgmk2": {
+  	"type": "atasament",
+  	"name": "Skin Brushstroke SMG Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_SMG_MK2_CAMO_02",
+  	"compatibleWeapons": ["smg_mk2"]
+},
+"skin3smgmk2": {
+  	"type": "atasament",
+  	"name": "Skin Woodland SMG Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_SMG_MK2_CAMO_03",
+  	"compatibleWeapons": ["smg_mk2"]
+},
+"skin4smgmk2": {
+  	"type": "atasament",
+  	"name": "Skin Skull SMG Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_SMG_MK2_CAMO_04",
+  	"compatibleWeapons": ["smg_mk2"]
+},
+"skin5smgmk2": {
+  	"type": "atasament",
+  	"name": "Skin 69 SMG Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_SMG_MK2_CAMO_05",
+  	"compatibleWeapons": ["smg_mk2"]
+},
+"skin6smgmk2": {
+  	"type": "atasament",
+  	"name": "Skin Perseus SMG Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_SMG_MK2_CAMO_06",
+  	"compatibleWeapons": ["smg_mk2"]
+},
+"skin7smgmk2": {
+  	"type": "atasament",
+  	"name": "Skin Leopard SMG Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_SMG_MK2_CAMO_07",
+  	"compatibleWeapons": ["smg_mk2"]
+},
+"skin8smgmk2": {
+  	"type": "atasament",
+  	"name": "Skin Zebra SMG Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_SMG_MK2_CAMO_08",
+  	"compatibleWeapons": ["smg_mk2"]
+},
+"skin9smgmk2": {
+  	"type": "atasament",
+  	"name": "Skin Geometric SMG Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_SMG_MK2_CAMO_09",
+  	"compatibleWeapons": ["smg_mk2"]
+},
+"skin10smgmk2": {
+  	"type": "atasament",
+  	"name": "Skin Boom SMG Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_SMG_MK2_CAMO_10",
+  	"compatibleWeapons": ["smg_mk2"]
+},
+"skin11smgmk2": {
+  	"type": "atasament",
+  	"name": "Skin Patriotic SMG Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_SMG_MK2_CAMO_IND_01",
+  	"compatibleWeapons": ["smg_mk2"]
+},
+
+"incarcatorcombatpdw": {
+  	"type": "atasament",
+  	"name": "Incarcator Combat PDW",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_COMBATPDW_CLIP_02",
+  	"compatibleWeapons": ["combatpdw"]
+},
+"lanternacombatpdw": {
+  	"type": "atasament",
+  	"name": "Lanterna Combat PDW",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_AR_FLSH",
+  	"compatibleWeapons": ["combatpdw"]
+},
+"gripcombatpdw": {
+  	"type": "atasament",
+  	"name": "Grip Combat PDW",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_AR_AFGRIP",
+  	"compatibleWeapons": ["combatpdw"]
+},
+"lunetacombatpdw": {
+  	"type": "atasament",
+  	"name": "Luneta Combat PDW",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_SCOPE_SMALL",
+  	"compatibleWeapons": ["combatpdw"]
+},
+
+"assaultrifle_mk2": {
+	"type": "weapon",
+	"name": "Assault Rifle Mk2",
+	"weight": 1.5,
+	"stack": 1,
+	"ammo": "7.62mm",
+	"model": "weapon_assaultrifle"
+},
+"incarcatorarmk2": {
+  	"type": "atasament",
+  	"name": "Incarcator Assault Rifle Mk2",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_ASSAULTRIFLE_MK2_CLIP_02",
+  	"compatibleWeapons": ["assaultrifle_mk2"]
+},
+"lanternaarmk2": {
+  	"type": "atasament",
+  	"name": "Lanterna Assault Rifle Mk2",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_AR_FLSH",
+  	"compatibleWeapons": ["assaultrifle_mk2"]
+},
+"lunetaarmk2": {
+  	"type": "atasament",
+  	"name": "Luneta Assault Rifle Mk2",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_SCOPE_MEDIUM_MK2",
+  	"compatibleWeapons": ["assaultrifle_mk2"]
+},
+"supresorarmk2": {
+  	"type": "atasament",
+  	"name": "Supresor Assault Rifle Mk2",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_AR_SUPP_02",
+  	"compatibleWeapons": ["assaultrifle_mk2"]
+},
+"skin1armk2": {
+  	"type": "atasament",
+  	"name": "Skin Digital Assault Rifle Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_ASSAULTRIFLE_MK2_CAMO",
+  	"compatibleWeapons": ["assaultrifle_mk2"]
+},
+"skin2armk2": {
+  	"type": "atasament",
+  	"name": "Skin Brushstroke Assault Rifle Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_ASSAULTRIFLE_MK2_CAMO_02",
+  	"compatibleWeapons": ["assaultrifle_mk2"]
+},
+"skin3armk2": {
+  	"type": "atasament",
+  	"name": "Skin Woodland Assault Rifle Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_ASSAULTRIFLE_MK2_CAMO_03",
+  	"compatibleWeapons": ["assaultrifle_mk2"]
+},
+"skin4armk2": {
+  	"type": "atasament",
+  	"name": "Skin Skull Assault Rifle Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_ASSAULTRIFLE_MK2_CAMO_04",
+  	"compatibleWeapons": ["assaultrifle_mk2"]
+},
+"skin5armk2": {
+  	"type": "atasament",
+  	"name": "Skin 69 Assault Rifle Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_ASSAULTRIFLE_MK2_CAMO_05",
+  	"compatibleWeapons": ["assaultrifle_mk2"]
+},
+"skin6armk2": {
+  	"type": "atasament",
+  	"name": "Skin Perseus Assault Rifle Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_ASSAULTRIFLE_MK2_CAMO_06",
+  	"compatibleWeapons": ["assaultrifle_mk2"]
+},
+"skin7armk2": {
+  	"type": "atasament",
+  	"name": "Skin Leopard Assault Rifle Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_ASSAULTRIFLE_MK2_CAMO_07",
+  	"compatibleWeapons": ["assaultrifle_mk2"]
+},
+"skin8armk2": {
+  	"type": "atasament",
+  	"name": "Skin Zebra Assault Rifle Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_ASSAULTRIFLE_MK2_CAMO_08",
+  	"compatibleWeapons": ["assaultrifle_mk2"]
+},
+"skin9armk2": {
+  	"type": "atasament",
+  	"name": "Skin Geometric Assault Rifle Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_ASSAULTRIFLE_MK2_CAMO_09",
+  	"compatibleWeapons": ["assaultrifle_mk2"]
+},
+"skin10armk2": {
+  	"type": "atasament",
+  	"name": "Skin Boom Assault Rifle Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_ASSAULTRIFLE_MK2_CAMO_10",
+  	"compatibleWeapons": ["assaultrifle_mk2"]
+},
+"skin11armk2": {
+  	"type": "atasament",
+  	"name": "Skin Patriotic Assault Rifle Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_ASSAULTRIFLE_MK2_CAMO_IND_01",
+  	"compatibleWeapons": ["assaultrifle_mk2"]
+},
+
+
+"combatmg_mk2": {
+	"type": "weapon",
+	"name": "Combat MG Mk2",
+	"weight": 2,
+	"stack": 1,
+	"ammo": "7.62mm",
+	"model": "w_mg_combatmg_luxe"
+},
+"incarcatormgmk2": {
+  	"type": "atasament",
+  	"name": "Incarcator MG Mk2",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_COMBATMG_MK2_CLIP_02",
+  	"compatibleWeapons": ["combatmg_mk2"]
+},
+"lunetamgmk2": {
+  	"type": "atasament",
+  	"name": "Luneta MG Mk2",
+  	"weight": 0.3,
+  	"stack": 500,
+  	"model": "COMPONENT_AT_SCOPE_MEDIUM_MK2",
+  	"compatibleWeapons": ["combatmg_mk2"]
+},
+"skin1mgmk2": {
+  	"type": "atasament",
+  	"name": "Skin Digital MG Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_COMBATMG_MK2_CAMO",
+  	"compatibleWeapons": ["combatmg_mk2"]
+},
+"skin2mgmk2": {
+  	"type": "atasament",
+  	"name": "Skin Brushstroke MG Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_COMBATMG_MK2_CAMO_02",
+  	"compatibleWeapons": ["combatmg_mk2"]
+},
+"skin3mgmk2": {
+  	"type": "atasament",
+  	"name": "Skin Woodland MG Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_COMBATMG_MK2_CAMO_03",
+  	"compatibleWeapons": ["combatmg_mk2"]
+},
+"skin4mgmk2": {
+  	"type": "atasament",
+  	"name": "Skin Skull MG Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_COMBATMG_MK2_CAMO_04",
+  	"compatibleWeapons": ["combatmg_mk2"]
+},
+"skin5mgmk2": {
+  	"type": "atasament",
+  	"name": "Skin 69 MG Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_COMBATMG_MK2_CAMO_05",
+  	"compatibleWeapons": ["combatmg_mk2"]
+},
+"skin6mgmk2": {
+  	"type": "atasament",
+  	"name": "Skin Perseus MG Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_COMBATMG_MK2_CAMO_06",
+  	"compatibleWeapons": ["combatmg_mk2"]
+},
+"skin7mgmk2": {
+  	"type": "atasament",
+  	"name": "Skin Leopard MG Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_COMBATMG_MK2_CAMO_07",
+  	"compatibleWeapons": ["combatmg_mk2"]
+},
+"skin8mgmk2": {
+  	"type": "atasament",
+  	"name": "Skin Zebra MG Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_COMBATMG_MK2_CAMO_08",
+  	"compatibleWeapons": ["combatmg_mk2"]
+},
+"skin9mgmk2": {
+  	"type": "atasament",
+  	"name": "Skin Geometric MG Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_COMBATMG_MK2_CAMO_09",
+  	"compatibleWeapons": ["combatmg_mk2"]
+},
+"skin10mgmk2": {
+  	"type": "atasament",
+  	"name": "Skin Boom MG Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_COMBATMG_MK2_CAMO_10",
+  	"compatibleWeapons": ["combatmg_mk2"]
+},
+"skin11mgmk2": {
+  	"type": "atasament",
+  	"name": "Skin Patriotic MG Mk2",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_COMBATMG_MK2_CAMO_IND_01",
+  	"compatibleWeapons": ["combatmg_mk2"]
+},
+
+"revolvervip": {
+  	"type": "atasament",
+  	"name": "Revolver Vip Skin",
+  	"weight": 0,
+  	"stack": 500,
+  	"model": "COMPONENT_REVOLVER_VARMOD_BOSS",
+  	"compatibleWeapons": ["revolver"]
+},
+"gusenberg": {
+	"type": "weapon",
+	"name": "Gusenberg",
+	"weight": 1,
+	"stack": 1000,
+	"ammo": "7.62mm",
+	"model": "w_sb_gusenberg"
+}
+}

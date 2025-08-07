@@ -1,0 +1,76 @@
+.spawn-overlay {
+	position: fixed;
+	left: 0; top: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 9999;
+	background: url(~assets/images/bg-spawn.png) center no-repeat;
+	background-size: cover;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.spawn-dialog-container {
+	background: rgba(31, 0, 0, 0.231);
+	border-radius: 1vw;
+	padding: 3vw 4vw 2vw 4vw;
+	border: 2px solid rgba(135, 0, 0, 0.717);
+	box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	max-width: 80vw;
+}
+
+.spawn-dialog-title {
+	margin: 0 0 1vw 0;
+	text-transform: uppercase;
+	font-size: 2vw;
+	text-align: center;
+	color: #fff;
+	letter-spacing: 0.06vw;
+}
+
+.spawn-dialog-text {
+	margin: 0 0 2vw 0;
+	font-size: 1.2vw;
+	font-weight: 200;
+	letter-spacing: 0.02vw;
+	text-shadow: 0 0 5px rgba(0,0,0,0.5);
+	white-space: pre-line;
+	text-align: center;
+	color: #fff;
+}
+
+.spawn-dialog-btn {
+	width: 60%;
+	margin: 0 auto;
+	font-size: 1.5vw;
+	display: block;
+	text-align: center;
+}
+
+// Responsive pentru mobil
+@media (max-width: 600px) {
+	.spawn-dialog-container {
+		max-width: 98vw;
+		padding: 6vw 2vw 4vw 2vw;
+	}
+	.spawn-dialog-title {
+		font-size: 5vw;
+	}
+	.spawn-dialog-text {
+		font-size: 3vw;
+	}
+	.spawn-dialog-btn {
+		font-size: 4vw;
+		width: 90%;
+	}
+}
+.spawn-logo {
+  max-width: 100px;
+  height: auto;
+  display: block;
+  margin: 0 auto 1vw auto;
+}

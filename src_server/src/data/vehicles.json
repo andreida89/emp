@@ -1,0 +1,3427 @@
+{
+  "ratloader": {
+    "name": "Ratloader",
+    "type": "ieftine",
+    "price": 2500,
+    "speed": 101,
+    "trunk": 50,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "28",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "asbo": {
+    "name": "Asbo",
+    "type": "ieftine",
+    "price": 4000,
+    "speed": 108,
+    "trunk": 15,
+    "torpedou": 1,
+    "fuel": "benzina",
+    "multiplicator": "30",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "blista": {
+    "name": "Blista",
+    "type": "ieftine",
+    "price": 5000,
+    "speed": 115,
+    "trunk": 15,
+    "torpedou": 1,
+    "fuel": "benzina",
+    "multiplicator": "32",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "brioso": {
+    "name": "Brioso",
+    "type": "ieftine",
+    "price": 6000,
+    "speed": 137,
+    "trunk": 15,
+    "torpedou": 1,
+    "fuel": "benzina",
+    "multiplicator": "38",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "prairie": {
+    "name": "Prairie",
+    "type": "ieftine",
+    "price": 6500,
+    "speed": 137,
+    "trunk": 20,
+    "torpedou": 1,
+    "fuel": "benzina",
+    "multiplicator": "38",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+    
+  },
+  "issi2": {
+    "name": "Issi 2",
+    "type": "ieftine",
+    "price": 7000,
+    "speed": 101,
+    "trunk": 20,
+    "torpedou": 1,
+    "fuel": "benzina",
+    "multiplicator": "28",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "club": {
+    "name": "Club",
+    "type": "ieftine",
+    "price": 8000,
+    "speed": 119,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "33",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "exemplar": {
+    "name": "Exemplar",
+    "type": "ieftine",
+    "price": 10000,
+    "speed": 166,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "46",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "felon": {
+    "name": "Felon",
+    "type": "ieftine",
+    "price": 12000,
+    "speed": 176,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "49",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "jackal": {
+    "name": "kaclal",
+    "type": "ieftine",
+    "price": 12500,
+    "speed": 191,
+    "trunk": 25,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "53",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "sentinel2": {
+    "name": "Sentinel 2",
+    "type": "ieftine",
+    "price": 13500,
+    "speed": 191,
+    "trunk": 25,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "53",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "aleutian": {
+    "name": "Aleutian",
+    "type": "ieftine",
+    "price": 14000,
+    "speed": 155,
+    "trunk": 40,
+    "torpedou": 1,
+    "fuel": "benzina",
+    "multiplicator": "43",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "baller": {
+    "name": "Baller",
+    "type": "ieftine",
+    "price": 15000,
+    "speed": 144,
+    "trunk": 40,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "40",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "cavalcade": {
+    "name": "Cavalcade",
+    "type": "ieftine",
+    "price": 18000,
+    "speed": 144,
+    "trunk": 50,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "40",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  "caracara2": {
+    "name": "Caracara 2",
+    "type": "4x4",
+    "price": 50000,
+    "speed": 141,
+    "trunk": 40,
+    "torpedou": 5,
+    "fuel": "motorina",
+    "multiplicator": "39",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "guardian": {
+    "name": "guardian",
+    "type": "4x4",
+    "price": 55000,
+    "speed": 126,
+    "trunk": 40,
+    "torpedou": 5,
+    "fuel": "motorina",
+    "multiplicator": "39",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "everon": {
+    "name": "everon",
+    "type": "4x4",
+    "price": 55000,
+    "speed": 126,
+    "trunk": 40,
+    "torpedou": 5,
+    "fuel": "motorina",
+    "multiplicator": "39",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "mesa3": {
+    "name": "Mesa3",
+    "type": "4x4",
+    "price": 60000,
+    "speed": 137,
+    "trunk": 50,
+    "torpedou": 5,
+    "fuel": "motorina",
+    "multiplicator": "38",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "kamacho": {
+    "name": "Kamacho",
+    "type": "4x4",
+    "price": 95000,
+    "speed": 144,
+    "trunk": 50,
+    "torpedou": 5,
+    "fuel": "motorina",
+    "multiplicator": "40",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "draugur": {
+    "name": "Draugur",
+    "type": "4x4",
+    "price": 100000,
+    "speed": 155,
+    "trunk": 30,
+    "torpedou": 5,
+    "fuel": "motorina",
+    "multiplicator": "43",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "dubsta3": {
+    "name": "Dubsta3",
+    "type": "4x4",
+    "price": 120000,
+    "speed": 155,
+    "trunk": 50,
+    "torpedou": 5,
+    "fuel": "motorina",
+    "multiplicator": "46",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "contender": {
+    "name": "Contender",
+    "type": "4x4",
+    "price": 140000,
+    "speed": 159,
+    "trunk": 50,
+    "torpedou": 5,
+    "fuel": "motorina",
+    "multiplicator": "44",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "outlaw": {
+    "name": "Outlaw",
+    "type": "4x4",
+    "price": 150000,
+    "speed": 141,
+    "trunk": 15,
+    "torpedou": 5,
+    "fuel": "motorina",
+    "multiplicator": "39",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "vagrant": {
+    "name": "Vagrant",
+    "type": "4x4",
+    "price": 250000,
+    "speed": 141,
+    "trunk": 10,
+    "torpedou": 1,
+    "fuel": "motorina",
+    "multiplicator": "39",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  "astron": {
+    "name": "Astron",
+    "type": "suv",
+    "price": 25000,
+    "speed": 180,
+    "trunk": 30,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "50",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  "neon": {
+    "name": "PRS Taycan Electric",
+    "type": "sport",
+    "price": 240000,
+    "speed": 191,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "curent",
+    "multiplicator": "53",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "ninef2": {
+    "name": "AUD R8 Spyder",
+    "type": "sport",
+    "price": 250000,
+    "speed": 195,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "54",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "omnisegt": {
+    "name": "AUD e-tron GT 2021",
+    "type": "sport",
+    "price": 260000,
+    "speed": 198,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "54",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "jester4": {
+    "name": "TYT Supra MKV",
+    "type": "sport",
+    "price": 270000,
+    "speed": 198,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "55",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "paragon": {
+    "name": "BNT Continental GT",
+    "type": "sport",
+    "price": 270000,
+    "speed": 202,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "56",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "pariah": {
+    "name": "ASTM V12 Zagato",
+    "type": "sport",
+    "price": 280000,
+    "speed": 205,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "57",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "tenf": {
+    "name": "AUD R8 2019",
+    "type": "sport",
+    "price": 290000,
+    "speed": 209,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "58",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "cypher": {
+    "name": "BW M2 F87",
+    "type": "sport",
+    "price": 300000,
+    "speed": 216,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "60",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "furoregt": {
+    "name": "MST Alfieri",
+    "type": "sport",
+    "price": 500000,
+    "speed": 223,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "62",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "growler": {
+    "name": "PRS 718 Fayman GT4",
+    "type": "sport",
+    "price": 540000,
+    "speed": 227,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "63",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5t",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "italigto": {
+    "name": "FRR 812 Superfast",
+    "type": "sport",
+    "price": 760000,
+    "speed": 231,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "64",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "italirsx": {
+    "name": "FRR SF90 Stradale",
+    "type": "sport",
+    "price": 760000,
+    "speed": 234,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "65",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "autarch": {
+    "name": "AUT SCG 003",
+    "type": "sport",
+    "price": 5100000,
+    "speed": 270,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "75",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "cheetah": {
+    "name": "FRR Enzo",
+    "type": "sport",
+    "price": 4000000,
+    "speed": 252,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "74",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "entity3": {
+    "name": "KNSG JSK Absolut",
+    "type": "sport",
+    "price": 5000000,
+    "speed": 288,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "80",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "emerus": {
+    "name": "MCL Senna",
+    "type": "sport",
+    "price": 1000000,
+    "speed": 270,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "64",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "fmj": {
+    "name": "FRD GT",
+    "type": "sport",
+    "price": 700000,
+    "speed": 216,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "60",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "ignus": {
+    "name": "LMB Sian FKP",
+    "type": "sport",
+    "price": 1200000,
+    "speed": 234,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "67",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "krieger": {
+    "name": "MCDS AMG ONE",
+    "type": "sport",
+    "price": 1250000,
+    "speed": 245,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "68",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "nero": {
+    "name": "BGT Chiron One",
+    "type": "sport",
+    "price": 1800000,
+    "speed": 260,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "72",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "prototipo": {
+    "name": "Pegassi X80 Proto",
+    "type": "sport",
+    "price": 3500000,
+    "speed": 288,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "80",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "tezeract": {
+    "name": "Pegassi X80 Proto",
+    "type": "sport",
+    "price": 4500000,
+    "speed": 288,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "curent",
+    "multiplicator": "80",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "turismor": {
+    "name": "FRR LaFr One",
+    "type": "sport",
+    "price": 2500000,
+    "speed": 259,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "72",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "tyrant": {
+    "name": "APL Arrow",
+    "type": "sport",
+    "price": 2800000,
+    "speed": 267,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "74",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "vagner": {
+    "name": "ASTM Valkyrie",
+    "type": "sport",
+    "price": 2800000,
+    "speed": 274,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "74",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "zentorno": {
+    "name": "Zentorno",
+    "type": "sport",
+    "price": 2800000,
+    "speed": 288,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "80",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+
+  "f620": {
+    "name": "F620",
+    "type": "sport",
+    "price": 15000,
+    "speed": 216,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "60",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  "windsor": {
+    "name": "Windsor",
+    "type": "lux",
+    "price": 50000,
+    "speed": 180,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "50",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "windsor2": {
+    "name": "Windsor2",
+    "type": "lux",
+    "price": 70000,
+    "speed": 180,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "50",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "dubsta2": {
+    "name": "Dubsta 2",
+    "type": "lux",
+    "price": 80000,
+    "speed": 151,
+    "trunk": 50,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "42",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "novak": {
+    "name": "Dubsta 2",
+    "type": "lux",
+    "price": 85000,
+    "speed": 162,
+    "trunk": 50,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "45",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "baller4": {
+    "name": "Baller 4",
+    "type": "lux",
+    "price": 120000,
+    "speed": 170,
+    "trunk": 40,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "45",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "toros": {
+    "name": "toros",
+    "type": "lux",
+    "price": 200000,
+    "speed": 234,
+    "trunk": 40,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "65",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "cinquemila": {
+    "name": "Cinquemila",
+    "type": "lux",
+    "price": 210000,
+    "speed": 245,
+    "trunk": 40,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "68",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "comet7": {
+    "name": "Comet 7",
+    "type": "lux",
+    "price": 320000,
+    "speed": 253,
+    "trunk": 40,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "70",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "coquette4": {
+    "name": "Coquette 4",
+    "type": "lux",
+    "price": 520000,
+    "speed": 274,
+    "trunk": 40,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "76",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "superd": {
+    "name": "Superd",
+    "type": "lux",
+    "price": 900000,
+    "speed": 162,
+    "trunk": 40,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "45",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "patriot2": {
+    "name": "Patriot 2",
+    "type": "lux",
+    "price": 1000000,
+    "speed": 108,
+    "trunk": 40,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "30",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  "bmx": {
+    "name": "BMX",
+    "type": "bike",
+    "price": 1000,
+    "speed": 40,
+    "trunk": 0,
+    "torpedou": 0,
+    "fuel": "none",
+    "multiplicator": "0",
+    "stage1": "0",
+    "stage2": "0",
+    "stage3": "0",
+    "stage4": "0",
+    "turbo": "0",
+    "cutie1": "0",
+    "cutie2": "0",
+    "cutie3": "0"
+  },
+  "scorcher": {
+    "name": "Scorcher",
+    "type": "bike",
+    "price": 1500,
+    "speed": 40,
+    "trunk": 0,
+    "torpedou": 0,
+    "fuel": "none",
+    "multiplicator": "0",
+    "stage1": "0",
+    "stage2": "0",
+    "stage3": "0",
+    "stage4": "105",
+    "turbo": "0",
+    "cutie1": "0",
+    "cutie2": "0",
+    "cutie3": "0"
+  },
+  "faggio": {
+    "name": "Faggio",
+    "type": "bike",
+    "price": 3000,
+    "speed": 47,
+    "trunk": 5,
+    "torpedou": 0,
+    "fuel": "benzina",
+    "multiplicator": "13",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "akuma": {
+    "name": "Akuma",
+    "type": "bike",
+    "price": 35000,
+    "speed": 198,
+    "trunk": 5,
+    "torpedou": 0,
+    "fuel": "benzina",
+    "multiplicator": "55",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "bati": {
+    "name": "Bati",
+    "type": "bike",
+    "price": 38000,
+    "speed": 234,
+    "trunk": 5,
+    "torpedou": 0,
+    "fuel": "benzina",
+    "multiplicator": "65",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "bati2": {
+    "name": "Bati 2",
+    "type": "bike",
+    "price": 42000,
+    "speed": 245,
+    "trunk": 5,
+    "torpedou": 0,
+    "fuel": "benzina",
+    "multiplicator": "68",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "manchez": {
+    "name": "Manchez",
+    "type": "bike",
+    "price": 45000,
+    "speed": 162,
+    "trunk": 5,
+    "torpedou": 0,
+    "fuel": "benzina",
+    "multiplicator": "45",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "bf400": {
+    "name": "BF400",
+    "type": "bike",
+    "price": 50000,
+    "speed": 137,
+    "trunk": 5,
+    "torpedou": 0,
+    "fuel": "benzina",
+    "multiplicator": "38",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "manchez3": {
+    "name": "Manchez 3",
+    "type": "bike",
+    "price": 55000,
+    "speed": 155,
+    "trunk": 10,
+    "torpedou": 0,
+    "fuel": "benzina",
+    "multiplicator": "43",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "hakuchou": {
+    "name": "Hakuchou",
+    "type": "bike",
+    "price": 58000,
+    "speed": 198,
+    "trunk": 5,
+    "torpedou": 0,
+    "fuel": "benzina",
+    "multiplicator": "55",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "powersurge": {
+    "name": "Powersurge",
+    "type": "bike",
+    "price": 250000,
+    "speed": 198,
+    "trunk": 5,
+    "torpedou": 0,
+    "fuel": "curent",
+    "multiplicator": "55",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "reever": {
+    "name": "Reever",
+    "type": "bike",
+    "price": 280000,
+    "speed": 198,
+    "trunk": 5,
+    "torpedou": 0,
+    "fuel": "benzina",
+    "multiplicator": "55",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "shinobi": {
+    "name": "Shinobi",
+    "type": "bike",
+    "price": 300000,
+    "speed": 216,
+    "trunk": 10,
+    "torpedou": 0,
+    "fuel": "benzina",
+    "multiplicator": "60",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+
+  "avarus": {
+    "name": "avarus",
+    "type": "bike",
+    "price": 50000,
+    "speed": 155,
+    "trunk": 5,
+    "torpedou": 0,
+    "fuel": "benzina",
+    "multiplicator": "43",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "daemon": {
+    "name": "Daemon",
+    "type": "bike",
+    "price": 55000,
+    "speed": 144,
+    "trunk": 5,
+    "torpedou": 0,
+    "fuel": "benzina",
+    "multiplicator": "40",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "chimera": {
+    "name": "Chimera",
+    "type": "bike",
+    "price": 60000,
+    "speed": 126,
+    "trunk": 5,
+    "torpedou": 0,
+    "fuel": "benzina",
+    "multiplicator": "34",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "innovation": {
+    "name": "Innovation",
+    "type": "bike",
+    "price": 100000,
+    "speed": 162,
+    "trunk": 5,
+    "torpedou": 0,
+    "fuel": "benzina",
+    "multiplicator": "45",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "nightblade": {
+    "name": "Nightblade",
+    "type": "bike",
+    "price": 105000,
+    "speed": 173,
+    "trunk": 5,
+    "torpedou": 0,
+    "fuel": "benzina",
+    "multiplicator": "48",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "zombiea": {
+    "name": "Zombiea",
+    "type": "bike",
+    "price": 180000,
+    "speed": 141,
+    "trunk": 5,
+    "torpedou": 0,
+    "fuel": "benzina",
+    "multiplicator": "39",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "rrocket": {
+    "name": "RRocket",
+    "type": "bike",
+    "price": 300000,
+    "speed": 108,
+    "trunk": 10,
+    "torpedou": 0,
+    "fuel": "benzina",
+    "multiplicator": "30",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "sanctus": {
+    "name": "Sanctus",
+    "type": "bike",
+    "price": 500000,
+    "speed": 162,
+    "trunk": 10,
+    "torpedou": 0,
+    "fuel": "benzina",
+    "multiplicator": "45",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "blazer": {
+    "name": "Blazer",
+    "type": "bike",
+    "price": 25000,
+    "speed": 130,
+    "trunk": 5,
+    "torpedou": 0,
+    "fuel": "benzina",
+    "multiplicator": "40",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "verus": {
+    "name": "Verus",
+    "type": "bike",
+    "price": 30000,
+    "speed": 90,
+    "trunk": 5,
+    "torpedou": 0,
+    "fuel": "benzina",
+    "multiplicator": "25",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "blazer4": {
+    "name": "Blazer 4",
+    "type": "bike",
+    "price": 35000,
+    "speed": 144,
+    "trunk": 5,
+    "torpedou": 0,
+    "fuel": "benzina",
+    "multiplicator": "40",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "blazer3": {
+    "name": "Blazer 3",
+    "type": "bike",
+    "price": 45000,
+    "speed": 90 ,
+    "trunk": 5,
+    "torpedou": 0,
+    "fuel": "benzina",
+    "multiplicator": "25",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  "submersible": {
+    "name": "Submersible",
+    "type": "boat",
+    "price": 0,
+    "speed": 30,
+    "trunk": 500,
+    "torpedou": 0,
+    "fuel": "benzina",
+    "multiplicator": "300",
+    "stage1": "0",
+    "stage2": "0",
+    "stage3": "0",
+    "stage4": "0",
+    "turbo": "0",
+    "cutie1": "0",
+    "cutie2": "0",
+    "cutie3": "0"
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  "chino2": {
+    "name": "Chino 2",
+    "type": "muscle",
+    "price": 200000,
+    "speed": 108,
+    "trunk": 20,
+    "torpedou": 1,
+    "fuel": "benzina",
+    "multiplicator": "30",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "blade": {
+    "name": "Blade",
+    "type": "muscle",
+    "price": 250000,
+    "speed": 90,
+    "trunk": 20,
+    "torpedou": 1,
+    "fuel": "benzina",
+    "multiplicator": "25",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "buccaneer2": {
+    "name": "Buccaneer 2",
+    "type": "muscle",
+    "price": 300000,
+    "speed": 115,
+    "trunk": 20,
+    "torpedou": 1,
+    "fuel": "benzina",
+    "multiplicator": "32",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "clique": {
+    "name": "Clique",
+    "type": "muscle",
+    "price": 350000,
+    "speed": 72,
+    "trunk": 20,
+    "torpedou": 1,
+    "fuel": "benzina",
+    "multiplicator": "20",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "coquette3": {
+    "name": "Coquette3",
+    "type": "muscle",
+    "price": 400000,
+    "speed": 144,
+    "trunk": 20,
+    "torpedou": 1,
+    "fuel": "benzina",
+    "multiplicator": "40",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "deviant": {
+    "name": "Deviant",
+    "type": "muscle",
+    "price": 450000,
+    "speed": 151,
+    "trunk": 20,
+    "torpedou": 1,
+    "fuel": "benzina",
+    "multiplicator": "42",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "dominator": {
+    "name": "Dominator",
+    "type": "muscle",
+    "price": 500000,
+    "speed": 162,
+    "trunk": 20,
+    "torpedou": 1,
+    "fuel": "benzina",
+    "multiplicator": "45",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "dominator7": {
+    "name": "Dominator 7",
+    "type": "muscle",
+    "price": 550000,
+    "speed": 166,
+    "trunk": 20,
+    "torpedou": 1,
+    "fuel": "benzina",
+    "multiplicator": "46",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  
+  },
+  "dukes": {
+    "name": "Dukes",
+    "type": "muscle",
+    "price": 600000,
+    "speed": 108,
+    "trunk": 20,
+    "torpedou": 1,
+    "fuel": "benzina",
+    "multiplicator": "30",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+
+  },
+  "dukes2": {
+    "name": "Dukes 2",
+    "type": "muscle",
+    "price": 650000,
+    "speed": 123,
+    "trunk": 20,
+    "torpedou": 1,
+    "fuel": "benzina",
+    "multiplicator": "34",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "ellie": {
+    "name": "Ellie",
+    "type": "muscle",
+    "price": 700000,
+    "speed": 130,
+    "trunk": 20,
+    "torpedou": 1,
+    "fuel": "benzina",
+    "multiplicator": "36",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "gauntlet": {
+    "name": "Gauntlet",
+    "type": "muscle",
+    "price": 650000,
+    "speed": 144,
+    "trunk": 20,
+    "torpedou": 1,
+    "fuel": "benzina",
+    "multiplicator": "40",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "gauntlet4": {
+    "name": "Gauntlet 4",
+    "type": "muscle",
+    "price": 700000,
+    "speed": 155,
+    "trunk": 20,
+    "torpedou": 1,
+    "fuel": "benzina",
+    "multiplicator": "43",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "greenwood": {
+    "name": "Greenwood 4",
+    "type": "muscle",
+    "price": 750000,
+    "speed": 119,
+    "trunk": 20,
+    "torpedou": 1,
+    "fuel": "benzina",
+    "multiplicator": "33",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "hustler": {
+    "name": "Hustler",
+    "type": "muscle",
+    "price": 800000,
+    "speed": 155,
+    "trunk": 10,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "43",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "impaler4": {
+    "name": "Impaler 4",
+    "type": "muscle",
+    "price": 850000,
+    "speed": 144,
+    "trunk": 10,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "40",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "imperator": {
+    "name": "Imperator",
+    "type": "muscle",
+    "price": 850000,
+    "speed": 169,
+    "trunk": 10,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "47",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "lurcher": {
+    "name": "Lurcher",
+    "type": "muscle",
+    "price": 900000,
+    "speed": 72,
+    "trunk": 10,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "20",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "nightshade": {
+    "name": "Nightshade",
+    "type": "muscle",
+    "price": 920000,
+    "speed": 162,
+    "trunk": 10,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "45",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  " peyote2": {
+    "name": "Peyote2",
+    "type": "muscle",
+    "price": 1000000,
+    "speed": 137,
+    "trunk": 10,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "38",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "ratloader2": {
+    "name": "Ratloader 2",
+    "type": "muscle",
+    "price": 1050000,
+    "speed": 126,
+    "trunk": 10,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "35",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "slamvan3": {
+    "name": "Slamvan 3",
+    "type": "muscle",
+    "price": 1100000,
+    "speed": 140,
+    "trunk": 10,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "39",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "vamos": {
+    "name": "Vamos",
+    "type": "muscle",
+    "price": 1150000,
+    "speed": 151,
+    "trunk": 10,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "42",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "virgo3": {
+    "name": "Virgo 3",
+    "type": "muscle",
+    "price": 1200000,
+    "speed": 108,
+    "trunk": 10,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "30",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "voodoo": {
+    "name": "Voodoo",
+    "type": "muscle",
+    "price": 1250000,
+    "speed": 126,
+    "trunk": 10,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "35",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "yosemite": {
+    "name": "Yosemite",
+    "type": "muscle",
+    "price": 1300000,
+    "speed": 123,
+    "trunk": 10,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "34",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  "terbyte": {
+    "name": "MTL Terbyte",
+    "type": "dube",
+    "price": 800000,
+    "speed": 105,
+    "trunk": 500,
+    "torpedou": 5,
+    "fuel": "motorina",
+    "multiplicator": "29",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  "hauler": {
+    "name": "Cap de TIR Hauler",
+    "type": "tir",
+    "price": 250000,
+    "speed": 90,
+    "trunk": 10,
+    "torpedou": 1,
+    "fuel": "motorina",
+    "multiplicator": "25",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "packer": {
+    "name": "Cap de TIR Packer",
+    "type": "tir",
+    "price": 350000,
+    "speed": 90,
+    "trunk": 15,
+    "torpedou": 1,
+    "fuel": "motorina",
+    "multiplicator": "25",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "phantom": {
+    "name": "Cap de TIR Phantom",
+    "type": "tir",
+    "price": 450000,
+    "speed": 90,
+    "trunk": 15,
+    "torpedou": 2,
+    "fuel": "motorina",
+    "multiplicator": "25",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "phantom3": {
+    "name": "Cap de TIR Phantom 3",
+    "type": "tir",
+    "price": 550000,
+    "speed": 90,
+    "trunk": 20,
+    "torpedou": 3,
+    "fuel": "motorina",
+    "multiplicator": "25",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  "seashark3": {
+    "name": "Skijet",
+    "type": "boat",
+    "price": 20000,
+    "speed": 115,
+    "trunk": 5,
+    "torpedou": 0,
+    "fuel": "benzina",
+    "multiplicator": "32",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "dinghy2": {
+    "name": "Dinghy 2",
+    "type": "boat",
+    "price": 30000,
+    "speed": 105,
+    "trunk": 10,
+    "torpedou": 0,
+    "fuel": "benzina",
+    "multiplicator": "29",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "dinghy": {
+    "name": "Dinghy",
+    "type": "boat",
+    "price": 35000,
+    "speed": 105,
+    "trunk": 10,
+    "torpedou": 0,
+    "fuel": "benzina",
+    "multiplicator": "29",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "jetmax": {
+    "name": "Jetmax",
+    "type": "boat",
+    "price": 70000,
+    "speed": 162,
+    "trunk": 25,
+    "torpedou": 1,
+    "fuel": "benzina",
+    "multiplicator": "45",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "longfin": {
+    "name": "Longfin",
+    "type": "boat",
+    "price": 100000,
+    "speed": 162,
+    "trunk": 30,
+    "torpedou": 2,
+    "fuel": "benzina",
+    "multiplicator": "45",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "avisa": {
+    "name": "Avisa",
+    "type": "boat",
+    "price": 500000,
+    "speed": 44,
+    "trunk": 100,
+    "torpedou": 0,
+    "fuel": "benzina",
+    "multiplicator": "400",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "tug": {
+    "name": "TUG",
+    "type": "boat",
+    "price": 5000000,
+    "speed": 44,
+    "trunk": 2000,
+    "torpedou": 0,
+    "fuel": "motorina",
+    "multiplicator": "100",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  "havok": {
+    "name": "Havok",
+    "type": "air",
+    "price": 600000,
+    "speed": 180,
+    "trunk": 5,
+    "torpedou": 0,
+    "fuel": "kerosen",
+    "multiplicator": "50",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "conada": {
+    "name": "Conada",
+    "type": "air",
+    "price": 800000,
+    "speed": 154,
+    "trunk": 10,
+    "torpedou": 0,
+    "fuel": "kerosen",
+    "multiplicator": "90",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "frogger": {
+    "name": "Fogger",
+    "type": "air",
+    "price": 1000000,
+    "speed": 240,
+    "trunk": 20,
+    "torpedou": 0,
+    "fuel": "kerosen",
+    "multiplicator": "70",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "maverick": {
+    "name": "Maverick",
+    "type": "air",
+    "price": 1500000,
+    "speed": 240,
+    "trunk": 20,
+    "torpedou": 0,
+    "fuel": "kerosen",
+    "multiplicator": "80",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "swift2": {
+    "name": "Swift2",
+    "type": "air",
+    "price": 2000000,
+    "speed": 260,
+    "trunk": 30,
+    "torpedou": 0,
+    "fuel": "kerosen",
+    "multiplicator": "100",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "volatus": {
+    "name": "Volatus",
+    "type": "air",
+    "price": 2500000,
+    "speed": 175,
+    "trunk": 30,
+    "torpedou": 0,
+    "fuel": "kerosen",
+    "multiplicator": "120",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "cuban800": {
+    "name": "Cuban800",
+    "type": "air",
+    "price": 1200000,
+    "speed": 190,
+    "trunk": 150,
+    "torpedou": 1,
+    "fuel": "kerosen",
+    "multiplicator": "70",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "dodo": {
+    "name": "Dodo",
+    "type": "air",
+    "price": 2500000,
+    "speed": 170,
+    "trunk": 350,
+    "torpedou": 1,
+    "fuel": "kerosen",
+    "multiplicator": "80",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "luxor2": {
+    "name": "Luxor 2",
+    "type": "air",
+    "price": 10000000,
+    "speed": 281,
+    "trunk": 500,
+    "torpedou": 1,
+    "fuel": "kerosen",
+    "multiplicator": "95",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  "nightshark": {
+    "name": "Nightshark",
+    "type": "blindate",
+    "price": 0,
+    "speed": 126,
+    "trunk": 80,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "35",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "cog552": {
+    "name": "COG552",
+    "type": "blindate",
+    "price": 0,
+    "speed": 216,
+    "trunk": 80,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "60",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "baller6": {
+    "name": "Baller 6",
+    "type": "blindate",
+    "price": 0,
+    "speed": 252,
+    "trunk": 80,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "70",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  "brioso3": {
+    "name": "Brioso 3",
+    "type": "vintage",
+    "price": 200000,
+    "speed": 133,
+    "trunk": 10,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "37",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "weevil": {
+    "name": "Weevil",
+    "type": "vintage",
+    "price": 300000,
+    "speed": 108,
+    "trunk": 10,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "30",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  " broadway": {
+    "name": "Broadway",
+    "type": "vintage",
+    "price": 350000,
+    "speed": 130,
+    "trunk": 10,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "36",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "hermes": {
+    "name": "Hermes",
+    "type": "vintage",
+    "price": 550000,
+    "speed": 150,
+    "trunk": 10,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "37",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "hotknife": {
+    "name": "Hotknife",
+    "type": "vintage",
+    "price": 600000,
+    "speed": 151,
+    "trunk": 10,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "42",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "stafford": {
+    "name": "Stafford",
+    "type": "vintage",
+    "price": 5000000,
+    "speed": 151,
+    "trunk": 50,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "42",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+
+
+  "btype": {
+    "name": "CDLC 341A",
+    "type": "vintage",
+    "price": 1700000,
+    "speed": 138,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "36",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "ztype": {
+    "name": "BGT type 57SC",
+    "type": "vintage",
+    "price": 30000000,
+    "speed": 138,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "40",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  "benson": {
+    "name": "MTL Benson",
+    "type": "lunar",
+    "price": 10,
+    "speed": 130,
+    "trunk": 750,
+    "torpedou": 5,
+    "fuel": "motorina",
+    "multiplicator": "36",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "brickade": {
+    "name": "MTL Brickade",
+    "type": "lunar",
+    "price": 15,
+    "speed": 130,
+    "trunk": 1000,
+    "torpedou": 5,
+    "fuel": "motorina",
+    "multiplicator": "36",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  "sanchez": {
+    "name": "Sanchez",
+    "type": "cayo",
+    "price": 100000,
+    "speed": 130,
+    "trunk": 5,
+    "torpedou": 0,
+    "fuel": "benzina",
+    "multiplicator": "36",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "winky": {
+    "name": "Winky",
+    "type": "cayo",
+    "price": 120000,
+    "speed": 90,
+    "trunk": 30,
+    "torpedou": 1,
+    "fuel": "benzina",
+    "multiplicator": "25",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "hellion": {
+    "name": "Hellion",
+    "type": "cayo",
+    "price": 300000,
+    "speed": 150,
+    "trunk": 40,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "36",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+    
+  },
+  "vetir": {
+    "name": "Vetir",
+    "type": "cayo",
+    "price": 150000,
+    "speed": 70,
+    "trunk": 150,
+    "torpedou": 5,
+    "fuel": "motorina",
+    "multiplicator": "20",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  "zentornoc": {
+    "name": "Zentorno C",
+    "type": "sport",
+    "price": 3800000,
+    "speed": 288,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "80",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "bug300ss": {
+    "name": "BUG 300+ Super Sport",
+    "type": "sport",
+    "price": 200000000,
+    "speed": 288,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "80",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  },
+  "agerars": {
+    "name": "AGR RS",
+    "type": "sport",
+    "price": 10000000,
+    "speed": 288,
+    "trunk": 20,
+    "torpedou": 5,
+    "fuel": "benzina",
+    "multiplicator": "80",
+    "stage1": "2",
+    "stage2": "5",
+    "stage3": "10",
+    "stage4": "15",
+    "turbo": "5",
+    "cutie1": "1",
+    "cutie2": "2",
+    "cutie3": "3"
+  }
+}

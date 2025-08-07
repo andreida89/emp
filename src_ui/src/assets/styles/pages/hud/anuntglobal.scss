@@ -1,0 +1,39 @@
+.ticker-container {
+    position: absolute;
+    margin-top: 2%;
+    margin-left: 50%;
+    width: 0;
+    height: 80px;
+    background: linear-gradient(to left, rgb(92, 0, 0) 10%, rgb(28, 0, 0) 50%, rgb(78, 0, 0) 90%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    transform: translate(-50%, -50%);
+    transition: width 1s ease-in-out;
+    border-top: 4px solid red;
+    border-bottom: 4px solid red;
+    z-index: 9999; /* 👈 HIGH priority */
+}
+
+.ticker-text {
+    white-space: nowrap;
+    position: absolute;
+    left: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    font-size: 20px;
+    text-transform: uppercase; /* 👈 Forces all letters to be uppercase */
+
+}
+
+@keyframes scrollText {
+    from { left: 100%; }
+    to { left: -100%; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}

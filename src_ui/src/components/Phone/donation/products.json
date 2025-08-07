@@ -1,0 +1,48 @@
+{
+	"10k": {
+		"title": "10 000$",
+		"description": "Adauga 10 000 RON in contul dvs. bancar",
+		"icon": "cash"
+	},
+	"50k": {
+		"title": "50 000$",
+		"description": "Adauga 50 000 RON in contul dvs. bancar",
+		"icon": "cash"
+	},
+	"200k": {
+		"title": "200 000$",
+		"description": "Adauga 200 000 RON in contul dvs. bancar",
+		"icon": "cash"
+	},
+	"500k": {
+		"title": "500 000$",
+		"description": "Adauga 500 000 RON in contul dvs. bancar",
+		"icon": "cash"
+	},
+	"2kk": {
+		"title": "Valiza cu bani",
+		"description": "Adauga 2 000 000 RON in contul dvs. bancar",
+		"icon": "money_case"
+	},
+	"10kk": {
+		"title": "Seif cu bani",
+		"description": "Adauga 10 000 000 RON in contul dvs. bancar",
+		"icon": "safe"
+	},
+	"vehicle_slot": {
+		"title": "Slot pentru vehicule",
+		"description": "Permite detinerea a mai multor vehicule",
+		"icon": "car"
+	},
+	"backpack": {
+		"title": "Rucsac de elita",
+		"description": "Primiti un rucsac cu cea mai mare capacitate",
+		"icon": "backpack"
+	},
+	"military_id": {
+		"title": "Livret militar",
+		"description": "Permite evitarea serviciului militar si obtinerea unui document",
+		"icon": "military_id"
+	}
+}
+

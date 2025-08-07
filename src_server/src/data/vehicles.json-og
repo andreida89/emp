@@ -1,0 +1,1345 @@
+{
+  "brioso2": {
+    "type": "coupe_small",
+    "price": 2000
+  },
+  "asbo": {
+    "type": "coupe",
+    "price": 3000
+  },
+  "club": {
+    "type": "coupe",
+    "price": 3400
+  },
+  "asea": {
+    "type": "sedan",
+    "price": 4300
+  },
+  "emperor2": {
+    "type": "sedan",
+    "price": 4200
+  },
+  "premier": {
+    "type": "sedan",
+    "price": 4700
+  },
+  "cheburek": {
+    "type": "sedan",
+    "price": 4400
+  },
+  "tornado3": {
+    "type": "coupe",
+    "price": 2150
+  },
+  "journey": {
+    "type": "microbus",
+    "price": 5000
+  },
+  "surfer2": {
+    "type": "microbus",
+    "price": 4850
+  },
+  "asterope": {
+    "type": "sedan",
+    "price": 4300
+  },
+  "blista": {
+    "type": "coupe",
+    "price": 3050
+  },
+  "fugitive": {
+    "type": "sedan",
+    "price": 4000
+  },
+  "regina": {
+    "type": "universal",
+    "price": 4900
+  },
+  "ingot": {
+    "type": "universal",
+    "price": 3800
+  },
+  "hellion": {
+    "type": "SUV",
+    "price": 50000
+  },
+  "glendale": {
+    "type": "sedan",
+    "price": 5500
+  },
+  "brioso": {
+    "type": "coupe",
+    "price": 6500
+  },
+  "kanjo": {
+    "type": "coupe",
+    "price": 6300
+  },
+  "issi2": {
+    "type": "coupe_small",
+    "price": 5200
+  },
+  "oracle": {
+    "type": "sedan",
+    "price": 6800
+  },
+  "felon": {
+    "type": "sedan",
+    "price": 8500
+  },
+  "oracle2": {
+    "type": "sedan",
+    "price": 9200
+  },
+  "jackal": {
+    "type": "sedan",
+    "price": 8700
+  },
+  "sentinel": {
+    "type": "coupe",
+    "price": 7500
+  },
+  "zion": {
+    "type": "coupe",
+    "price": 7800
+  },
+  "blade": {
+    "type": "muscle",
+    "price": 8500
+  },
+  "buccaneer": {
+    "type": "muscle",
+    "price": 8900
+  },
+  "dukes": {
+    "type": "muscle",
+    "price": 9500
+  },
+  "warrener": {
+    "type": "sedan",
+    "price": 10000
+  },
+  "dubsta": {
+    "type": "SUV",
+    "price": 9800
+  },
+  "baller3": {
+    "type": "SUV",
+    "price": 10500
+  },
+  "rebla": {
+    "type": "SUV",
+    "price": 11000
+  },
+  "vstr": {
+    "type": "sedan",
+    "price": 10300
+  },
+  "schlagen": {
+    "type": "coupe",
+    "price": 35000
+  },
+  "zentorno": {
+    "type": "coupe",
+    "price": 45000
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+  "chiron19": {
+    "type": "sport",
+    "price": 800000,
+    "maxspeed": 400
+  },
+  "skyline": {
+    "type": "coupe",
+    "price": 175000
+  },
+  "m4comp": {
+    "type": "coupe",
+    "price": 120000
+  },
+  "m5comp": {
+    "type": "coupe",
+    "price": 140000
+  },
+  "jesko20": {
+    "type": "coupe",
+    "price": 400000
+  },
+  "huracan": {
+    "type": "coupe",
+    "price": 275000
+  },
+  "18rs7": {
+    "type": "coupe",
+    "price": 75000
+  },
+  "18Velar": {
+    "type": "coupe",
+    "price": 60000
+  },
+ "63gls": {
+    "type": "SUV",
+    "price": 63000
+  },
+  "63gls2": {
+    "type": "SUV",
+    "price": 80000
+  },
+  "350z": {
+    "type": "coupe",
+    "price": 44000
+  },
+  "2019M5": {
+    "type": "sedan",
+    "price": 125000
+  },
+  "a45": {
+    "type": "sedan",
+    "price": 30000
+  },
+  "a90": {
+    "type": "coupe",
+    "price": 55000
+  },
+  "agerars": {
+    "type": "coupe",
+    "price": 735000
+  },
+  "amggt16": {
+    "type": "coupe",
+    "price": 72000
+  },
+  "astondb11": {
+    "type": "coupe",
+    "price": 220000
+  },
+  "avtr": {
+    "type": "coupe",
+    "price": 5550000
+  },
+  "bentayga": {
+    "type": "coupe",
+    "price": 2250000
+  },
+  "bentaygast": {
+    "type": "coupe",
+    "price": 140000
+  },
+  "bentley20": {
+    "type": "coupe",
+    "price": 240000
+  },
+  "bmw730": {
+    "type": "sedan",
+    "price": 55000
+  },
+  "bmwe28": {
+    "type": "sedan",
+    "price": 35000
+  },
+  "bmwe34": {
+    "type": "sedan",
+    "price": 50000
+  },
+  "bmwe36": {
+    "type": "sedan",
+    "price": 35000
+  },
+  "bmwe38": {
+    "type": "sedan",
+    "price": 50000
+  },
+  "bmwe39": {
+    "type": "sedan",
+    "price": 58000
+  },
+  "bmwe46": {
+    "type": "coupe",
+    "price": 57000
+  },
+  "bmwe70": {
+    "type": "SUV",
+    "price": 39000
+  },
+  "bmwg07": {
+    "type": "SUV",
+    "price": 82000
+  },
+  "bmwm2": {
+    "type": "coupe",
+    "price": 45000
+  },
+  "bmwm4": {
+    "type": "coupe",
+    "price": 2750000
+  },
+  "bmwm7": {
+    "type": "sedan",
+    "price": 3350000
+  },
+  "bmwx7": {
+    "type": "SUV",
+    "price": 3350000
+  },
+  "bmwz4": {
+    "type": "coupe",
+    "price": 50000
+  },
+  "camry70": {
+    "type": "sedan",
+    "price": 27000
+  },
+  "cls63s": {
+    "type": "sedan",
+    "price": 90000
+  },
+  "cullinan": {
+    "type": "SUV",
+    "price": 5948000
+  },
+  "cyber": {
+    "type": "SUV",
+    "price": 2698000
+  },
+  "e63s": {
+    "type": "sedan",
+    "price": 115000
+  },
+  "eqg": {
+    "type": "SUV",
+    "price": 4550000
+  },
+  "g63": {
+    "type": "SUV",
+    "price": 200000
+  },
+  "ghost": {
+    "type": "sedan",
+    "price": 280000
+  },
+  "gle63": {
+    "type": "SUV",
+    "price": 77000
+  },
+  "gt63s": {
+    "type": "sedan",
+    "price": 149000
+  },
+  "i8": {
+    "type": "coupe",
+    "price": 62000
+  },
+  "kiastinger": {
+    "type": "sedan",
+    "price": 35000
+  },
+  "lc200": {
+    "type": "SUV",
+    "price": 50000
+  },
+  "lex570": {
+    "type": "SUV",
+    "price": 55000
+  },
+  "mark2": {
+    "type": "sedan",
+    "price": 18000
+  },
+  "modelx": {
+    "type": "SUV",
+    "price": 65000
+  },
+  "mp1": {
+    "type": "coupe",
+    "price": 280000
+  },
+  "msprinter": {
+    "type": "microbus",
+    "price": 51000
+  },
+  "panamera17turbo": {
+    "type": "sedan",
+    "price": 93000
+  },
+  "rs6": {
+    "type": "sedan",
+    "price": 124000
+  },
+  "rs72": {
+    "type": "sedan",
+    "price": 138000
+  },
+  "rx7": {
+    "type": "coupe",
+    "price": 22000
+  },
+  "s63cab": {
+    "type": "coupe",
+    "price": 137000
+  },
+  "s600": {
+    "type": "sedan",
+    "price": 48000
+  },
+  "starone": {
+    "type": "coupe",
+    "price": 133000
+  },
+  "tahoe2": {
+    "type": "SUV",
+    "price": 3200000
+  },
+  "teslaroad": {
+    "type": "coupe",
+    "price": 180000
+  },
+  "urus": {
+    "type": "SUV",
+    "price": 180000
+  },
+  "vclass": {
+    "type": "microbus",
+    "price": 63000
+  },
+  "w210": {
+    "type": "sedan",
+    "price": 35000
+  },
+  "x5g05": {
+    "type": "SUV",
+    "price": 60000
+  },
+  "x5me70": {
+    "type": "SUV",
+    "price": 4500000
+  },
+  "x6m": {
+    "type": "SUV",
+    "price": 4500000
+  },
+  "x6m2": {
+    "type": "SUV",
+    "price": 62000
+  },
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  "bestiagts": {
+    "type": "coupe",
+    "price": 30000
+  },
+  "neon": {
+    "type": "universal",
+    "price": 32000
+  },
+  "ninef": {
+    "type": "coupe",
+    "price": 27000
+  },
+  "jester": {
+    "type": "coupe",
+    "price": 25000
+  },
+  "infernus2": {
+    "type": "coupe",
+    "price": 38000
+  },
+  "t20": {
+    "type": "coupe",
+    "price": 40000
+  },
+  "tempesta": {
+    "type": "coupe",
+    "price": 39000
+  },
+  "reaper": {
+    "type": "coupe",
+    "price": 44000
+  },
+  "coquette4": {
+    "type": "coupe",
+    "price": 43000
+  },
+  "osiris": {
+    "type": "coupe",
+    "price": 42000
+  },
+  "furia": {
+    "type": "coupe",
+    "price": 46000
+  },
+  "cheetah2": {
+    "type": "coupe",
+    "price": 38000
+  },
+  "entity2": {
+    "type": "coupe",
+    "price": 49000
+  },
+  "m5f90": {
+    "type": "sedan_sport",
+    "price": 1800000
+  },
+  "g63": {
+    "type": "SUV",
+    "price": 2900000
+  },
+  "lambo18": {
+    "type": "coupe",
+    "price": 4250000
+  },
+  "c63w204": {
+    "type": "sedan_sport",
+    "price": 763000
+  },
+  "m2": {
+    "type": "coupe",
+    "price": 700000
+  },
+  "camry18": {
+    "type": "sedan",
+    "price": 435000
+  },
+  "m5": {
+    "type": "sedan",
+    "price": 350000
+  },
+  "x5e53": {
+    "type": "SUV",
+    "price": 140000
+  },
+  "gtr": {
+    "type": "coupe",
+    "price": 1250000
+  },
+  "w140s600": {
+    "type": "sedan",
+    "price": 115000
+  },
+  "gtrc": {
+    "type": "coupe",
+    "price": 2950000
+  },
+  "impala67": {
+    "type": "muscle",
+    "price": 75000
+  },
+  "havok": {
+    "type": "plane",
+    "price": 9500000
+  },
+  "swift2": {
+    "type": "plane",
+    "price": 40000000
+  },
+  "duster": {
+    "type": "plane",
+    "price": 7000000
+  },
+  "dodo": {
+    "type": "plane",
+    "price": 12000000
+  },
+  "vestra": {
+    "type": "plane",
+    "price": 30000000
+  },
+  "luxor2": {
+    "type": "plane",
+    "price": 100000000
+  },
+  "shamal": {
+    "type": "plane",
+    "price": 55000000
+  },
+  "dinghy": {
+    "type": "boat",
+    "price": 650000
+  },
+  "jetmax": {
+    "type": "boat",
+    "price": 2200000
+  },
+  "seashark": {
+    "type": "boat",
+    "price": 320000
+  },
+  "speeder": {
+    "type": "boat",
+    "price": 3000000
+  },
+  "toro": {
+    "type": "boat",
+    "price": 3800000
+  },
+  "tropic2": {
+    "type": "boat",
+    "price": 1500000
+  },
+  "C7": {
+    "type": "sport",
+    "price": 2700000
+  },
+  "bmx": {
+    "type": "bicycle",
+    "price": 1200
+  },
+  "cruiser": {
+    "type": "bicycle",
+    "price": 1500
+  },
+  "fixter": {
+    "type": "bicycle",
+    "price": 1800
+  },
+  "scorcher": {
+    "type": "bicycle",
+    "price": 2000
+  },
+  "tribike3": {
+    "type": "bicycle",
+    "price": 3000
+  },
+  "faggio": {
+    "type": "motorcycle",
+    "price": 5500
+  },
+  "enduro": {
+    "type": "motorcycle",
+    "price": 15000
+  },
+  "diablous": {
+    "type": "motorcycle",
+    "price": 20000
+  },
+  "chimera": {
+    "type": "motorcycle",
+    "price": 32000
+  },
+  "avarus": {
+    "type": "motorcycle",
+    "price": 40000
+  },
+  "carbonrs": {
+    "type": "motorcycle",
+    "price": 60000
+  },
+  "double": {
+    "type": "motorcycle",
+    "price": 42000
+  },
+  "bati": {
+    "type": "motorcycle",
+    "price": 45000
+  },
+  "bati2": {
+    "type": "motorcycle",
+    "price": 50000
+  },
+  "akuma": {
+    "type": "motorcycle",
+    "price": 26000
+  },
+  "esskey": {
+    "type": "motorcycle",
+    "price": 24000
+  },
+  "diablous2": {
+    "type": "motorcycle",
+    "price": 34000
+  },
+  "defiler": {
+    "type": "motorcycle",
+    "price": 26000
+  },
+  "cliffhanger": {
+    "type": "motorcycle",
+    "price": 29000
+  },
+  "daemon": {
+    "type": "motorcycle",
+    "price": 40000
+  },
+  "deathbike": {
+    "type": "motorcycle",
+    "price": 50000
+  },
+  "deathbike2": {
+    "type": "motorcycle",
+    "price": 58000
+  },
+  "maverick": {
+    "type": "helicopter",
+    "price": 0
+  },
+  "barracks": {
+    "type": "cargo",
+    "price": 0
+  },
+  "insurgent2": {
+    "type": "SUV",
+    "price": 0
+  },
+  "baller5": {
+    "type": "SUV",
+    "price": 0
+  },
+  "titan": {
+    "type": "plane",
+    "price": 0
+  },
+  "besra": {
+    "type": "jet",
+    "price": 0
+  },
+
+  "lguard": {
+    "type": "universal",
+    "price": 0
+  },
+
+  "riot": {
+    "type": "cargo",
+    "price": 0
+  },
+  "xls": {
+    "type": "SUV",
+    "price": 0
+  },
+  "burrito3": {
+    "type": "microbus",
+    "price": 0
+  },
+  "boxville2": {
+    "type": "microbus",
+    "price": 0
+  },
+  "boxville4": {
+    "type": "microbus",
+    "price": 0
+  },
+  "mixer2": {
+    "type": "SUV",
+    "price": 0
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  "wraith": {
+    "type": "sport",
+    "price": 320000
+  },
+  "w223": {
+    "type": "sport",
+    "price": 320000
+  },
+  "Victor": {
+    "type": "sport",
+    "price": 320000
+  },
+  "veyronss": {
+    "type": "sport",
+    "price": 320000
+  },
+  "valkyrietp": {
+    "type": "sport",
+    "price": 320000
+  },
+  "valhalla": {
+    "type": "sport",
+    "price": 320000
+  },
+  "tuatara": {
+    "type": "sport",
+    "price": 320000
+  },
+  "stradale18": {
+    "type": "sport",
+    "price": 320000
+  },
+  "sto21": {
+    "type": "sport",
+    "price": 320000
+  },
+  "slrsm09": {
+    "type": "sport",
+    "price": 320000
+  },
+  "slingshot": {
+    "type": "sport",
+    "price": 320000
+  },
+  "sian": {
+    "type": "sport",
+    "price": 320000
+  },
+  "shecobra": {
+    "type": "sport",
+    "price": 320000
+  },
+  "sf90": {
+    "type": "sport",
+    "price": 320000
+  },
+  "sennas": {
+    "type": "sport",
+    "price": 320000
+  },
+  "sc18": {
+    "type": "sport",
+    "price": 320000
+  },
+  "s500": {
+    "type": "sport",
+    "price": 320000
+  },
+  "s63w222": {
+    "type": "sport",
+    "price": 320000
+  },
+  "s63": {
+    "type": "sport",
+    "price": 320000
+  },
+  "rs7c8": {
+    "type": "sport",
+    "price": 320000
+  },
+  "roma": {
+    "type": "sport",
+    "price": 320000
+  },
+  "rmodveneno": {
+    "type": "sport",
+    "price": 320000
+  },
+  "rmodlp770": {
+    "type": "sport",
+    "price": 320000
+  },
+  "r820": {
+    "type": "sport",
+    "price": 320000
+  },
+  "q820": {
+    "type": "sport",
+    "price": 320000
+  },
+  "pullman": {
+    "type": "sport",
+    "price": 320000
+  },
+  "project8": {
+    "type": "sport",
+    "price": 320000
+  },
+  "pro1": {
+    "type": "sport",
+    "price": 320000
+  },
+  "porsche2021": {
+    "type": "sport",
+    "price": 320000
+  },
+  "porcaygt22": {
+    "type": "sport",
+    "price": 320000
+  },
+  "phantom8": {
+    "type": "sport",
+    "price": 320000
+  },
+  "panamera18": {
+    "type": "sport",
+    "price": 320000
+  },
+  "octaviavrs": {
+    "type": "sport",
+    "price": 320000
+  },
+  "ocnetrongt": {
+    "type": "sport",
+    "price": 320000
+  },
+  "nis350z": {
+    "type": "sport",
+    "price": 320000
+  },
+  "nc1": {
+    "type": "sport",
+    "price": 320000
+  },
+  "mysterycar": {
+    "type": "sport",
+    "price": 320000
+  },
+  "monza": {
+    "type": "sport",
+    "price": 320000
+  },
+  "minijcw": {
+    "type": "sport",
+    "price": 320000
+  },
+  "mgrantur2010": {
+    "type": "sport",
+    "price": 320000
+  },
+  "mers63c": {
+    "type": "sport",
+    "price": 320000
+  },
+  "mere63amg": {
+    "type": "sport",
+    "price": 320000
+  },
+  "mcls53": {
+    "type": "sport",
+    "price": 320000
+  },
+  "mbgls63": {
+    "type": "sport",
+    "price": 320000
+  },
+  "m5cs": {
+    "type": "sport",
+    "price": 320000
+  },
+  "lotus": {
+    "type": "sport",
+    "price": 320000
+  },
+  "lexusrcf": {
+    "type": "sport",
+    "price": 320000
+  },
+  "lc500": {
+    "type": "sport",
+    "price": 320000
+  },
+  "lamtmc": {
+    "type": "sport",
+    "price": 320000
+  },
+  "lambose": {
+    "type": "sport",
+    "price": 320000
+  },
+  "lambosc20": {
+    "type": "sport",
+    "price": 320000
+  },
+  "laferrari": {
+    "type": "sport",
+    "price": 320000
+  },
+  "jetta": {
+    "type": "sport",
+    "price": 320000
+  },
+  "it18": {
+    "type": "sport",
+    "price": 320000
+  },
+  "infinitiq60": {
+    "type": "sport",
+    "price": 320000
+  },
+  "ie": {
+    "type": "sport",
+    "price": 320000
+  },
+  "hvrod": {
+    "type": "sport",
+    "price": 320000
+  },
+  "huayrabc": {
+    "type": "sport",
+    "price": 320000
+  },
+  "hondaS2000": {
+    "type": "sport",
+    "price": 320000
+  },
+  "gtr2020": {
+    "type": "sport",
+    "price": 320000
+  },
+  "gtr": {
+    "type": "sport",
+    "price": 320000
+  },
+  "gtblack": {
+    "type": "sport",
+    "price": 320000
+  },
+  "gt17": {
+    "type": "sport",
+    "price": 320000
+  },  
+  "GT3RS": {
+    "type": "sport",
+    "price": 320000
+  },  
+  "golfgti": {
+    "type": "sport",
+    "price": 320000
+  },  
+  "golf7r": {
+    "type": "sport",
+    "price": 320000
+  },
+  "gls600": {
+    "type": "sport",
+    "price": 320000
+  },
+  "giuliagta": {
+    "type": "sport",
+    "price": 320000
+  },
+  "geng90": {
+    "type": "sport",
+    "price": 320000
+  },
+  "fxxkevo": {
+    "type": "sport",
+    "price": 320000
+  },
+  "fxx": {
+    "type": "sport",
+    "price": 320000
+  },
+  "fnfrx7d": {
+    "type": "sport",
+    "price": 320000
+  },
+  "fenyr": {
+    "type": "sport",
+    "price": 320000
+  },
+  "bansheedrift": {
+    "type": "sport",
+    "price": 320000
+  },
+  "comet6drift": {
+    "type": "sport",
+    "price": 320000
+  },
+  "coquette4drift": {
+    "type": "sport",
+    "price": 320000
+  },
+  "coquettedrift": {
+    "type": "sport",
+    "price": 320000
+  },
+  "furoregtdrift": {
+    "type": "sport",
+    "price": 320000
+  },
+  "growlerdrift": {
+    "type": "sport",
+    "price": 320000
+  },
+  "kurumadrift": {
+    "type": "sport",
+    "price": 320000
+  },
+  "lynxdrift": {
+    "type": "sport",
+    "price": 320000
+  },
+  "rapidgt2drift": {
+    "type": "sport",
+    "price": 320000
+  },
+  "rapidgtdrift": {
+    "type": "sport",
+    "price": 320000
+  },
+  "schlagendrift": {
+    "type": "sport",
+    "price": 320000
+  },
+  "seven70drift": {
+    "type": "sport",
+    "price": 320000
+  },
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  "eav": {
+    "type": "coupe",
+    "price": 0
+  },
+
+
+
+
+
+
+
+
+
+
+
+  "gsttac1": {
+    "type": "sport",
+    "price": 320000
+  },
+  "rx7": {
+    "type": "coupe",
+    "price": 260000
+  },
+  "240sxbn": {
+    "type": "sport",
+    "price": 154000
+  },
+
+  "vigerozxwb": {
+    "type": "sport",
+    "price": 270000
+  },
+
+
+
+
+  "pm1": {
+    "type": "sport",
+    "price": 300000
+  },
+  "huracanspy": {
+    "type": "sport",
+    "price": 300000
+  },
+  "concept": {
+    "type": "sport",
+    "price": 450000
+  },
+
+
+
+
+
+
+  "gemera": {
+    "type": "sport",
+    "price": 380000
+  },
+  "lxlfa": {
+    "type": "sport",
+    "price": 300000
+  },
+  "evo9": {
+    "type": "sport",
+    "price": 48000
+  },
+
+
+
+
+  "eclipse": {
+    "type": "sport",
+    "price": 0
+  },
+  "lada1600": {
+    "type": "sport",
+    "price": 0
+  },
+  "hy5": {
+    "type": "sport",
+    "price": 0
+  },
+  "barbiewhip2000": {
+    "type": "sport",
+    "price": 0
+  },
+  "vulcanpro19": {
+    "type": "sport",
+    "price": 0
+  },
+
+
+  "faction3": {
+    "type": "sport",
+    "price": 0
+  },
+  "benze55": {
+    "type": "sport",
+    "price": 0
+  },
+  "btourbillon24": {
+    "type": "sport",
+    "price": 0
+  },
+
+
+
+  "mercedes_c180_2008wb": {
+    "type": "sport",
+    "price": 2000000
+  },
+
+
+
+
+
+
+
+
+
+
+  "rib": {
+    "type": "motorcycle",
+    "price": 0
+  },
+  "SM-Sanctus": {
+    "type": "motorcycle",
+    "price": 0
+  },
+
+
+
+
+
+
+
+  "falcon": {
+    "type": "motorcycle",
+    "price": 59000
+  },
+  "atwin2023": {
+    "type": "motorcycle",
+    "price": 43000
+  },
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  "polchiron": {
+    "type": "politie",
+    "price": 0
+  },
+  "unvan": {
+    "type": "SUV",
+    "price": 0
+  },
+  "unsilv": {
+    "type": "SUV",
+    "price": 0
+  },
+  "unram": {
+    "type": "SUV",
+    "price": 0
+  },
+  "unlightning": {
+    "type": "SUV",
+    "price": 0
+  },
+  "untesla": {
+    "type": "sport",
+    "price": 0
+  },
+  "unstang": {
+    "type": "sport",
+    "price": 0
+  },
+  "uncam": {
+    "type": "sport",
+    "price": 0
+  },
+  "untaco": {
+    "type": "SUV",
+    "price": 0
+  },
+  "policeb1": {
+    "type": "motorcycle",
+    "price": 0
+  },
+  "poltaxi": {
+    "type": "coupe",
+    "price": 0
+  },
+
+
+
+
+
+
+
+
+
+
+
+  "emsnspeedo": {
+    "type": "SUV",
+    "price": 0
+  },
+  "emsroamer": {
+    "type": "SUV",
+    "price": 0
+  },
+  "aw139": {
+    "type": "helicopter",
+    "price": 0
+  }
+
+
+}

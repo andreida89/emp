@@ -1,0 +1,77 @@
+.News {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    position: fixed;
+    top: 5px;
+    left: 50%;
+    overflow: hidden;
+    //background-color: #f0f0f0; // Background color
+
+    .image-container {
+        display: flex;
+        position: relative;
+        width: 100%; // Image container to occupy full width
+
+        .image {
+            flex: 1; // Allow images to take equal width
+
+            overflow: hidden;
+            transition: transform 1s ease; // Smooth transition for sliding
+
+            &.left {
+                width: 60px;
+                height: 100px;
+                // Left image styles
+            }
+
+            &.right {
+                width: 60px;
+                height: 100px;
+                // Right image styles
+            }
+
+            &.slide-left {
+                transform: translateX(-100%); // Slide left image out
+            }
+
+            &.slide-right {
+                transform: translateX(100%); // Slide right image out
+            }
+        }
+
+        .slide-band {
+            position: absolute;
+            top: 50%; // Center the band vertically
+            left: 0;
+            right: 0;
+            height: 50px; // Band height
+            background-color: gray; // Band color
+            z-index: 1; // Ensure the band appears above the images
+        }
+
+        .scrolling-text {
+            position: absolute;
+            top: 50%;
+            left: 100%; // Start from the right side
+            transform: translateY(-50%); // Center vertically
+            white-space: nowrap; // Prevent text from wrapping
+            animation: scroll-left linear forwards; // Set animation to linear
+            font-size: 20px; // Set text size as needed
+            color: white; // Change text color if needed
+            // Dynamically set the animation duration via inline styles in the component
+        }
+    }
+
+    // Animation keyframes
+    @keyframes scroll-left {
+        0% {
+            left: 100%; // Start off-screen to the right
+        }
+
+        100% {
+            left: -100%; // End off-screen to the left
+        }
+    }
+}

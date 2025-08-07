@@ -1,0 +1,450 @@
+import React, { useEffect, useRef } from 'react';
+import sprite from './assets/icons.svg'; // Path to your SVG icon file
+
+// Helper functions
+const deg2Rad = (deg: number): number => deg * (Math.PI / 180);
+const rad2Deg = (rad: number): number => rad * (180 / Math.PI);
+
+// Interface definitions
+interface Icon {
+    offset: { x: number; y: number };
+    position: { x: number; y: number };
+    dimensions: { width: number; height: number };
+    states: number;
+}
+
+interface CircleOptions {
+    circleBorderWidth: number;
+    circleBorderColor: string;
+    circleFillColor: string;
+    markFillColor: string;
+    markStrokeColor: string;
+    markFontColor: string;
+    markFontSize: number;
+    markFontStyle: string;
+    markFontFamily: string;
+    arrowBodyFillColor: string;
+    arrowBodyStrokeColor: string;
+    arrowColor: string;
+    arrowBaseWidth: number;
+    arrowBorderWidth: number;
+    dangerColor: string;
+    dangerZoneWidth: number;
+    turnSignalColor: string;
+    speedUnit: string;
+    icons: Record<string, Icon>;
+    turnSignal: { left: any; right: any };
+}
+
+// Class representing a circle (speedometer, tachometer, etc.)
+class Circle {
+    circleBorderWidth: number;
+    circleBorderColor: string;
+    circleFillColor: string;
+    markFillColor: string;
+    markStrokeColor: string;
+    markFontColor: string;
+    markFontSize: number;
+    markFontStyle: string;
+    markFontFamily: string;
+    arrowBodyFillColor: string;
+    arrowBodyStrokeColor: string;
+    arrowColor: string;
+    arrowBaseWidth: number;
+    arrowBorderWidth: number;
+    dangerColor: string;
+    dangerZoneWidth: number;
+    turnSignalColor: string;
+    speedUnit: string;
+    icons: Record<string, Icon>;
+    turnSignal: { left: any; right: any };
+    startAngle: number;
+    endAngle: number;
+    radius: number;
+    x: number;
+    y: number;
+
+    constructor(options: CircleOptions, canvas: HTMLCanvasElement) {
+        this.circleBorderWidth = options.circleBorderWidth;
+        this.circleBorderColor = options.circleBorderColor;
+        this.circleFillColor = options.circleFillColor;
+        this.markFillColor = options.markFillColor;
+        this.markStrokeColor = options.markStrokeColor;
+        this.markFontColor = options.markFontColor;
+        this.markFontSize = options.markFontSize;
+        this.markFontStyle = options.markFontStyle;
+        this.markFontFamily = options.markFontFamily;
+        this.arrowBodyFillColor = options.arrowBodyFillColor;
+        this.arrowBodyStrokeColor = options.arrowBodyStrokeColor;
+        this.arrowColor = options.arrowColor;
+        this.arrowBaseWidth = options.arrowBaseWidth;
+        this.arrowBorderWidth = options.arrowBorderWidth;
+        this.dangerColor = options.dangerColor;
+        this.dangerZoneWidth = options.dangerZoneWidth;
+        this.turnSignalColor = options.turnSignalColor;
+        this.speedUnit = options.speedUnit;
+        this.icons = options.icons;
+        this.turnSignal = options.turnSignal;
+        this.startAngle = 0;
+        this.endAngle = Math.PI * 2;
+        this.radius = canvas.height * 0.35;
+        this.x = canvas.width / 2;
+        this.y = canvas.height / 2;
+    }
+
+    draw(ctx: CanvasRenderingContext2D) {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.beginPath();
+        ctx.arc(0, 0, this.radius, this.startAngle, this.endAngle);
+        ctx.closePath();
+        ctx.fillStyle = this.circleFillColor;
+        ctx.lineWidth = this.circleBorderWidth;
+        ctx.strokeStyle = this.circleBorderColor;
+        ctx.fill();
+        ctx.stroke();
+        ctx.restore();
+    }
+
+    calcMarksAngles(count: number, degAngle: number, startAngle: number = 0): number[] {
+        const addAngle = deg2Rad((degAngle - 180) / 2);
+        const radAngle = deg2Rad(degAngle);
+        const angles: number[] = [];
+
+        for (let i = 0; i < count; i++) {
+            const angle = ((i * radAngle / (count - 1)) - addAngle - deg2Rad(startAngle)) * -1;
+            angles.push(angle);
+        }
+
+        return angles;
+    }
+
+    drawDangerZone(ctx: CanvasRenderingContext2D, angles: number[], offset: number, firstNMarks: number = 0, lastNMarks: number = 0) {
+        const radius = this.radius - this.circleBorderWidth - offset;
+
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.beginPath();
+
+        if (lastNMarks > 0) {
+            ctx.arc(0, 0, radius, angles[lastNMarks - 1], angles[0], false);
+        } else if (firstNMarks > 0) {
+            ctx.arc(0, 0, radius, angles[firstNMarks - 1], angles[0], false);
+        }
+
+        ctx.lineWidth = this.dangerZoneWidth;
+        ctx.strokeStyle = this.dangerColor;
+        ctx.stroke();
+        ctx.restore();
+    }
+
+    drawMark(ctx: CanvasRenderingContext2D, x1: number, y1: number, x2: number, y2: number, lineWidth: number, strokeStyle: string) {
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.lineTo(x2, y2);
+        ctx.closePath();
+        ctx.lineWidth = lineWidth;
+        ctx.strokeStyle = strokeStyle;
+        ctx.stroke();
+    }
+
+    drawMarks(ctx: CanvasRenderingContext2D, angles: number[], length: number, lineWidth: number, border = true, offset = 0, firstNMarks = 0, lastNMarks = 0, skip = null, skipFrom = 0, skipTo = 0) {
+        const count = angles.length - 1;
+        const s = count - firstNMarks;
+        const e = count - lastNMarks;
+        const sf = count - skipFrom;
+        const st = count - skipTo;
+        const radius = this.radius - this.circleBorderWidth - offset;
+
+        ctx.save();
+        ctx.translate(this.x, this.y);
+
+        for (let angle of angles) {
+            if (((skip === 'even' && (angles.indexOf(angle) % 2 === 1)) ||
+                (skip === 'odd' && (angles.indexOf(angle) % 2 === 0)) ||
+                (skip === 'all'))) {
+                if ((sf >= angles.indexOf(angle)) && (angles.indexOf(angle) >= st)) {
+                    continue;
+                }
+            }
+
+            const x1 = Math.cos(angle) * radius;
+            const y1 = Math.sin(angle) * radius;
+            const x2 = Math.cos(angle) * (radius - (radius / length));
+            const y2 = Math.sin(angle) * (radius - (radius / length));
+
+            // Draw "border" for main mark
+            if (border) {
+                this.drawMark(ctx, x1, y1, x2, y2, lineWidth + 1, this.markStrokeColor);
+            }
+
+            // Draw main mark
+            if ((lastNMarks > 0 && angles.indexOf(angle) < e) || (firstNMarks > 0 && angles.indexOf(angle) > s)) {
+                this.drawMark(ctx, x1, y1, x2, y2, lineWidth, this.dangerColor);
+            } else {
+                this.drawMark(ctx, x1, y1, x2, y2, lineWidth, this.markFillColor);
+            }
+        }
+
+        ctx.restore();
+    }
+
+    drawTextMark(ctx: CanvasRenderingContext2D, value: number | string, x: number, y: number) {
+        ctx.font = `${this.markFontStyle} ${this.markFontSize}px ${this.markFontFamily}`;
+        ctx.fillStyle = this.markFontColor;
+        ctx.fillText(value.toString(), x, y);
+    }
+
+    drawTextMarks(ctx: CanvasRenderingContext2D, angles: number[], step: number, offset: number, fractions: boolean = false, reverse: boolean = false) {
+        let value = 0;
+        const radius = this.radius - this.circleBorderWidth - offset;
+
+        if (reverse) {
+            angles = angles.reverse();
+        }
+
+        ctx.save();
+        ctx.translate(this.x, this.y);
+
+        for (let angle of angles) {
+            const x = Math.cos(angle) * (radius - (radius / length));
+            const y = Math.sin(angle) * (radius - (radius / length));
+
+            this.drawTextMark(ctx, value, x, y);
+            value += step;
+        }
+
+        ctx.restore();
+    }
+
+    drawArrowBody(ctx: CanvasRenderingContext2D) {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.beginPath();
+        ctx.arc(0, 0, this.radius / 7.5, 0, Math.PI * 2);
+        ctx.closePath();
+        ctx.lineWidth = this.radius / 7.5 / 2.5;
+        ctx.strokeStyle = this.arrowBodyStrokeColor;
+        ctx.fillStyle = this.arrowBodyFillColor;
+        ctx.fill();
+        ctx.stroke();
+        ctx.restore();
+    }
+
+    drawArrow(ctx: CanvasRenderingContext2D, value: number, degAngle: number, offset: number = 0, startAngle: number = 0) {
+        const addAngle = deg2Rad((degAngle * -1 - 180) / 2);
+        const radAngle = deg2Rad(degAngle * -1);
+        const angle = ((value * radAngle) - addAngle - deg2Rad(startAngle)) * -1;
+        const radius = this.radius - this.circleBorderWidth - offset;
+
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(angle);
+        ctx.beginPath();
+        ctx.moveTo(0, -this.arrowBaseWidth);
+        ctx.lineTo(radius, 0);
+        ctx.lineTo(0, this.arrowBaseWidth);
+        ctx.fillStyle = this.arrowColor;
+        ctx.strokeStyle = this.arrowColor;
+        ctx.lineWidth = this.arrowBorderWidth;
+        ctx.fill();
+        ctx.stroke();
+        ctx.restore();
+    }
+
+    drawIcon(ctx: CanvasRenderingContext2D, icon: string, state: number = 0) {
+        const img = new Image();
+        img.src = sprite;
+
+        img.onload = () => {
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.drawImage(
+                img,
+                this.icons[icon].position.x + 150 * state + 10 * state,
+                this.icons[icon].position.y,
+                150,
+                150,
+                -this.icons[icon].dimensions.width / 2 + this.icons[icon].offset.x,
+                -this.icons[icon].dimensions.height / 2 + this.icons[icon].offset.y,
+                this.icons[icon].dimensions.width,
+                this.icons[icon].dimensions.height
+            );
+            ctx.restore();
+        };
+    }
+}
+
+// AdditionalCircle class extending Circle class
+/*
+class AdditionalCircle extends Circle {
+    constructor(options: CircleOptions, side: 'left' | 'right', mainCircleRadius: number) {
+        super(options, { width: 425, height: 210 }); // Example dimensions
+
+        const cw = 425 / 2; // Half the canvas width
+        const x = cw - (cw - mainCircleRadius / 2 - this.radius - this.circleBorderWidth / 1.25);
+
+        if (side === 'left') {
+            this.x = cw - x;
+        } else if (side === 'right') {
+            this.x = cw + x;
+        } else {
+            throw new Error('Unknown circle side');
+        }
+
+        this.y = 210 / 2 + this.radius / 2 - this.circleBorderWidth * 2; // Example height
+    }
+}
+*/
+// Speedometer component
+const Speedometer: React.FC<any> = (props) => {
+    const canvasRef = useRef<HTMLCanvasElement | null>(null);
+
+    useEffect(() => {
+        const canvas = canvasRef.current!;
+        const ctx = canvas.getContext('2d');
+
+        const draw = () => {
+            if (ctx) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                const mainCircle = new Circle(props.options, canvas);
+                mainCircle.draw(ctx);
+
+                drawLeftCircle(ctx, props.options, mainCircle.radius, props.tachometerValue, props.iconStates);
+                drawRightCircle(ctx, props.options, mainCircle.radius, props.gasValue, props.iconStates);
+
+                mainCircle.drawArrow(ctx, props.speedometerValue, 200);
+                mainCircle.drawArrowBody(ctx);
+            }
+        };
+
+        draw();
+    }, [props]);
+
+    const drawLeftCircle = (ctx: CanvasRenderingContext2D, options: CircleOptions, radius: number, value: number, iconStates: Record<string, any>) => {
+        const lCircle = new AdditionalCircle(options, 'left', radius);
+        lCircle.draw(ctx);
+        const addMarksAngles = lCircle.calcMarksAngles(8, 140, 300);
+        lCircle.drawDangerZone(ctx, addMarksAngles, 6, 0, 2);
+        // Add remaining drawing logic for the left circle...
+    };
+
+    const drawRightCircle = (ctx: CanvasRenderingContext2D, options: CircleOptions, radius: number, value: number, iconStates: Record<string, any>) => {
+        const rCircle = new AdditionalCircle(options, 'right', radius);
+        rCircle.draw(ctx);
+        const addMarksAngles = rCircle.calcMarksAngles(8, 140, 80);
+        rCircle.drawDangerZone(ctx, addMarksAngles, 6, 0, 2);
+        // Add remaining drawing logic for the right circle...
+    };
+
+    return (
+        <div id="speedometer">
+            <div style={{ display: 'none' }}>
+                <img id="sprite" src={sprite} alt="icons" />
+            </div>
+            <canvas ref={canvasRef} width={425} height={210}></canvas>
+        </div>
+    );
+};
+
+// Update the AdditionalCircle class to accept canvas directly
+class AdditionalCircle extends Circle {
+    constructor(options: CircleOptions, side: 'left' | 'right', mainCircleRadius: number) {
+        super(options, mainCircleRadius);  // Use mainCircleRadius directly for calculations
+
+        const canvas = document.createElement('canvas'); // Create a new canvas element
+        const cw = canvas.width / 2; // Half the width for positioning
+        const x = cw - (cw - mainCircleRadius / 2 - this.radius - this.circleBorderWidth / 1.25);
+
+        if (side === 'left') {
+            this.x = cw - x;
+        } else if (side === 'right') {
+            this.x = cw + x;
+        } else {
+            throw new Error('Unknown circle side');
+        }
+
+        this.y = 210 / 2 + this.radius / 2 - this.circleBorderWidth * 2; // Example height
+    }
+}
+
+// Example Application Component
+const Speedo: React.FC = () => {
+    const icons: Record<string, Icon> = {
+        'dippedBeam': { offset: { x: -22.5, y: 47.5 }, position: { x: 10, y: 150 * 0 + 10 * 1 }, dimensions: { width: 17.5, height: 17.5 }, states: 2 },
+        'brake': { offset: { x: -80, y: 47.5 }, position: { x: 10, y: 150 * 1 + 10 * 2 }, dimensions: { width: 17.5, height: 17.5 }, states: 2 },
+        'drift': { offset: { x: 0, y: 47.5 }, position: { x: 10, y: 150 * 2 + 10 * 3 }, dimensions: { width: 17.5, height: 17.5 }, states: 2 },
+        'highBeam': { offset: { x: -45, y: 47.5 }, position: { x: 10, y: 150 * 4 + 10 * 5 }, dimensions: { width: 17.5, height: 17.5 }, states: 2 },
+        'lock': { offset: { x: 80, y: 47.5 }, position: { x: 10, y: 150 * 6 + 10 * 7 }, dimensions: { width: 17.5, height: 17.5 }, states: 2 },
+        'seatBelt': { offset: { x: 45, y: 47.5 }, position: { x: 10, y: 150 * 8 + 10 * 9 }, dimensions: { width: 17.5, height: 17.5 }, states: 2 },
+        'engineTemp': { offset: { x: 62.5, y: 70 }, position: { x: 10, y: 150 * 10 + 10 * 11 }, dimensions: { width: 17.5, height: 17.5 }, states: 3 },
+        'stab': { offset: { x: 22.5, y: 47.5 }, position: { x: 10, y: 150 * 12 + 10 * 13 }, dimensions: { width: 17.5, height: 17.5 }, states: 2 },
+        'abs': { offset: { x: -62.5, y: 70 }, position: { x: 10, y: 150 * 14 + 10 * 15 }, dimensions: { width: 17.5, height: 17.5 }, states: 2 },
+        'gas': { offset: { x: 5, y: 55 }, position: { x: 10, y: 150 * 3 + 10 * 4 }, dimensions: { width: 17.5, height: 17.5 }, states: 3 },
+        'trunk': { offset: { x: 22.5, y: 25 }, position: { x: 10, y: 150 * 7 + 10 * 8 }, dimensions: { width: 17.5, height: 17.5 }, states: 2 },
+        'bonnet': { offset: { x: -5, y: 25 }, position: { x: 10, y: 150 * 11 + 10 * 12 }, dimensions: { width: 17.5, height: 17.5 }, states: 2 },
+        'doors': { offset: { x: -17.5, y: 47.5 }, position: { x: 10, y: 150 * 15 + 10 * 16 }, dimensions: { width: 17.5, height: 17.5 }, states: 2 },
+        'battery': { offset: { x: 17.5, y: 50 }, position: { x: 10, y: 150 * 5 + 10 * 6 }, dimensions: { width: 17.5, height: 17.5 }, states: 3 },
+        'oil': { offset: { x: 5, y: 32.5 }, position: { x: 10, y: 150 * 9 + 10 * 10 }, dimensions: { width: 17.5, height: 17.5 }, states: 3 },
+        'engineFail': { offset: { x: -10, y: 50 }, position: { x: 10, y: 150 * 13 + 10 * 14 }, dimensions: { width: 17.5, height: 17.5 }, states: 3 }
+    };
+
+    const options: CircleOptions = {
+        circleBorderWidth: 4,
+        circleBorderColor: '#8b8b8b',
+        circleFillColor: '#000000',
+        markFillColor: '#ffffff',
+        markStrokeColor: '#000000',
+        markFontColor: '#ffffff',
+        markFontSize: 14,
+        markFontStyle: 'italic',
+        markFontFamily: 'Arial, sans-serif',
+        arrowBodyFillColor: '#0d0d0d',
+        arrowBodyStrokeColor: '#212121',
+        arrowColor: '#ff0000',
+        arrowBaseWidth: 2.5,
+        arrowBorderWidth: 3,
+        dangerColor: '#c1272d',
+        dangerZoneWidth: 5,
+        turnSignalColor: '#57d53f',
+        speedUnit: 'km',
+        icons: icons,
+        turnSignal: {
+            left: new TurnSignal(-17.5, -40, 20, 15),
+            right: new TurnSignal(17.5, -40, 20, 15)
+        }
+    };
+
+    return (
+        <div>
+            <h1>Speedometer</h1>
+            <Speedometer
+                options={options}
+                speedometerValue={0.5}   // Example speed value
+                tachometerValue={0.6}     // Example tachometer value
+                gasValue={0.7}            // Example gas value
+                mileage={120}             // Example mileage
+                iconStates={{
+                    dippedBeam: 0,
+                    brake: 1,
+                    drift: 0,
+                    highBeam: 0,
+                    lock: 0,
+                    seatBelt: 1,
+                    engineTemp: 2,
+                    stab: 0,
+                    abs: 0,
+                    gas: 3,
+                    trunk: 0,
+                    bonnet: 1,
+                    doors: 0,
+                    battery: 1,
+                    oil: 0,
+                    engineFail: 0
+                }}
+            />
+        </div>
+    );
+};
+
+export default Speedo;

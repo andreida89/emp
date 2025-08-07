@@ -1,0 +1,32 @@
+.hud_location {
+	position: fixed;
+	bottom: 0.1%;                /* la 10% de sus */
+	left: 1%;               /* punct de referință la mijloc */
+
+	text-transform: uppercase;
+	text-align: center;      /* asigură textul centrat în interior */
+	text-shadow: 0.10vw 0.10vw 0vw rgb(0, 0, 0);
+	font-size: 0.8vw;
+
+&--green {
+  &-street,
+  &-zone {
+    color: #3ce845;
+  }
+}
+
+	&-street {
+		margin: 0;
+		font-size: 0.8vw;
+		color: #ffc400;
+		text-shadow: 0.10vw 0.10vw 0vw rgb(0, 0, 0);
+	}
+
+	&-zone {
+		margin: 0;
+		font-size: 0.8vw;
+		color: #ffc400;
+		text-shadow: 0.10vw 0.10vw 0vw rgb(0, 0, 0);
+	}
+}
+

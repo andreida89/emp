@@ -1,0 +1,25 @@
+.construction-page {
+    width: 100vw;
+    height: 100vh;
+		background: url(~assets/images/inventorybg5.png) center no-repeat;
+		background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.construction-container {
+    background: #23272a;
+    border-radius: 24px;
+    padding: 68px 60px;
+    box-shadow: 0 2px 32px #0008;
+    text-align: center;
+    color: #fff;
+}
+.construction-container h1 {
+    font-size: 2.2rem;
+    color: #fbbf24;
+}
+.construction-container p {
+    margin: 18px 0 0 0;
+    font-size: 1.18rem;
+}

@@ -1,0 +1,14 @@
+{
+    "car": "Permis categoria B",
+    "motorcycle": "Permis categoria A",
+    "truck": "Permis categoria C",
+    "weapon": "Licenta pentru arme de foc",
+    "house": "Licenta pentru locuinta",
+    "business": "Licenta pentru afacere",
+    "med_physical": "Adeverinta de sanatate fizica",
+    "med_mental": "Adeverinta de sanatate psihica",
+    "military": "Livret militar",
+    "fishing": "Licenta pentru pescuit",
+    "boat": "Licenta pentru transport pe apa",
+    "air": "Licenta pentru transport aerian"
+}

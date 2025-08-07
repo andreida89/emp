@@ -1,0 +1,138 @@
+import React from 'react';
+import { capitalize, trim } from 'lodash';
+import { Formik, Form, FormikValues, FormikHelpers } from 'formik';
+import * as Yup from 'yup';
+import rpc from 'utils/rpc';
+import { showNotification } from 'utils/notifications';
+import GradientButton from 'components/Common/gradient-button';
+import OutlineButton from 'components/Common/outline-button';
+import PrimaryTitle from 'components/Common/primary-title';
+import Field from './field';
+
+type Props = {
+	setEmail: ( email: string ) => void;
+	toLogin: () => void;
+};
+
+export default function Register( { setEmail, toLogin }: Props ) {
+	async function onSubmit( values: FormikValues, { setFieldError }: FormikHelpers<any> ) {
+		const data = {
+			email: trim( values.email ).toLowerCase(),
+			password: trim( values.password ),
+			firstName: capitalize( trim( values.firstName ) ),
+			lastName: capitalize( trim( values.lastName ) ),
+			code: trim( values.code )
+		};
+
+		try {
+			await rpc.callServer( 'Auth-SignUp', data );
+			await rpc.callClient( 'Auth-SuccessRegister', data.email );
+
+			setEmail( data.email );
+			toLogin();
+		} catch ( err: any ) {
+			setFieldError( err.field, err.message );
+		}
+	}
+
+	return (
+		<div className="auth_register">
+			<PrimaryTitle className="auth_title">Inregistrare</PrimaryTitle>
+
+			<Formik
+				initialValues={{
+					firstName: '',
+					lastName: '',
+					email: '',
+					password: '',
+					passwordConfirm: '',
+					code: ''
+				}}
+				validationSchema={Yup.object({
+					email: Yup.string().email('E-mail incorect').required('Completati campul'),
+					password: Yup.string()
+						.min(4, 'Lungime min. 4 caractere')
+						.max(32, 'Lungime max. 32 caractere')
+						.required('Completati campul'),
+					passwordConfirm: Yup.string()
+						.required('Parolele nu coincid')
+						.oneOf([Yup.ref('password'), null], 'Parolele nu coincid'),
+					firstName: Yup.string()
+						.matches(/^[a-z\s]+$/i, 'Doar litere latine')
+						.max(32, 'Lungime max. 32 caractere')
+						.required('Completati campul'),
+					lastName: Yup.string()
+						.matches(/^[a-z\s]+$/i, 'Doar litere latine')
+						.max(32, 'Lungime max. 32 caractere')
+						.required('Completati campul'),
+					code: Yup.string().required('Completati campul')
+				})}				
+				onSubmit={onSubmit}
+			>
+				{( formik ) => (
+					<Form className="auth_form">
+						<div className="auth_form-container">
+							<div className="auth_form-group">
+								<Field title="Prenume" type="text" name="firstName" placeholder="John" />
+								<Field title="Nume" type="text" name="lastName" placeholder="Doe" />
+							</div>
+
+							<Field
+								title="E-mail"
+								type="email"
+								name="email"
+								placeholder="email@empirerp.eu"
+							/>
+
+							<GradientButton
+								type="button"
+								color="green"
+								onClick={() => {
+									if ( formik.values.email && !formik.errors.email )
+										rpc
+											.callServer(
+												'Auth-GetRegisterCode',
+												trim( formik.values.email ).toLowerCase()
+											)
+											.then(() => showNotification('info', 'Verificati e-mailul dvs.'))
+											.catch(() => formik.setFieldError('email', 'E-mail deja folosit'));											
+								}}
+							>
+								Trimite codul
+							</GradientButton>
+
+							<div className="auth_form-group">
+								<Field
+									title="Parola"
+									type="password"
+									name="password"
+									placeholder="********"
+								/>
+								<Field
+									title="Confirmare"
+									type="password"
+									name="passwordConfirm"
+									placeholder="********"
+								/>
+							</div>
+
+							<Field
+								className="auth_form-part"
+								title="Cod de confirmare"
+								type="text"
+								name="code"
+								placeholder="Verificati e-mailul dvs."
+							/>
+						</div>
+
+						<GradientButton type="submit">Inregistreaza</GradientButton>
+					</Form>
+				)}
+			</Formik>
+
+			<OutlineButton className="auth_back-btn" onClick={toLogin}>
+				Inapoi
+			</OutlineButton>
+		</div>
+	);
+}

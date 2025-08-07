@@ -1,0 +1,185 @@
+        /* --- Main Container --- */
+        #speedometer-ui {
+            font-family: 'Oswald', sans-serif;
+            color: white;
+            position: fixed;
+            bottom: 2rem;
+            /* 40px */
+            right: 0;
+            transform: translateX(-15%);
+            width: 100%;
+            max-width: 10rem;
+            /* 896px */
+            padding: 0 0rem;
+            box-sizing: border-box;
+        }
+
+        /* --- Grid Layout --- */
+        .speedometer-grid {
+            display: grid;
+            grid-template-columns: auto 5.8rem auto;
+            grid-template-rows: auto auto auto;
+            gap: 0.1rem 1rem;
+            align-items: end;
+        }
+
+
+
+        /* --- KM/H Unit --- */
+        #kmh-unit {
+            grid-column-start: 1;
+            grid-row-start: 1;
+            background-color: rgba(31, 41, 55, 0.8);
+            padding: 0.1rem 0.9rem;
+            border-radius: 0.375rem;
+            /* 6px */
+            font-size: 0.5rem;
+            /* 24px */
+            font-weight: 200;
+        }
+
+        /* --- Speed Display --- */
+        #speed-display {
+            min-width: 6rem;
+            max-width: 6rem;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        #speed-display .speed-digit-gray {
+            font-size: 3rem;
+            /* 128px */
+            line-height: 1;
+            color: white;
+            /* gray-500 */
+        }
+
+        #speed-display .speed-digit-white {
+            font-size: 3rem;
+            /* 128px */
+            line-height: 1;
+            color: white;
+        }
+
+        /* --- Fuel Gauge --- */
+        #fuel-container {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+        }
+
+        #fuel-gauge-bg {
+            width: 0.5rem;
+            /* 48px */
+            height: 3rem;
+            /* 192px */
+            background-color: rgba(63, 63, 63, 0.626);
+            padding: 0.1rem;
+            /* 6px */
+            display: flex;
+            flex-direction: column;
+            border-radius: 5px;
+            justify-content: flex-end;
+            box-sizing: border-box;
+        }
+
+        #fuel-level {
+            width: 100%;
+            background-color: #ffffff;
+            /* default alb */
+            border-radius: 0.125rem;
+            transition: height 0.3s, background 0.2s;
+        }
+
+        .fuelbar-empty {
+            background-color: #ff0000 !important;
+        }
+
+        .fuelbar-half {
+            background-color: #FBBF24 !important;
+        }
+
+        .fuelbar-full {
+            background-color: #00ff33 !important;
+        }
+
+
+        /* --- Indicators & Odometer --- */
+        #indicators-container {
+            grid-column: 1 / span 3;
+            grid-row-start: 3;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-end;
+            justify-content: flex-end;
+            /* totul în dreapta */
+            margin-top: 0.1rem;
+            margin-left: 0rem;
+        }
+
+        #odometer {
+            background-color: #FBBF24;
+            color: black;
+            font-size: 0.4rem;
+            font-weight: 700;
+            padding: 0.1rem 1rem;
+            border-radius: 0.375rem;
+            align-self: flex-end;
+            margin-right: auto;
+            /* împinge restul spre dreapta */
+        }
+
+        #status-icons {
+            display: flex;
+            flex-direction: row;
+            /* orizontal */
+            align-items: center;
+            gap: 0.55rem;
+            margin-right: 2rem;
+        }
+
+        .indicator-icon {
+            height: 0.6rem;
+            width: 0.6rem;
+            transition: color 0.2s;
+            stroke-width: 2;
+            display: block;
+        }
+
+        .indicator-inactive {
+            color: #4B5563;
+        }
+
+        .indicator-active {
+            color: #FBBF24;
+        }
+
+        #fuel-icon {
+            width: 0.6rem;
+            height: 0.6rem;
+            margin-top: 0.25rem;
+            display: block;
+            color: #ffffff;
+            /* default alb */
+            transition: color 0.2s;
+        }
+
+        .fuel-empty {
+            color: #ff0000 !important;
+        }
+
+        /* roșu */
+        .fuel-half {
+            color: #FBBF24 !important;
+        }
+
+        /* galben */
+        .fuel-full {
+            color: #ffffff !important;
+        }
+
+        /* alb */

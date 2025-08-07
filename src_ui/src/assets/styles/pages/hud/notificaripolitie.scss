@@ -1,0 +1,75 @@
+#police-notif-container {
+  position: fixed;
+  top: 40%;
+  right: 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  z-index: 9999;
+  align-items: center;
+  font-family: 'Outfit', sans-serif;
+}
+
+.police-notification {
+  width: 380px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 14px;
+  color: #CDEAFF;
+
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  border: 2px solid #0096FE;
+  border-right: none;
+
+  background: linear-gradient(to bottom right, rgba(0, 32, 96, 0.9), rgba(10, 10, 20, 0.8));
+
+  animation: police-slide-in 0.25s ease-out forwards;
+  overflow: hidden;
+}
+
+.police-notification.hide {
+  animation: police-slide-out 0.25s ease-in forwards;
+}
+
+.police-notification-icon {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-right: 16px;
+  border-radius: 8px;
+}
+
+.police-notif-message {
+  font-size: 15px;
+  line-height: 1.5;
+  flex: 1;
+  color: #CDEAFF;
+}
+
+/* Optional class */
+.police-albastru {
+  border-color: #0096FE;
+}
+
+@keyframes police-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes police-slide-out {
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}

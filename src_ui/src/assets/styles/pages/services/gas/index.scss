@@ -1,0 +1,353 @@
+.gas-station-bg {
+  @extend %smoke;
+  min-height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 1;
+}
+.gas-station-ui {
+  position: relative;
+  z-index: 2; // să fie deasupra bg-ului
+  width: 75vw;
+  max-width: 100vw;
+  margin: 4vw auto 0 auto;
+  background: none;
+  display: flex;
+  gap: 2vw;
+  padding: 2vw 1vw;
+  border-radius: 0.5vw;
+  box-sizing: border-box;
+  font-family: 'Montserrat', Arial, sans-serif;
+  z-index: 10;
+
+  .gas-station-left, .gas-station-right {
+    background: rgba(43, 0, 0, 0.445);
+    border-radius: 0.5vw;
+    border: 0.2vw solid rgba(167, 0, 0, 0.717);
+    padding: 2.5vw 2vw 2vw 2vw;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex: 1 1 0vw;
+    box-shadow: 0 0.8vw 4.8vw 0 #0009;
+  }
+
+  .gas-station-left {
+    max-width: 25vw;
+    flex: 1.1 1 1vw;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-width: 25vw;
+  }
+
+  .gas-station-right {
+    max-width: 45vw;
+    flex: 2 1 1vw;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-width: 20vw;
+  }
+
+  .gas-title {
+    font-family: 'Orbitron', Arial, sans-serif;
+    font-size: 1.5vw;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #fff;
+    margin-bottom: 0.5vw;
+    text-shadow: 0 0.2vw 0.8vw #000a;
+
+    &--right {
+      margin-bottom: 0.7vw;
+      margin-top: 0.3vw;
+    }
+  }
+
+  .gas-desc {
+    font-size: 1vw;
+    color: #888;
+    font-weight: 500;
+    margin-bottom: 2vw;
+    max-width: 35vw;
+    &--right {
+      margin-bottom: 1.5vw;
+      color: #888;
+      font-size: 1vw;
+    }
+  }
+
+  .gas-model-info {
+    color: #bbb;
+    font-size: 1.1vw;
+    margin-bottom: 2vw;
+    font-weight: 500;
+    b {
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+  }
+
+  .gas-car {
+    width: 15vw;
+    margin: 0 auto 2vw auto;
+    display: flex;
+    justify-content: center;
+    img {
+      max-width: 40vw;
+      width: 19vw;
+      object-fit: contain;
+      margin: 0 auto;
+      display: block;
+      filter: drop-shadow(0 0.6vw 3.2vw #0009);
+    }
+  }
+
+  .gas-fuel-bar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.7vw;
+    margin-top: auto;
+    margin-bottom: 0;
+    padding: 0.4vw 0;
+  }
+
+  .gas-fuel-icon {
+    font-size: 1.5vw;
+    color: #fff;
+    margin-right: 0.2vw;
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.2vw;
+    height: 1.2vw;
+    img {
+      width: 1.2vw;
+      height: 1.2vw;
+      display: block;
+      filter: brightness(0) invert(1);
+    }
+  }
+
+  .gas-fuel-track {
+    flex: 1 1 0;
+    height: 0.8vw;
+    background: #292929;
+    border-radius: 0.5vw;
+    position: relative;
+    overflow: hidden;
+    margin-right: 0.5vw;
+  }
+
+  .gas-fuel-fill {
+    background: linear-gradient(90deg, #16e23d 0%, #33d19f 90%);
+    height: 100%;
+    width: 65%;
+    border-radius: 0.5vw;
+    transition: width 0.3s;
+  }
+
+  .gas-fuel-percent {
+    color: #fff;
+    font-size: 1.1vw;
+    font-weight: 700;
+    margin-left: 0.2vw;
+    letter-spacing: 0.02em;
+  }
+
+  .gas-fuel-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25vw 2vw;
+    margin-bottom: 2vw;
+  }
+
+  .gas-fuel-card {
+    background: #13142c linear-gradient(125deg, #1a1831 60%, #1b1d29 100%);
+    border-radius: 0.5vw;
+    box-shadow: 0 0.2vw 1.8vw #0004;
+    padding: 1vw 1.1vw 1vw 1.2vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: transform 0.15s, box-shadow 0.15s;
+    cursor: pointer;
+    border: 0.2vw solid transparent;
+    min-width: 0;
+    &:hover, &.active {
+      transform: scale(1.045);
+      box-shadow: 0 0.8vw 2.4vw #0007;
+      border-color: #fff2;
+    }
+  }
+
+  .gas-fuel-header {
+    font-family: 'Orbitron', Arial, sans-serif;
+    font-size: 1vw;
+    font-weight: 800;
+    letter-spacing: 0.07em;
+    color: #fff;
+    margin-bottom: 0.3vw;
+  }
+
+  .gas-fuel-price {
+    color: #fff;
+    background: #19194888;
+    border-radius: 0.5vw;
+    font-size: 1vw;
+    font-weight: 600;
+    padding: 0.16vw 0.7vw;
+    margin-bottom: 0.4vw;
+  }
+
+  .gas-fuel-qual {
+    font-size: 1vw;
+    font-weight: 500;
+    color: #eee;
+    opacity: 0.82;
+    display: flex;
+    align-items: center;
+    gap: 0.35vw;
+    span {
+      font-size: 1vw;
+      margin-right: 0.15vw;
+    }
+  }
+
+  /* CARD BACKGROUNDS + ACCENT */
+  .gas-fuel-diesel {
+    background: linear-gradient(110deg, #001b6e 60%, #005dc7 100%);
+    color: #fff;
+  }
+  .gas-fuel-economic {
+    background: linear-gradient(110deg, #067c45 60%, #13cf9e 100%);
+    color: #fff;
+  }
+  .gas-fuel-super {
+    background: linear-gradient(110deg, #5c1634 60%, #e43044 100%);
+    color: #fff;
+  }
+  .gas-fuel-premium {
+    background: linear-gradient(110deg, #55184b 60%, #c004a3 100%);
+    color: #fff;
+  }
+
+  .gas-litres-label {
+    color: #888;
+    font-weight: 600;
+    font-size: 1vw;
+    letter-spacing: 0.02vw;
+    margin-bottom: 0.5vw;
+    margin-top: 0.4vw;
+  }
+
+  .gas-litres-slider {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 2vw;
+    position: relative;
+    font-size: 1.1vw;
+
+    input[type=range] {
+      flex: 1 1 0;
+      accent-color: #fff;
+      background: none;
+      height: 0.7vw;
+      margin-right: 0.7vw;
+      min-width: 60px;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    .gas-litres-value {
+      font-size: 1.1vw;
+      font-weight: 700;
+      color: #fff;
+      margin-left: 0.7vw;
+      min-width: 2.5vw;
+      text-align: right;
+    }
+  }
+
+  /* PRICE BLOCK */
+  .gas-price-block {
+    background: none;
+    margin-bottom: 1.5vw;
+    width: 100%;
+  }
+  .gas-price-label {
+    color: #888;
+    font-size: 1vw;
+    font-weight: 600;
+    margin-bottom: 0.15vw;
+    letter-spacing: 0.06em;
+  }
+  .gas-price-value {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Orbitron', Arial, sans-serif;
+    font-size: 1vw;
+    font-weight: 800;
+    color: #fff;
+    margin-top: 0.2vw;
+    text-shadow: 0 0.2vw 1.2vw #000b;
+    letter-spacing: 0.03em;
+  }
+
+  /* BUTTONS */
+  .gas-btns {
+    display: flex;
+    flex-direction: row;
+    gap: 1vw;
+    justify-content: center;
+    margin-top: 1vw;
+    width: 100%;
+  }
+  .gas-btn {
+    background: #68000067;
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    border-radius: 0.5vw;
+    font-size: 1.2vw;
+    padding: 2vh 2vw;
+    margin-top: 0;
+    cursor: pointer;
+    box-shadow: 0 0 0 0.12vw #820000;
+    transition: background .15s;
+    min-width: 11vw;
+    &:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+    &:hover:enabled {
+      background: #22263a00;
+    }
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 90vw) {
+    flex-direction: column;
+    gap: 3vw;
+    padding: 4vw 1vw;
+    min-width: 0;
+    width: 99vw;
+
+    .gas-station-left, .gas-station-right {
+      min-width: 0;
+      width: 100%;
+      padding: 5vw 3vw;
+      border-radius: 0.5vw;
+    }
+    .gas-title { font-size: 5vw; }
+    .gas-fuel-grid { grid-template-columns: 1fr; }
+    .gas-fuel-card { font-size: 4vw; }
+    .gas-price-value { font-size: 4vw; }
+    .gas-btn { font-size: 3vw; padding: 1.2vw 6vw; }
+  }
+}

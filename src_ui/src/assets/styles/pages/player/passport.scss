@@ -1,0 +1,69 @@
+.player-passport {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.player-passport_container {
+  position: relative;
+  width: 40%;
+  height: 55%;
+  background: url(~assets/images/buletin.png) center no-repeat;
+  background-size: contain;
+  overflow: hidden;
+}
+
+.faction-docs_close {
+  position: absolute;
+  top: 5%;
+  right: 1.5vw;
+  font-size: 2vw;
+  color: #000000;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.passport-photo {
+  position: absolute;
+  top: 26%;
+  left: 7%;
+  width: 17%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+}
+
+
+.player-passport_fields {
+  list-style: none;
+  margin: 10%;
+  margin-left: 3%;
+  padding: 18% 4% 0 25%;
+}
+
+.player-passport_field {
+  margin-bottom: 3.5%;
+  display: flex;
+  align-items: center;
+}
+
+.player-passport_field:nth-child(3) {
+  margin-bottom: 5%;
+}
+
+.player-passport_field-name {
+  margin: 0;
+  color: #09268c;
+  font-weight: 300;
+  font-size: 1vw;
+  font-weight: bold;
+}
+
+.player-passport_field-value {
+  margin-left: 3%;
+  color: #1e1e1e;
+  font-size: 1vw;
+  font-weight: bold;
+}

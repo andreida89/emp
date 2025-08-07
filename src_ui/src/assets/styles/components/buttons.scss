@@ -1,0 +1,101 @@
+.gradient-btn {
+	padding: 1vw 2vw;
+	min-width: 12vw;
+	display: block;
+	//background-image: url(~assets/images/buttonbg1.png);
+	//background-size: cover;
+	background: linear-gradient(45deg, #bbc100d2 0%, #c1a100db 50%, #bbc100d3 100%);
+	background-repeat: no-repeat;
+	background-position: center;
+	text-align: center;
+	font-size: 1.5vw;
+	text-transform: uppercase;
+	font-weight: 500;
+	color: #000000;
+	border-radius: 10px;
+	border: 2px solid rgba(0, 0, 0, 0.605);
+	box-shadow: 0px 0.05vw 0.2vw 0.15vw rgba($color: #000000, $alpha: 0.3);
+	transition: all ease 0.3s;
+
+	&:disabled {
+		pointer-events: none;
+		filter: grayscale(1);
+	}
+
+	&:hover {
+		background: linear-gradient(45deg, #c1a100 0%, #bac100 50%, #c1a100 100%);
+	}
+
+	&:active {
+		filter: brightness(0.9);
+	}
+
+	&--green {
+		background-image: url(~assets/images/buttonbg1.png);
+		box-shadow: 0px 0.05vw 0.2vw 0.15vw rgba($color: #11e72d, $alpha: 0.3);
+
+		&:hover {
+			box-shadow: 0px 0.05vw 0.2vw 0.25vw rgba($color: #000000, $alpha: 0.3);
+		}
+	}
+
+	&--purple {
+		background-image: url(~assets/images/buttonbg1.png);
+		box-shadow: 0px 0.05vw 0.2vw 0.15vw rgba($purple, $alpha: 0.3);
+
+		&:hover {
+			box-shadow: 0px 0.05vw 0.2vw 0.25vw rgba($purple, $alpha: 0.3);
+		}
+	}
+}
+
+.outline-btn {
+	padding: 1vw 2vw;
+	min-width: 12vw;
+	display: block;
+	//background-image: url(~assets/images/buttonbg1.png);
+	//background-size: cover;
+	background: linear-gradient(45deg, #bbc100d2 0%, #c1a100db 50%, #bbc100d3 100%);
+	background-repeat: no-repeat;
+	background-position: center;
+	text-align: center;
+	font-size: 1.5vw;
+	text-transform: uppercase;
+	font-weight: 500;
+	color: #000000;
+	border-radius: 10px;
+	border: 2px solid rgba(0, 0, 0, 0.605);
+	box-shadow: 0px 0.05vw 0.2vw 0.15vw rgba($color: #000000, $alpha: 0.3);
+	transition: all ease 0.3s;
+
+	&:disabled {
+		pointer-events: none;
+		filter: grayscale(1);
+	}
+
+	&:hover {
+		background: linear-gradient(45deg, #c1a100d2 0%, #bac100db 50%, #c1a100d3 100%);
+	}
+
+	&:active {
+		filter: brightness(0.9);
+	}
+
+	&--green {
+		background-image: url(~assets/images/buttonbg1.png);
+		box-shadow: 0px 0.05vw 0.2vw 0.15vw rgba($color: #11e72d, $alpha: 0.3);
+
+		&:hover {
+			box-shadow: 0px 0.05vw 0.2vw 0.25vw rgba($color: #000000, $alpha: 0.3);
+		}
+	}
+
+	&--purple {
+		background-image: url(~assets/images/buttonbg1.png);
+		box-shadow: 0px 0.05vw 0.2vw 0.15vw rgba($purple, $alpha: 0.3);
+
+		&:hover {
+			box-shadow: 0px 0.05vw 0.2vw 0.25vw rgba($purple, $alpha: 0.3);
+		}
+	}
+}

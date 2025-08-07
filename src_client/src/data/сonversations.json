@@ -1,0 +1,320 @@
+[
+	{
+		"title": "Vanzator",
+		"text": "Aveti nevoie de ajutor? \n Avem o gama larga de haine, pentru toate gusturile!",
+		"answers": [
+			{
+				"text": "Da, as dori sa vad",
+				"callback": ["Services-ShowMenu", "clothing_shop"]
+			},
+			{ "text": "Nu, multumesc" }
+		]
+	},	
+	{
+		"title": "Tatuator",
+		"text": "Salut! Doriti sa va faceti un tatuaj?",
+		"answers": [
+			{ "text": "Da, aratati-mi schitele", "callback": ["Services-ShowMenu", "tattoo_shop"] },
+			{ "text": "Nu, inca nu m-am decis" }
+		]
+	},	
+	{
+		"title": "Frizer",
+		"text": "Vrei un look cool?",
+		"answers": [
+			{ "text": "Da, mi-ar placea", "callback": ["Services-ShowMenu", "barbershop"] },
+			{ "text": "Nu, arat deja bine" }
+		]
+	},	
+	{
+		"title": "Chirurg plastician",
+		"text": "Buna ziua! Doriti sa faceti o operatie estetica?",
+		"answers": [
+			{
+				"text": "Da, vreau sa schimb ceva",
+				"callback": ["Services-ShowMenu", "surgeon"]
+			},
+			{ "text": "Nu, multumesc" }
+		]
+	},	
+	{
+		"title": "Bancher",
+		"text": "Buna ziua, doriti sa efectuati operatiuni bancare?",
+		"answers": [
+			{ "text": "Da, corect", "callback": ["Services-ShowMenu", "bank"] },
+			{ "text": "Nu, poate altadata" }
+		]
+	},	
+	{
+		"title": "Vanzator",
+		"text": "Buna ziua, ce doriti sa achizitionati astazi?",
+		"answers": [
+			{ "text": "Aratati-mi produsele", "callback": ["Services-ShowMenu", "supermarket"] },
+			{ "text": "Multumesc, deocamdata nu am nevoie de nimic" }
+		]
+	},	
+	{
+		"title": "Vanzator",
+		"text": "Salut, te-ai hotarat sa cumperi munitie? \n Tocmai am primit un nou lot astazi!",
+		"answers": [
+			{
+				"text": "Desigur, ca de obicei",
+				"callback": ["Services-ShowMenu", "weapons"]
+			},
+			{ "text": "Nu, deocamdata am suficient" }
+		]
+	},	
+	{
+		"title": "Inspector",
+		"text": "Buna ziua! Sunteti interesat de obtinerea unei licente?",
+		"answers": [
+			{ "text": "Da, am nevoie de o licenta", "callback": ["Services-ShowMenu", "licenses"] },
+			{ "text": "Nu, la revedere" }
+		]
+	},	
+	{
+		"title": "Functionar",
+		"text": "Buna ziua! Doriti sa va schimbati numele sau prenumele?",
+		"answers": [
+			{
+				"text": "Da, vreau sa imi schimb documentele",
+				"callback": ["Services-ShowMenu", "passport"]
+			},
+			{ "text": "Nu, la revedere" }
+		]
+	},	
+	{
+		"title": "Manager",
+		"text": "Salut! Vrei sa alegi o masina ieftina?",
+		"answers": [
+			{
+				"text": "Da, aratati-mi ce aveti",
+				"callback": ["Services-ShowMenu", "cheap_carshop"]
+			},
+			{ "text": "Nu, imi cer scuze pentru deranj" }
+		]
+	},	
+	{
+		"title": "Manager",
+		"text": "Buna ziua! Sunteti interesat de achizitionarea unei masini noi?",
+		"answers": [
+			{
+				"text": "Da, aratati-mi ce aveti de vanzare",
+				"callback": ["Services-ShowMenu", "mid_carshop"]
+			},
+			{ "text": "Nu, multumesc" }
+		]
+	},	
+	{
+		"title": "Manager",
+		"text": "Bine ati venit in showroom-ul nostru auto! \n Cautati o masina noua?",
+		"answers": [
+			{
+				"text": "Da, aratati-mi ce aveti de vanzare",
+				"callback": ["Services-ShowMenu", "premium_carshop"]
+			},
+			{ "text": "Nu, la revedere" }
+		]
+	},	
+	{
+		"title": "Sonny Barger",
+		"text": "Salut! Cauti o noua motocicleta?",
+		"answers": [
+			{ "text": "Cam asa ceva", "callback": ["Services-ShowMenu", "bikeshop"] },
+			{ "text": "Nu, ne vedem data viitoare" }
+		]
+	},	
+	{
+		"title": "Necunoscut",
+		"text": "Salut! Vad ca esti nou pe aici? \n Daca tocmai ai sosit, ar trebui sa-ti faci actele! \n Iti voi trimite coordonatele unde trebuie sa mergi. Mult succes!",
+		"answers": [
+			{ "text": "Salut, multumesc mult!", "callback": ["Blips-MarkNearest", "Primarie"] },
+			{ "text": "Nu, am rezolvat deja totul" }
+		]
+	},	
+	{
+		"title": "Marian Iftemie",
+		"text": "Salut! Ai nevoie de un scuter de inchiriat, doar 150$ cash?",
+		"answers": [
+			{ "text": "Da, am nevoie", "callback": ["Services-ShowMenu", "scooter_rent"] },
+			{ "text": "Nu, multumesc" }
+		]
+	},	
+	{
+		"title": "Vasile Damian",
+		"text": "Salut! Vrei sa te angajezi la noi pe santier?",
+		"answers": [
+			{ "text": "Da, vreau sa ma angajez", "callback": ["Jobs-ShowMenu", "Building"] },
+			{ "text": "Nu, imi cer scuze" }
+		]
+	},	
+	{
+		"title": "Gogutu Cocalaru",
+		"text": "Salut.. iti spun direct, treaba noastra nu e prea legala. \n Daca te bagi, s-ar putea sa ai probleme cu politia.",
+		"answers": [
+			{ "text": "Sunt pregatit pentru provocari", "callback": ["Jobs-ShowMenu", "Car_Theft"] },
+			{ "text": "Nu, deocamdata" }
+		]
+	},	
+	{
+		"title": "Postas",
+		"text": "Bine ai venit! \n Munca noastra e cam prafuita, trebuie sa livrezi colete in siguranta si fara probleme. \n Esti gata de treaba?",
+		"answers": [
+			{ "text": "Da, sunt de acord", "callback": ["Jobs-ShowMenu", "Postal"] },
+			{ "text": "Nu, imi cer scuze" }
+		]
+	},	
+	{
+		"title": "Gica Berbec",
+		"text": "Salut! Esti gata sa lucrezi cu noi in port?",
+		"answers": [
+			{ "text": "Da, sunt pregatit", "callback": ["Jobs-ShowMenu", "Waterfront"] },
+			{ "text": "Nu, imi cer scuze" }
+		]
+	},	
+	{
+		"title": "Mecanic",
+		"text": "Doriti sa luati un vehicul?",
+		"answers": [
+			{ "text": "Da", "callback": ["Factions-ShowGarage"] },
+			{ "text": "Nu, imi cer scuze" }
+		]
+	},	
+	{
+		"title": "Ionut Prelata",
+		"text": "Salut frate! Ce doresti?",
+		"answers": [
+			{ "text": "Da-mi o masina, frate", "callback": ["Factions-ShowGarage"] },
+			{ "text": "Vreau sa fac livrari", "callback": ["Jobs-ShowMenu", "Smuggling"] },
+			{ "text": "Nimic, deocamdata" }
+		]
+	},	
+	{
+		"title": "Fratioru",
+		"text": "Care-i treaba fratioare?",
+		"answers": [
+			{ "text": "Am nevoie de o masina, urgent", "callback": ["Factions-ShowGarage"] },
+			{ "text": "Vreau sa merg la lupta pentru teritoriu", "callback": ["ZoneCapture-ToDimension"] },
+			{ "text": "Totul e in regula" }
+		]
+	},	
+	{
+		"title": "Manager",
+		"text": "Bine ati venit, bun venit in salonul VIP! \n Doriti sa va aratam masinile?",
+		"answers": [
+			{
+				"text": "Da, aratati-mi ce aveti de vanzare",
+				"callback": ["Services-ShowMenu", "vip_shop"]
+			},
+			{ "text": "Nu, la revedere" }
+		]
+	},	
+	{
+		"title": "Manager",
+		"text": "Buna ziua! Doriti sa achizitionati un avion personal? \n De asemenea, avem si elicoptere disponibile!",
+		"answers": [
+			{ "text": "Da, vreau sa cumpar", "callback": ["Services-ShowMenu", "airshop"] },
+			{ "text": "Nu, nu am atatia bani" }
+		]
+	},	
+  {
+    "title": "Manager",
+    "text": "Buna ziua! Doriti sa achizitionati un iaht personal?",
+    "answers": [
+        { "text": "Da, aratati-mi ce aveti disponibil", "callback": ["Services-ShowMenu", "boatshop"] },
+        { "text": "Nu, multumesc" }
+    ]
+},
+{
+    "title": "Manager",
+    "text": "Buna ziua! Oferim inchiriere de barci pentru 2500$ cash, doriti sa inchiriati?",
+    "answers": [
+        { "text": "Da, haideti", "callback": ["Services-ShowMenu", "boat_rent"] },
+        { "text": "Nu, multumesc" }
+    ]
+},
+{
+    "title": "Chef bucatar",
+    "text": "Salut! Nu vrei sa prinzi niste peste pentru localul noastru? \n Platesc bine!",
+    "answers": [
+        { "text": "Deja am prins, ia marfa", "callback": ["Services-ShowMenu", "fish_sale"] },
+        { "text": "Ok, o sa ma gandesc" }
+    ]
+},
+{
+	"title": "Pizzaiolo",
+	"text": "Bine ai venit! \n Jobul nostru este despre rapiditate si precizie. Trebuie sa livrezi mancarea clientilor in siguranta si la timp. \n Esti gata de treaba?",
+	"answers": [
+		{ "text": "Da, sunt de acord", "callback": ["Jobs-ShowMenu", "Deliveroo"] },
+		{ "text": "Nu, imi cer scuze" }
+	]
+},
+{
+	"title": "Kevin",
+	"text": "Salut frate! Ce doresti?",
+	"answers": [
+		{ "text": "Da-mi o masina, frate", "callback": ["Factions-ShowGarage"] },
+		{ "text": "Vreau sa fac livrari", "callback": ["Jobs-ShowMenu", "Smuggling"] },
+		{ "text": "Nimic, deocamdata" }
+	]
+},
+{
+	"title": "Fermier",
+	"text": "Salut, vrei sa vinzi ciuperci?",
+	"answers": [
+		{ "text": "Da, vreau sa le vand!", "callback": ["Services-ShowMenu", "ciuperci_sale"] },
+		{ "text": "Nu, nu vreau!" }
+	]
+},
+	{
+		"title": "Petronel Mogosu",
+		"text": "Salut! Daca te intereseaza un loc de munca la cules de legume sau daca esti deja angajat si doresti sa demisionezi, iti pot arata datele contractuale!",
+		"answers": [
+			{ "text": "Arata-mi datele contractuale!", "callback": ["Jobs-ShowMenu", "Culegatorlegume"] },
+			{ "text": "Nu, imi cer scuze" }
+		]
+	},
+	{
+		"title": "Valeriu Motoi",
+		"text": "Salut! Daca te intereseaza un loc de munca la cules de fructe sau daca esti deja angajat si doresti sa demisionezi, iti pot arata datele contractuale!",
+		"answers": [
+			{ "text": "Arata-mi datele contractuale!", "callback": ["Jobs-ShowMenu", "Culegatorfructe"] },
+			{ "text": "Nu, imi cer scuze" }
+		]
+	},
+	{
+	"title": "Corneliu Iftimoaie",
+	"text": "Salut, vrei sa vinzi fructe sau legume?",
+	"answers": [
+		{ "text": "Da, vreau sa le vand!", "callback": ["Services-ShowMenu", "fructelegume_sale"] },
+		{ "text": "Nu, nu vreau!" }
+	]
+},
+	{
+		"title": "Nutu Nemtanu",
+		"text": "Salut! Daca te intereseaza un loc de munca la livrat mancare sau daca esti deja angajat si doresti sa demisionezi, iti pot arata datele contractuale!",
+		"answers": [
+			{ "text": "Arata-mi datele contractuale!", "callback": ["Jobs-ShowMenu", "Livratormancare"] },
+			{ "text": "Nu, imi cer scuze" }
+		]
+	},
+
+	{
+		"title": "Adrian Doroftei",
+		"text": "Salut! Daca te intereseaza un loc de munca la livrat ziare sau daca esti deja angajat si doresti sa demisionezi, iti pot arata datele contractuale!",
+		"answers": [
+			{ "text": "Arata-mi datele contractuale!", "callback": ["Jobs-ShowMenu", "Ziare"] },
+			{ "text": "Nu, imi cer scuze" }
+		]
+	},
+
+	{
+		"title": "Marinel Stoica",
+		"text": "Salut! Esti pregatit sa iei permisul de categorie B? Mult succes!",
+		"answers": [
+			{ "text": "Proba scrisa!", "callback": ["Services-ShowMenu", "Permisboral"] },
+			{ "text": "Proba practica!", "callback": ["Services-ShowMenu", "Permisbpractic"] },
+			{ "text": "Alta data!" }
+		]
+	}
+]

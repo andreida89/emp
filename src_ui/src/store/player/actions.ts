@@ -6,6 +6,7 @@ import {
 	SET_MONEY,
 	SET_SATIETY,
 	SET_THIRST,
+	SET_STAMINA,
 	SET_TASKS
 } from './types';
 
@@ -21,7 +22,12 @@ export function setThirst(amount: number): PlayerActionTypes {
                 payload: amount
         };
 }
-
+export function setStamina(amount: number): PlayerActionTypes {
+        return {
+                type: SET_STAMINA,
+                payload: amount
+        };
+}
 export function setMoney(data: Money): PlayerActionTypes {
 	return {
 		type: SET_MONEY,

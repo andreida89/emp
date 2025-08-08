@@ -17,6 +17,7 @@ import Hunger from './hunger';
 import Thirst from './thirst';
 import Viata from './viata';
 import Armura from './armura';
+import Stamina from './stamina';
 import Interact from './interact';
 import Call from './call';
 import Offer from './offer';
@@ -96,6 +97,7 @@ class HUD extends Component<Props, State> {
 					<Thirst amount={player.thirst} />
 					<Viata />
 					<Armura />
+					<Stamina />
 					<Mic bind={binds.mic} />
 					<Location />
 

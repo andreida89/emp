@@ -20,6 +20,7 @@ import './arataid/index';
 import './admin';
 import './auth';
 import './player';
+import './player/stamina';
 import './vehicle';
 import './property';
 import './services';
@@ -84,7 +85,7 @@ mp.game.interior.refreshInterior(interiorId);
 
 mp.game.gxt.set('PM_PAUSE_HDR', 'EMPIRE ROMANIA');
 mp.game.ui.setMinimapComponent(15, true, -1);
-
+/**
 mp.keys.bind(0x77, true, function () { // Press "F8" to trigger this function
     let totalDrawables = mp.players.local.getNumberOfDrawableVariations(11);
 
@@ -100,7 +101,7 @@ mp.keys.bind(0x77, true, function () { // Press "F8" to trigger this function
         mp.gui.chat.push(`[Pants ID: ${i}] Available textures: ${totalTextures}`);
     }
 });
-
+**/
 
 class MeManager {
     public static floatingTexts: Map<number, { text: string, time: number }> = new Map();

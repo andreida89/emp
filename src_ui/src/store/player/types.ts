@@ -2,6 +2,7 @@ export const SET_SATIETY = 'SET_SATIETY';
 export const SET_THIRST = 'SET_THIRST';
 export const SET_HEALTH = 'SET_HEALTH';
 export const SET_ARMORVALUE = 'SET_ARMORVALUE';
+export const SET_STAMINA = 'SET_STAMINA';
 export const SET_MONEY = 'SET_MONEY';
 export const SET_TASKS = 'SET_TASKS';
 export const SET_ID = 'SET_ID';
@@ -29,6 +30,10 @@ type SetArmorValueAction = {
         type: typeof SET_ARMORVALUE;
         payload: number;
 };
+type SetStaminaAction = {
+        type: typeof SET_STAMINA;
+        payload: number;
+};
 type SetMoneyAction = {
 	type: typeof SET_MONEY;
 	payload: Money;
@@ -51,6 +56,7 @@ export type PlayerActionTypes =
     | SetThirstAction
     | SetHealthAction
     | SetArmorValueAction
+    | SetStaminaAction
 	| SetMoneyAction
 	| SetTasksAction
 	| SetIdAction
@@ -62,6 +68,7 @@ export interface PlayerState {
 	thirst: number;
 	health: number;
 	armorValue: number;
+	stamina: number;
 	money: Money;
 	tasks: string[];
 	bonus: number;

@@ -8,6 +8,7 @@ import {
 	SET_THIRST,
 	SET_HEALTH,
 	SET_ARMORVALUE,
+	SET_STAMINA,
 	SET_TASKS
 } from './types';
 import './events';
@@ -18,6 +19,7 @@ const initialState: PlayerState = {
 	thirst: 100,
 	health: 100,
 	armorValue: 100,
+	stamina: 100,
 	money: {
 		cash: 0,
 		bank: 0,
@@ -51,6 +53,11 @@ export default function playerReducer(
             return {
                 ...state,
                 armorValue: action.payload
+            };
+        case SET_STAMINA:
+            return {
+                ...state,
+                stamina: action.payload
             };
 		case SET_MONEY:
 			return {

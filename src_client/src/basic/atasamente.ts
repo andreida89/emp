@@ -19,7 +19,7 @@ function addComponentToPlayer(player: ExtendedPlayerMp, weaponHash: number, comp
     if (!player.__weaponComponentData[weaponHash]) player.__weaponComponentData[weaponHash] = new Set();
 
     player.__weaponComponentData[weaponHash].add(componentHash);
-    debugChat(`AddComponent: weapon=${weaponHash} comp=${componentHash}`);
+    //debugChat(`AddComponent: weapon=${weaponHash} comp=${componentHash}`);
     mp.game.invoke(Natives.GIVE_WEAPON_COMPONENT_TO_PED, player.handle, weaponHash | 0, componentHash | 0);
 }
 
@@ -28,7 +28,7 @@ function removeComponentFromPlayer(player: ExtendedPlayerMp, weaponHash: number,
     if (!player.__weaponComponentData[weaponHash]) player.__weaponComponentData[weaponHash] = new Set();
 
     player.__weaponComponentData[weaponHash].delete(componentHash);
-    debugChat(`RemoveComponent: weapon=${weaponHash} comp=${componentHash}`);
+    //debugChat(`RemoveComponent: weapon=${weaponHash} comp=${componentHash}`);
     mp.game.invoke(Natives.REMOVE_WEAPON_COMPONENT_FROM_PED, player.handle, weaponHash | 0, componentHash | 0);
 }
 
@@ -41,7 +41,7 @@ mp.events.add("updatePlayerWeaponComponent", (
     const wHash = typeof weaponHash === "string" ? parseInt(weaponHash, 36) : weaponHash;
     const cHash = typeof componentHash === "string" ? parseInt(componentHash, 36) : componentHash;
 
-    debugChat(`updatePlayerWeaponComponent: weapon=${wHash}, comp=${cHash}, remove=${removeComponent}`);
+    //debugChat(`updatePlayerWeaponComponent: weapon=${wHash}, comp=${cHash}, remove=${removeComponent}`);
     if (removeComponent) {
         removeComponentFromPlayer(player, wHash, cHash);
     } else {
@@ -58,7 +58,7 @@ mp.events.add("resetPlayerWeaponComponents", (
     const wHash = typeof weaponHash === "string" ? parseInt(weaponHash, 36) : weaponHash;
     if (!player.__weaponComponentData[wHash]) return;
 
-    debugChat(`resetPlayerWeaponComponents: weapon=${wHash}`);
+    //debugChat(`resetPlayerWeaponComponents: weapon=${wHash}`);
 
     for (const componentHash of player.__weaponComponentData[wHash]) {
         mp.game.invoke(Natives.REMOVE_WEAPON_COMPONENT_FROM_PED, player.handle, wHash | 0, componentHash | 0);
@@ -69,7 +69,7 @@ mp.events.add("resetPlayerWeaponComponents", (
 mp.events.add("nukePlayerWeaponComponents", (player: ExtendedPlayerMp) => {
     if (!player.__weaponComponentData) return;
 
-    debugChat("nukePlayerWeaponComponents");
+    //debugChat("nukePlayerWeaponComponents");
     for (const weapon in player.__weaponComponentData) {
         const wHash = Number(weapon);
         for (const componentHash of player.__weaponComponentData[wHash]) {
@@ -108,7 +108,7 @@ mp.events.add('entityStreamOut', (entity) => {
     // Cleanup-ul de la __weaponComponentData poate rămâne
     const extPlayer = entity;
     if (extPlayer.__weaponComponentData) {
-        debugChat(`entityStreamOut: cleanup for player`);
+        //debugChat(`entityStreamOut: cleanup for player`);
         extPlayer.__weaponComponentData = {};
     }
 });
@@ -129,7 +129,7 @@ mp.events.addDataHandler("currentWeaponComponents", (entity: EntityMp, value: st
             ? components.split("|").map(hash => parseInt(hash, 36))
             : [];
 
-        debugChat(`addDataHandler: weapon=${wHash}, comps=[${newComponents.join(",")}]`);
+        //debugChat(`addDataHandler: weapon=${wHash}, comps=[${newComponents.join(",")}]`);
 
         // Remove components not present anymore
         for (const component of Array.from(currentComponents)) {

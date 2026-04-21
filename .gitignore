@@ -31,3 +31,19 @@ packages/server/index.js.map
 
 ## Misc
 *.zip
+
+# media
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.mp3
+*.wav
+*.ogg
+*.mp4
+
+# foldere media
+assets/
+media/
+sounds/
+images/

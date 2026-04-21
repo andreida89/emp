@@ -147,6 +147,13 @@
 		"rotation": { "x": 5, "y": 0, "z": 0 }
 	},
 	{
+		"name": "water",
+		"model": "h4_prop_club_water_bottle",
+		"bone": 28422,
+		"offset": { "x": 0.012, "y": 0.028, "z": -0.1 },
+		"rotation": { "x": 5, "y": 0, "z": 0 }
+	},
+	{
 		"name": "bandage",
 		"model": "prop_gaffer_arm_bind",
 		"bone": 36029,
@@ -167,6 +174,13 @@
 		"offset": { "x": 0, "y": 0.1, "z": 0.5 },
 		"rotation": { "x": 364, "y": 180, "z": 90 }
 	},
+{
+	"name": "pompa",
+	"model": "prop_cs_fuel_nozle",
+	"bone": 18905,
+		"offset": { "x": 0, "y": 0, "z": 0 },
+		"rotation": { "x": 0, "y": 70, "z": 20 }
+},
 	{
 		"name": "repair_kit",
 		"model": "prop_cs_wrench",

@@ -12,7 +12,7 @@
 	"stream-distance" : 500.0,
 	"announce" : false,
 	"csharp" : "disabled",
-	"port": 22015,
+	"port": 22005,
 	"allow-cef-debugging": true,
 	"bind" : "46.4.30.230",
 	"language" : "ro",

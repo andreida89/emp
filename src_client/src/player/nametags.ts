@@ -102,52 +102,58 @@ class PlayerNametags {
 		}
 	}
 
-	private render(nametags: Nametag[]) {
-		const { graphics } = mp.game;
-		const resolution = graphics.getScreenResolution(0, 0);
+private render(nametags: Nametag[]) {
+    const { graphics } = mp.game;
+    const resolution = graphics.getScreenResolution(0, 0);
 
-		if (!hud.visible) return;
+    // nu afișăm nimic dacă HUD-ul e ascuns
+    if (!hud.visible) return;
 
-		nametags.forEach((nametag) => {
-			// eslint-disable-next-line prefer-const
-			let [player, x, y, distance] = nametag;
+    // ✅ verificăm dacă local player-ul este admin duty
+    const localPlayer = mp.players.local;
+    const isAdminDuty = localPlayer.getVariable('adminTag');
+    if (!isAdminDuty) return; // dacă nu e ON DUTY, nu vezi nametag-urile
 
-			if (distance > this.maxDistance || player.getVariable('invisible')) return;
+    nametags.forEach((nametag) => {
+        let [player, x, y, distance] = nametag;
 
-			const scale = distance / this.maxDistance < 0.6 ? 0.6 : distance / this.maxDistance;
-			const health = (player.getHealth() - 100) / 100;
-			const armour = player.getArmour() / 100;
+        if (distance > this.maxDistance || player.getVariable('invisible')) return;
 
-			y -= scale * (0.005 * (resolution.y / 1080));
+        const scale = distance / this.maxDistance < 0.6 ? 0.6 : distance / this.maxDistance;
+        const health = (player.getHealth() - 100) / 100;
+        const armour = player.getArmour() / 100;
 
-			graphics.drawText(playerCtrl.getName(player), [x, y], {
-				font: 0,
-				color: [255, 255, 255, 255],
-				scale: [0.3, 0.3],
-				outline: true,
-				centre: true
-			});
-			graphics.drawText(`${player.name} - ${player.getVariable('uid')}`, [x, y + 0.02], {
-				font: 0,
-				color: [255, 255, 255, 255],
-				scale: [0.25, 0.25],
-				outline: true,
-				centre: true
-			});
+        y -= scale * (0.005 * (resolution.y / 1080));
 
-			if (player.getVariable('ALABEL')) {
-				graphics.drawText('Administrator', [x, y - 0.02], {
-					font: 4,
-					color: [255, 0, 0, 255],
-					scale: [0.3, 0.3],
-					outline: true,
-					centre: true
-				});
-			}
+        graphics.drawText(playerCtrl.getName(player), [x, y], {
+            font: 0,
+            color: [255, 255, 255, 255],
+            scale: [0.3, 0.3],
+            outline: true,
+            centre: true
+        });
+        graphics.drawText(`${player.name} - ${player.getVariable('uid')}`, [x, y + 0.02], {
+            font: 0,
+            color: [255, 255, 255, 255],
+            scale: [0.25, 0.25],
+            outline: true,
+            centre: true
+        });
 
-			this.drawRectangles(x, y, player.handle, health, armour);
-		});
-	}
+        if (player.getVariable('ALABEL')) {
+            graphics.drawText('Administrator', [x, y - 0.02], {
+                font: 4,
+                color: [255, 0, 0, 255],
+                scale: [0.3, 0.3],
+                outline: true,
+                centre: true
+            });
+        }
+
+        this.drawRectangles(x, y, player.handle, health, armour);
+    });
+}
+
 }
 
 const nametags = new PlayerNametags();

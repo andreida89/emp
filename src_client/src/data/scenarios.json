@@ -74,6 +74,11 @@
 		"attachment": "vodka",
 		"duration": 5500
 	},
+	"drink_water": {
+		"anim": "drinking_water",
+		"attachment": "water",
+		"duration": 5500
+	},
 	"use_bandage": {
 		"anim": "bandaging",
 		"attachment": "bandage",

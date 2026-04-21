@@ -21,6 +21,7 @@ import './admin';
 import './auth';
 import './player';
 import './player/stamina';
+import './player/nametags';
 import './vehicle';
 import './property';
 import './services';
@@ -65,6 +66,11 @@ import 'jafmagazin/index';
 import browser from 'helpers/browser';
 
 import './modulenoi/streamdistancemanager.ts';
+
+
+import "./mapeditor/MapEditor";
+
+
 
 const interiorId = mp.game.interior.getInteriorAtCoords(311.2546, -592.4204, 42.32737);
 
@@ -305,3 +311,47 @@ mp.events.add('render', () => {
 
 
 // RENDER ACTUALIZARE DAMAGE INSTANT LA FIECARE FRAME
+
+
+// PENTRU COMANDA DE SHAKE
+// client/shake.ts
+// Uses gameplay cam: mp.game.cam.shakeGameplayCam(effect, intensity)
+// and stops after duration with mp.game.cam.stopGameplayCamShaking(true)
+
+let shakeTimeout: number | null = null;
+
+mp.events.add("client:shake:start", (effect: string, durationMs: number, intensity: number) => {
+  try {
+    // Safety: stop any existing shake first
+    mp.game.cam.stopGameplayCamShaking(true);
+
+    // Start new shake
+    mp.game.cam.shakeGameplayCam(effect, intensity);
+
+    // Clear previous timeout if any
+    if (shakeTimeout !== null) {
+      clearTimeout(shakeTimeout);
+      shakeTimeout = null;
+    }
+
+    // Schedule stop
+    shakeTimeout = setTimeout(() => {
+      mp.game.cam.stopGameplayCamShaking(true);
+      shakeTimeout = null;
+    }, Math.max(0, durationMs)) as unknown as number;
+  } catch (e) {
+    mp.gui.chat.push("!{#ff5555}[shake] Failed to start shake (check effect name).");
+  }
+});
+
+// Optional: /shakeoff to cancel immediately (server-side command)
+mp.events.add("client:shake:stop", () => {
+  try {
+    if (shakeTimeout !== null) {
+      clearTimeout(shakeTimeout);
+      shakeTimeout = null;
+    }
+    mp.game.cam.stopGameplayCamShaking(true);
+  } catch {}
+});
+// PENTRU COMANDA DE SHAKE

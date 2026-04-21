@@ -83,7 +83,7 @@ import { spawnCosuri } from 'basic/cosuridegunoi';
 
 import './modulenoi/streamdistancemanager';
 
-
+import "./mapeditor";
 
 function sendGlobalNotification(admin: Player, text: string) {
 	console.log(`Global Notification Received: ${text}`);
@@ -514,12 +514,8 @@ mp.events.addCommand('notify', (player, message) => {
     if(!message) return player.outputChatBox("You need to enter a message.");
 
 	mp.players.forEach((player) => {
-		player.notify(`~ws~ ~p~${message} ~ws~`);
+		player.notify(` ~w~${message}`);
 	});
-    
-    //mp.players.forEach(players => {
-    //    players.notify(`~r~${msg}`);
-    //})
 });
 
 mp.events.addCommand('veh', (player, models) => {
@@ -718,3 +714,53 @@ mp.events.add('playerCommand', (command) => {
 });
 
 // DETECTARE WAYPOINT PENTRU COMANDA TPW STOP
+
+
+// COMANDA DE SHAKE CAMERA
+// server/shake.ts
+// Register: /shake <effect> <timeSec> [intensity]
+
+const VALID = [
+  "DEATH_FAIL_IN_EFFECT_SHAKE",
+  "DRUNK_SHAKE",
+  "FAMILY5_DRUG_TRIP_SHAKE",
+  "HAND_SHAKE",
+  "JOLT_SHAKE",
+  "LARGE_EXPLOSION_SHAKE",
+  "MEDIUM_EXPLOSION_SHAKE",
+  "SMALL_EXPLOSION_SHAKE",
+  "ROAD_VIBRATION_SHAKE",
+  "SKY_DIVING_SHAKE",
+  "VIBRATE_SHAKE",
+];
+
+mp.events.addCommand("shake", (player: PlayerMp, fullText: string) => {
+  const parts = fullText.trim().split(/\s+/);
+  const effect = parts[0]?.toUpperCase();
+  const timeSec = parseFloat(parts[1] ?? "0");
+  const intensity = parseFloat(parts[2] ?? "1");
+
+  if (!effect || Number.isNaN(timeSec)) {
+    return player.outputChatBox(
+      "!{#ff5555}Usage: /shake <effect> <timeSec> [intensity]  Example: /shake SMALL_EXPLOSION_SHAKE 3 1.0"
+    );
+  }
+  if (!VALID.includes(effect)) {
+    return player.outputChatBox(
+      "!{#ff5555}Invalid effect. Valid: " + VALID.join(", ")
+    );
+  }
+  if (timeSec <= 0) {
+    return player.outputChatBox("!{#ff5555}timeSec must be > 0");
+  }
+  if (Number.isNaN(intensity) || intensity <= 0) {
+    return player.outputChatBox("!{#ff5555}intensity must be > 0 (e.g. 0.5, 1, 2)");
+  }
+
+  player.call("client:shake:start", [effect, Math.floor(timeSec * 1000), intensity]);
+  player.outputChatBox(
+    `!{#55ff55}Shaking: ${effect} for ${timeSec}s (intensity ${intensity})`
+  );
+});
+// COMANDA DE SHAKE CAMERA
+

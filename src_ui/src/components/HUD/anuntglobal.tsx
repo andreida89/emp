@@ -6,23 +6,22 @@ const TickerNotification: React.FC = () => {
 	const [visible, setVisible] = useState(false);
 	const [animationDuration, setAnimationDuration] = useState('20s');
 
-	useEffect(() => {
-		(window as any).AnuntGlobal = (message: string) => {
-			const audio = new Audio(sound);
-			audio.volume = 0.5;
-			audio.play().catch(() => {});
+useEffect(() => {
+    (window as any).AnuntGlobal = (message: string, duration: number) => {
+        const audio = new Audio(sound);
+        audio.volume = 0.5;
+        audio.play().catch(() => {});
 
-			setText(message);
+        setText(message);
+        setAnimationDuration(`${duration}s`);
+        setVisible(true);
 
-			const duration = Math.max(18, message.length / 5);
-			setAnimationDuration(`${duration}s`);
-			setVisible(true);
+        setTimeout(() => {
+            setVisible(false);
+        }, duration * 1000); // exact cât durează mesajul
+    };
+}, []);
 
-			setTimeout(() => {
-				setVisible(false);
-			}, duration * 850 + 1000);
-		};
-	}, []);
 
 	return (
 		<>

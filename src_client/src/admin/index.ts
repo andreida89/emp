@@ -5,6 +5,7 @@ import './esp';
 import './spectator';
 import './cam';
 import './menu';
+import './propdata';
  
 const player = mp.players.local;
 

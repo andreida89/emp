@@ -29,7 +29,11 @@ class Admin {
 			inv: this.toggleInvisible,
 			adm: this.toggleLabel.bind(this),
 			gm: this.toggleGM.bind(this),
-			cords: this.printCords.bind(this)
+			cords: this.printCords.bind(this),
+			propdata: (admin: Player, mode: string) => {
+				if (!permissions.hasPermission(admin, 'helper')) return;
+				admin.mp.call('client:PropData:Toggle', [mode === 'on']);
+			}
 		});
 
 		this.subscribeToEvents();

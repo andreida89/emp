@@ -5,6 +5,7 @@
 bin/
 client_packages/
 node_modules/
+dotnet1/
 linux_x64.tar.gz
 testserver
 *.gz

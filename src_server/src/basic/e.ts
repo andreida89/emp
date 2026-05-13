@@ -1,3 +1,10 @@
+import rpc from 'rage-rpc';
+import User from '../models/User';
+import Character from '../models/Character';
+import Vehicle from '../models/Vehicle';
+import factions from '../factions';
+import jucator from '../helpers/players';
+
 mp.events.add("playerCommand", (player, command) => {
     let args = command.split(" ");
     let animName = args[1];
@@ -27,3 +34,4 @@ mp.events.add("playerCommand", (player, command) => {
         }
     }
 });
+

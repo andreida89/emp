@@ -24,6 +24,12 @@ class Players {
 		return id && this.authorized.get(id.toString());
 	}
 
+	getByFixId(id: string | number) {
+		const numId = parseInt(id.toString(), 10);
+		if (isNaN(numId)) return null;
+		return this.toCustomArray().find(p => p.fixId === numId);
+	}
+
 	toCustomArray(authorized = true) {
 		return Array.from(authorized ? this.authorized.values() : this.items.values());
 	}
@@ -76,6 +82,7 @@ class Players {
 
 		mp.players.get = this.get.bind(this);
 		mp.players.getByDbId = this.getByDbId.bind(this);
+		mp.players.getByFixId = this.getByFixId.bind(this);
 
 		mp.players.delete = this.delete.bind(this);
 		mp.players.withTimeout = this.withTimeout.bind(this);

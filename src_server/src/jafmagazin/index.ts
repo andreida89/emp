@@ -14,23 +14,23 @@ mp.events.add('startStoreRobbery', (player, pedIndex: number, pedPosition: Vecto
 		return;
 	}
 
-	const lspdFaction = Object.values(factions.items).find(f => f.name.toLowerCase() === 'lspd');
-	if (!lspdFaction) {
-		console.log("Eroare: nu am gasit factiunea LSPD");
+	const politieFaction = Object.values(factions.items).find(f => f.name.toLowerCase() === 'politie');
+	if (!politieFaction) {
+		console.log("Eroare: nu am gasit factiunea POLITIE");
 		return;
 	}
 
-	const lspdOnlineCount = mp.players.toArray().filter(p =>
-		p.faction === lspdFaction.id && p.getVariable('inServicePolice') === true
+	const politieOnlineCount = mp.players.toArray().filter(p =>
+		p.faction === politieFaction.id && p.getVariable('inServicePolitie') === true
 	).length;
 
-	if (lspdOnlineCount < 1) {
+	if (politieOnlineCount < 1) {
 		player.call('AnuntNotification2', ['Nu sunt destui politisti in serviciu! Este nevoie de minim 1!', 'rosu']);
 		return;
 	}
 
 	mp.players.forEach((p) => {
-		if (p.faction === lspdFaction.id && p.getVariable('inServicePolice') === true) {
+		if (p.faction === politieFaction.id && p.getVariable('inServicePolitie') === true) {
 			p.call('AlertaPolitie', ['JAF IN DESFASURARE IN ZONA MARCATA PE HARTA!']);
 			p.call('client:robberyAlert', [pedPosition]);
 		}

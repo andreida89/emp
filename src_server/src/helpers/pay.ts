@@ -6,19 +6,26 @@ export async function pay(
 	player: Player,
 	type: PaymentType,
 	amount: number,
-	note?: string
+	note?: string,
+	silent = false
 ): Promise<boolean> {
 	if (type === 'cash') {
 		try {
 			await playerInventory.removeItemAmount(player, 'ron', amount);
 			return true;
 		} catch (e) {
-			hud.showNotification(player, 'error', 'Nu ai suficienti bani cash (RON)', true);
+			if (!silent) {
+				hud.showNotification(player, 'error', 'Nu ai suficienti bani cash (RON)', true);
+			}
 			return false;
 		}
 	} else {
-		await money.change(player, type, -amount, note);
-		return true;
+		try {
+			await money.change(player, type, -amount, note);
+			return true;
+		} catch (e) {
+			return false;
+		}
 	}
 }
 

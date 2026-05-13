@@ -2,7 +2,7 @@ import { getClosestVehicleInRange } from 'utils/vehicle';
 import hud from 'helpers/hud';
 import animations from 'helpers/animations';
 import tasks from 'awards/tasks';
-import policeCalls from 'factions/police/calls';
+import politieCalls from 'factions/politie/calls';
 import vehState from './state';
 import owning from './owning';
 
@@ -56,7 +56,7 @@ class VehicleLock {
 	}
 
 	private triggerAlarm(player: Player, vehicle: VehicleMp) {
-		policeCalls.createCall('Incercare de spargere a vehiculului', vehicle.position, vehicle);
+		politieCalls.createCall('Incercare de spargere a vehiculului', vehicle.position, vehicle);
 	}
 }
 

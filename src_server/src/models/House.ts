@@ -20,6 +20,15 @@ const houseSchema = new Schema({
 		type: String,
 		required: true
 	},
+	customId: {
+		type: Number
+	},
+	name: {
+		type: String
+	},
+	price: {
+		type: Number
+	},
 	position: {
 		type: Object,
 		required: true

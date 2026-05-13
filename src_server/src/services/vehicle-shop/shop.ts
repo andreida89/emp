@@ -55,7 +55,9 @@ class VehicleShop extends Service {
 		const prices: { [name: string]: number } = {};
 
 		this.vehicles.forEach((name) => {
-			prices[name] = vehicleList[name].price;
+			if (vehicleList[name]) {
+				prices[name] = vehicleList[name].price;
+			}
 		});
 
 		return prices;

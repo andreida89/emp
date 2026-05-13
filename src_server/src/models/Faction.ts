@@ -8,6 +8,9 @@ type Faction = {
 	materials: number;
 	members: any[];
 	ranks: any[];
+	type: string;
+	numid: number;
+	visualname: string;
 	inventory: InventoryItem[];
 } & mongoose.Document;
 
@@ -21,6 +24,10 @@ const memberSchema = new Schema(
 		rank: {
 			type: Schema.Types.ObjectId,
 			required: true
+		},
+		vaultAccess: {
+			type: Boolean,
+			default: false
 		}
 	},
 	{ _id: false }
@@ -47,6 +54,18 @@ const factionSchema = new Schema<Faction>({
 		required: true,
 		unique: true
 	},
+	type: {
+		type: String,
+		default: 'gang'
+	},
+	numid: {
+		type: Number,
+		default: 0
+	},
+	visualname: {
+		type: String,
+		default: ''
+	},
 	money: {
 		type: Number,
 		default: 0
@@ -58,6 +77,16 @@ const factionSchema = new Schema<Faction>({
 	inventory: {
 		type: Array,
 		default: []
+	},
+	vaultCoords: {
+		x: Number,
+		y: Number,
+		z: Number
+	},
+	garageCoords: {
+		x: Number,
+		y: Number,
+		z: Number
 	},
 	ranks: [rankSchema],
 	members: [memberSchema]

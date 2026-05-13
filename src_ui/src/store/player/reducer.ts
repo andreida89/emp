@@ -9,7 +9,10 @@ import {
 	SET_HEALTH,
 	SET_ARMORVALUE,
 	SET_STAMINA,
-	SET_TASKS
+	SET_TASKS,
+	SET_HAS_STATIE,
+	SET_HAS_SMARTWATCH,
+	SET_IN_VEHICLE
 } from './types';
 import './events';
 
@@ -26,7 +29,10 @@ const initialState: PlayerState = {
 		points: 0
 	},
 	bonus: -1,
-	tasks: []
+	tasks: [],
+	hasStatie: false,
+	hasSmartwatch: false,
+	inVehicle: false
 };
 
 export default function playerReducer(
@@ -78,6 +84,21 @@ export default function playerReducer(
 			return {
 				...state,
 				bonus: action.payload
+			};
+		case SET_HAS_STATIE:
+			return {
+				...state,
+				hasStatie: action.payload
+			};
+		case SET_HAS_SMARTWATCH:
+			return {
+				...state,
+				hasSmartwatch: action.payload
+			};
+		case SET_IN_VEHICLE:
+			return {
+				...state,
+				inVehicle: action.payload
 			};
 
 		default:

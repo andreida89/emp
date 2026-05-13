@@ -1,11 +1,10 @@
 import React from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 import images from 'utils/images';
 import rpc from 'utils/rpc';
 import Timer from './timer';
 
-type Props = {
-	duration?: number; // ms
-};
+type Props = RouteComponentProps<{}, {}, { duration?: number; medics?: number }>;
 
 type State = {
 	respawnCountdown: number;
@@ -15,13 +14,22 @@ type State = {
 export default class Death extends React.Component<Props, State> {
 	private respawnInterval?: NodeJS.Timeout;
 
-	readonly state: State = {
-		respawnCountdown: 180, // 3 min
-		showDeathButton: false
-	};
+	constructor(props: Props) {
+		super(props);
+		this.state = {
+			respawnCountdown: 180, // 3 min default
+			showDeathButton: false
+		};
+	}
 
 	componentDidMount() {
 		this.startRespawnCountdown();
+	}
+
+	componentDidUpdate(prevProps: Props) {
+		if (this.props.location.state?.duration !== prevProps.location.state?.duration) {
+			this.startRespawnCountdown();
+		}
 	}
 
 	componentWillUnmount() {
@@ -30,25 +38,38 @@ export default class Death extends React.Component<Props, State> {
 
 	startRespawnCountdown() {
 		if (this.respawnInterval) clearInterval(this.respawnInterval);
-		this.setState({ respawnCountdown: 180, showDeathButton: false }); // asigură reset
 
-		this.respawnInterval = setInterval(() => {
-this.setState((prev) => {
-    const next = prev.respawnCountdown - 1;
-    if (next <= 0) {
-        clearInterval(this.respawnInterval!);
-        return {
-            respawnCountdown: 0,
-            showDeathButton: true
-        };
-    }
-    return {
-        respawnCountdown: next,
-        showDeathButton: prev.showDeathButton // păstrezi mereu tipul corect
-    };
-});
+		const totalDeathTime = 600; // 10 minutes (matching this.deathTimeout in server)
+		const waitBeforeButton = 180; // 3 minutes
+		
+		const duration = this.props.location.state?.duration;
+		const remaining = duration !== undefined ? Math.floor(duration / 1000) : totalDeathTime;
+		const elapsed = Math.max(0, totalDeathTime - remaining);
+		const currentWait = Math.max(0, waitBeforeButton - elapsed);
 
-		}, 1000);
+		this.setState({ 
+			respawnCountdown: currentWait, 
+			showDeathButton: currentWait <= 0 
+		});
+
+		if (currentWait > 0) {
+			this.respawnInterval = setInterval(() => {
+				this.setState((prev) => {
+					const next = prev.respawnCountdown - 1;
+					if (next <= 0) {
+						if (this.respawnInterval) clearInterval(this.respawnInterval);
+						return {
+							respawnCountdown: 0,
+							showDeathButton: true
+						};
+					}
+					return {
+						respawnCountdown: next,
+						showDeathButton: false
+					};
+				});
+			}, 1000);
+		}
 	}
 
 	die = () => {
@@ -60,7 +81,8 @@ this.setState((prev) => {
 		const minutes = String(Math.floor(respawnCountdown / 60)).padStart(2, '0');
 		const seconds = String(respawnCountdown % 60).padStart(2, '0');
 
-		const deathDuration = this.props.duration ? Math.floor(this.props.duration / 1000) : 600; // default 10 minute
+		const duration = this.props.location.state?.duration;
+		const deathDuration = duration !== undefined ? Math.floor(duration / 1000) : 600; // default 10 minute
 
 		return (
 			<div className="death death--cover">

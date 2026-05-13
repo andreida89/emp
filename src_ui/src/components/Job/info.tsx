@@ -1,5 +1,4 @@
 import React from 'react';
-import PrimaryTitle from 'components/Common/primary-title';
 
 type Props = {
 	description: string;
@@ -8,14 +7,14 @@ type Props = {
 
 export default function JobInfo({ description, requirements }: Props) {
 	return (
-		<div className="job_info">
-			<PrimaryTitle className="job_info-title">Informatii</PrimaryTitle>
+		<div className="ujob-job-info">
+			<h3 className="ujob-job-info-title">Informatii</h3>
 
-			<p className="job_info-requirements">
+			<p className="ujob-job-info-requirements">
 				Cerinte: <strong>{requirements}</strong>.
 			</p>
 
-			<div className="job_info-descr">
+			<div className="ujob-job-info-descr">
 				{description.split('\n').map((item, index) => (
 					<p key={index}>{item}</p>
 				))}

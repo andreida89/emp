@@ -30,7 +30,7 @@ toggle: function () {
 
 // Bind X key (0x58) to toggle hands up
 mp.keys.bind(0x58, true, () => {
-    if (!mp.gui.cursor.visible) {
+    if (!mp.gui.cursor.visible && !(global as any).isAlertaSindicatActive) {
         handsUp.toggle();
     }
 });

@@ -102,17 +102,23 @@ class PlayerNametags {
 		}
 	}
 
-private render(nametags: Nametag[]) {
-    const { graphics } = mp.game;
-    const resolution = graphics.getScreenResolution(0, 0);
+	private render(nametags: Nametag[]) {
+		const { graphics } = mp.game;
+		const resolution = graphics.getScreenResolution(0, 0);
 
-    // nu afișăm nimic dacă HUD-ul e ascuns
-    if (!hud.visible) return;
+		// ✅ Dezactivăm nametag-urile default Rage COMPLET
+		mp.nametags.enabled = false;
+
+		// nu afișăm nimic dacă HUD-ul e ascuns
+		if (!hud.visible) return;
 
     // ✅ verificăm dacă local player-ul este admin duty
     const localPlayer = mp.players.local;
-    const isAdminDuty = localPlayer.getVariable('adminTag');
-    if (!isAdminDuty) return; // dacă nu e ON DUTY, nu vezi nametag-urile
+    const adminLvl = localPlayer.getVariable('adminLvl') || 0;
+    const isAdminDuty = (!!localPlayer.getVariable('adminTag') || !!localPlayer.getVariable('admin_duty')) && adminLvl > 0;
+    
+    // Dacă ești pe aduty, dezactivăm nametag-urile standard pentru că sunt gestionate de arataid/index.ts
+    if (isAdminDuty) return; 
 
     nametags.forEach((nametag) => {
         let [player, x, y, distance] = nametag;
@@ -125,6 +131,10 @@ private render(nametags: Nametag[]) {
 
         y -= scale * (0.005 * (resolution.y / 1080));
 
+        // Jucătorii normali nu văd nametag-urile text (pe 2 rânduri), acestea sunt doar pentru admini pe /aduty 
+        // Adminii pe /aduty sunt gestionați de return-ul de la începutul funcției (AdminNametagManager)
+        
+        /* Comentăm desenarea textului pentru jucători normali conform cererii
         graphics.drawText(playerCtrl.getName(player), [x, y], {
             font: 0,
             color: [255, 255, 255, 255],
@@ -149,8 +159,11 @@ private render(nametags: Nametag[]) {
                 centre: true
             });
         }
+        */
 
+        /*
         this.drawRectangles(x, y, player.handle, health, armour);
+        */
     });
 }
 

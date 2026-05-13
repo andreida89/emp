@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import notificationSound from 'assets/audio/notificare.mp3';
+// import notificationSound from 'assets/audio/notificare.mp3';
 
 type NotificationType = 'info' | 'danger' | 'success';
 
@@ -18,9 +18,9 @@ const Notifications: React.FC = () => {
 		(window as any).NotifyAnnouncement = (text: string, type: NotificationType) => {
 			const id = counter++;
 	
-			const audio = new Audio(notificationSound);
-			audio.volume = 0.1;
-			audio.play().catch(() => {});
+			// const audio = new Audio(notificationSound);
+			// audio.volume = 0.1;
+			// audio.play().catch(() => {});
 	
 			setMessages((prev) => [...prev, { id, text, type }]);
 	
@@ -31,9 +31,9 @@ const Notifications: React.FC = () => {
 	}, []);
 
 	return (
-		<div id="notificari">
+		<div id="notificari" style={{ pointerEvents: 'none', position: 'fixed', zIndex: 9999, width: '100%', height: '100%' }}>
 			{messages.map((msg) => (
-				<div key={msg.id} className={`container ${msg.type}`}>
+				<div key={msg.id} className={`container ${msg.type}`} style={{ pointerEvents: 'auto' }}>
 					<div className="msg">
 						<p>{msg.text}</p>
 					</div>

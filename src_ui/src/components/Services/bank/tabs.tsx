@@ -4,10 +4,7 @@ import images from 'utils/images';
 const items: { [name: string]: string } = {
     cash_out: 'Retrage bani',
     replenish: 'Reincarca balanta',
-    transfer: 'Transfer bancar',
-    house: 'Plateste casa',
-    bank: 'Deschide cont',
-    business: 'Plateste afacerea'
+    transfer: 'Transfer bancar'
 };
 
 

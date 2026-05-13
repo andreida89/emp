@@ -1,5 +1,5 @@
 import hud from 'helpers/hud';
-import policeCalls from 'factions/police/calls';
+import politieCalls from 'factions/politie/calls';
 import Branch from '../branch';
 import Vehicle from '../vehicle';
 
@@ -38,7 +38,7 @@ class Theft extends Branch {
 		const worker = this.workers.get(player);
 
 		if (worker.vehicle) {
-			policeCalls.deleteCall(worker.vehicle.id.toString());
+			politieCalls.deleteCall(worker.vehicle.id.toString());
 			this.vehicle.destroy(worker);
 			mp.blips.delete(player, 'Checkpoint');
 		}

@@ -10,6 +10,7 @@ export type WrappedProps = State & {
 	setItems: ( items: InventoryItem[] ) => void;
 	setWeight: ( value: number ) => void;
 	setEquipment: ( data: State[ 'equipment' ] ) => void;
+	updateData: ( data: { items?: InventoryItem[], equipment?: { [ name: string ]: InventoryItem }, weight?: number } ) => void;
 
 	transfer( id: number, weight: number, data?: InventoryItem ): void;
 	move: ( id: number, cell: number ) => Promise<void>;
@@ -87,6 +88,14 @@ export default function withStorage( WrappedComponent: React.ComponentType<Wrapp
 			this.setState( () => ( { equipment: data } ) );
 		}
 
+		updateData( data: { items?: InventoryItem[], equipment?: { [ name: string ]: InventoryItem }, weight?: number } ) {
+			this.setState( ( state ) => ( {
+				items: data.items ? [ ...data.items ] : state.items,
+				equipment: data.equipment ? { ...data.equipment } : state.equipment,
+				weight: typeof data.weight === 'number' ? { ...state.weight, current: data.weight } : state.weight
+			} ) );
+		}
+
 		async move( id: number, cell: number ) {
 			try {
 				const items: InventoryItem[] = await rpc.callServer(
@@ -147,6 +156,7 @@ export default function withStorage( WrappedComponent: React.ComponentType<Wrapp
 					cells={cells}
 					weight={weight}
 					getItemsForCells={this.getItemsForCells.bind( this )}
+					updateData={this.updateData.bind( this )}
 					setItems={this.setItems.bind( this )}
 					setEquipment={this.setEquipment.bind( this )}
 					setWeight={this.setWeight.bind( this )}

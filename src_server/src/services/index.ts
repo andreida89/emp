@@ -14,3 +14,6 @@ import './vehicle-dump';
 import './vehicle-rent';
 import './fishing';
 import './vanzarepiata';
+import './tool-shop';
+import './electronics-shop';
+import './fastfood';

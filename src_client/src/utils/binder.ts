@@ -23,15 +23,17 @@ class Binder {
 	}
 
 	bind(action: string, key: string, handler: Function, cursor = false, hold = false) {
-		if (this.isDeclared(key)) throw new Error('Bind has been declared');
+		if (this.binds.has(action)) return;
 
-		const newKey = mp.storage.data.binds[action] ?? key;
+		const newKey = mp.storage.data.binds?.[action] ?? key;
 		const wrappedHandler = cursor !== null ? this.wrapHandler(handler, cursor) : handler;
 
-		mp.keys.bind(+keycode(newKey), hold, wrappedHandler);
+		if (newKey) {
+			mp.keys.bind(+keycode(newKey), hold, wrappedHandler);
 
-		// temp crutch
-		if (action === 'mic') mp.keys.bind(+keycode(newKey), false, wrappedHandler);
+			// temp crutch
+			if (action === 'mic') mp.keys.bind(+keycode(newKey), false, wrappedHandler);
+		}
 
 		mp.storage.update({ binds: { ...mp.storage.data.binds, [action]: newKey } });
 
@@ -39,7 +41,7 @@ class Binder {
 	}
 
 	unbind(action: string, key: string) {
-		if (!this.isDeclared(key)) throw new Error('Bind has not been declared');
+		if (!this.isDeclared(key)) return;
 
 		mp.keys.unbind(+keycode(key), false);
 		mp.storage.update({ binds: { ...mp.storage.data.binds, [action]: null } });
@@ -57,16 +59,15 @@ class Binder {
 	private rebind(action: string, key: string) {
 		const bind = this.getBind(action);
 
-		if (!bind || this.isDeclared(key)) {
-			return mp.events.reject('Bind not exists or has been declared');
-		}
+		if (!bind) return mp.events.reject('Bind not exists');
+		if (this.isDeclared(key)) return mp.events.reject('Bind has been declared');
 
-		mp.keys.unbind(+keycode(bind.key), bind.hold, bind.handler);
+		if (bind.key) mp.keys.unbind(+keycode(bind.key), bind.hold, bind.handler);
 		mp.keys.bind(+keycode(key), bind.hold, bind.handler);
 
 		// temp crutch
 		if (action === 'mic') {
-			mp.keys.unbind(+keycode(bind.key), false, bind.handler);
+			if (bind.key) mp.keys.unbind(+keycode(bind.key), false, bind.handler);
 			mp.keys.bind(+keycode(key), false, bind.handler);
 		}
 

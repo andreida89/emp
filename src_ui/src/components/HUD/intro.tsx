@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 
-const VIDEO_URL = "https://empirerp.eu/video-cef.mp4"; // Sau package://cef/video-cef.mp4 dacă vrei local!
+const VIDEO_URL = "https://empirerp.ro/resurse/video-intro.mp4"; // Sau package://cef/video-cef.mp4 dacă vrei local!
 
 const FullscreenVideo: React.FC = () => {
 	const [visible, setVisible] = useState(false);
@@ -41,28 +41,20 @@ const FullscreenVideo: React.FC = () => {
 							objectFit: 'cover',
 							background: 'black',
 						}}
-						onEnded={() => setVisible(false)}
+						onEnded={() => {
+							setVisible(false);
+							if ((window as any).mp) {
+								(window as any).mp.trigger('Intro-VideoEnded');
+							}
+						}}
 						onError={() => {
 							alert('EROARE VIDEO: ' + videoSrc);
 							setVisible(false);
+							if ((window as any).mp) {
+								(window as any).mp.trigger('Intro-VideoEnded');
+							}
 						}}
 					/>
-					<button
-						onClick={() => setVisible(false)}
-						style={{
-							position: 'absolute',
-							top: 20,
-							right: 30,
-							zIndex: 2,
-							fontSize: 30,
-							color: 'white',
-							background: 'rgba(0,0,0,0.4)',
-							border: 'none',
-							cursor: 'pointer'
-						}}
-					>
-						✕
-					</button>
 				</div>
 			)}
 		</>

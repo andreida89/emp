@@ -68,16 +68,11 @@ class VehicleInventory extends Inventory {
 	async transferItem(player: Player, inside: boolean, cell: number, targetCell: number) {
 		const vehicle = player.target as VehicleMp;
 
-		await this.transfer(
-			player,
-			player.inventory,
-			vehicle.inventory,
-			inside,
-			cell,
-			targetCell
-		);
-		await this.updateInDb(vehicle.dbId, vehicle.inventory);
-		await playerInventory.updateInDb(player.dbId, player.inventory);
+		await this.transfer(player, player.inventory, vehicle.inventory, inside, cell, targetCell);
+		await Promise.all([
+			this.updateInDb(vehicle.dbId, vehicle.inventory),
+			playerInventory.updateInDb(player.dbId, player.inventory)
+		]);
 
 		return {
 			item: this.getItemOfCell(inside ? vehicle.inventory : player.inventory, targetCell),

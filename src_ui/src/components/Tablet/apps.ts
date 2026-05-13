@@ -21,17 +21,10 @@ type App = {
 };
 
 const factionApps: { [name: string]: string[] } = {
-	armenian: ['members', 'ranks', 'money', 'vehicles', 'journal'],
-	families: ['members', 'ranks', 'money', 'vehicles', 'gang_zones', 'journal'],
-	ballas: ['members', 'ranks', 'money', 'vehicles', 'gang_zones', 'journal'],
-	vagos: ['members', 'ranks', 'money', 'vehicles', 'gang_zones', 'journal'],
-	marabunta: ['members', 'ranks', 'money', 'vehicles', 'gang_zones', 'journal'],
-	bloods: ['members', 'ranks', 'money', 'vehicles', 'gang_zones', 'journal'],
-	ems: ['members', 'ranks', 'money', 'vehicles', 'medic_calls', 'journal'],
-	lspd: ['members', 'ranks', 'money', 'vehicles', 'police_calls', 'database', 'journal'],
+	umu: ['members', 'ranks', 'money', 'vehicles', 'medic_calls', 'journal'],
+	politie: ['members', 'ranks', 'money', 'vehicles', 'politie_calls', 'database', 'journal'],
 	sindicat: ['members', 'ranks', 'money', 'vehicles', 'database', 'journal'],
     primarie: ['members', 'ranks', 'money', 'vehicles', 'database', 'journal'],
-	sang: ['members', 'ranks', 'money', 'vehicles', 'materials', 'database', 'journal'],
 	santamuerte: ['members', 'ranks', 'money', 'vehicles', 'journal'],
     losdiablos: ['members', 'ranks', 'money', 'vehicles', 'journal']
 };
@@ -73,7 +66,7 @@ const apps: { [key: string]: App } = {
         icon: IoAlbums,
         route: '/materials/'
     },
-    police_calls: {
+    politie_calls: {
         title: 'Apeluri',
         color: '#007aff',
         icon: IoCall,

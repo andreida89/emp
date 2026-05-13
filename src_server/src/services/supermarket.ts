@@ -20,15 +20,8 @@ const prices = {
 	wine: 80,
 	vodka: 120,
 	whiskey: 200,
-	flashlight: 400,
-	lockpick: 100,
 	bandage: 100,
 	medkit: 700,
-	sack: 150,
-	cable_tie: 250,
-	backpack_small: 3500,
-	backpack_medium: 15500,
-	rod: 5000
 };
 
 class Supermarket extends Service {
@@ -36,10 +29,22 @@ class Supermarket extends Service {
 		super('supermarket', { name: 'Magazin 24/7', model: 52, color: 81 });
 	}
 
+	load() {
+		// Do not load old static supermarkets
+		console.log('[Supermarket] Static loading disabled.');
+	}
+
 	protected subscribeToEvents() {
 		mp.events.subscribe({
-			'Supermarket-Buy': this.buy.bind(this)
+			'Supermarket-Buy': this.buy.bind(this),
+			'Supermarket-GetCash': this.getCashAmount.bind(this)
 		});
+	}
+
+	private getCashAmount(player: Player) {
+		return player.inventory
+				.filter(i => i.name === 'ron')
+				.reduce((acc, i) => acc + i.amount, 0);
 	}
 
 	onKeyPress(player: Player) {
@@ -61,11 +66,27 @@ class Supermarket extends Service {
 	private async buy(player: Player, product: Product, payment: PaymentType) {
 		const price = this.getPrice(product);
 
-		playerInventory.checkEnoughSlots(player, [product]);
+		try {
+			playerInventory.checkEnoughSlots(player, [product]);
+		} catch(e) {
+			return 'SPATIU INSUFICIENT IN INVENTAR';
+		}
 
-		//await money.change(player, payment, -price, 'supermarket');
-		await pay(player, payment, price, 'supermarket');
+		if (payment === 'cash') {
+			const cashAmount = player.inventory
+				.filter(i => i.name === 'ron')
+				.reduce((acc, i) => acc + i.amount, 0);
+			if (cashAmount < price) return 'NU AI DESTUI BANI LA TINE';
+		} else {
+			if (player.money[payment as keyof PlayerMoney] < price) return 'FONDURI BANCARE INSUFICIENTE';
+		}
+
+		const success = await pay(player, payment, price, 'supermarket');
+		if (!success) return 'TRANZACTIE RESPINGA';
+
 		await playerInventory.addItem(player, product);
+		
+		return true;
 	}
 }
 

@@ -4,7 +4,7 @@ import money from 'helpers/money';
 class FactionMoney {
 	private balance: number;
 
-	private faction: string;
+	public faction: string;
 
 	constructor(faction: string) {
 		this.faction = faction;
@@ -45,3 +45,4 @@ class FactionMoney {
 }
 
 export default FactionMoney;
+ 

@@ -3,9 +3,9 @@ import colshapes from 'helpers/colshapes';
 class PointEntity implements Point {
 	public readonly id: number;
 
-	private colshape: ColshapeMp;
+	public readonly colshape: ColshapeMp;
 
-	private marker: MarkerMp;
+	public readonly marker: MarkerMp;
 
 	private _position: Vector3Mp;
 

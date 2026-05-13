@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { IoIosLock, IoIosUnlock } from 'react-icons/io';
-import sound from 'assets/audio/lock.mp3';
+// import sound from 'assets/audio/lock.mp3';
 
 type Props = {
 	status: boolean;
@@ -8,10 +8,10 @@ type Props = {
 };
 
 export default function HousePadlock({ status, toggle }: Props) {
-	const [audio] = useState(new Audio(sound));
+	// const [audio] = useState(new Audio(sound));
 
 	function toggleLock() {
-		toggle().then(() => audio.play());
+		toggle().then(() => {/* audio.play() */});
 	}
 
 	return (

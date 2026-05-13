@@ -38,15 +38,20 @@ const colors = new Map<number, [number, number, number, number]>([
 
             if (distance > 20) return;
 
-const scale = 0.25; // valoare fixă, mai mică decât înainte (0.3+)
-const { x, y, z } = player.getBoneCoords(12844, 0.5, 0, 0);
+            const isTargetNoclip = player.getVariable('NoClip');
+            const isLocalAdminOnDuty = localPlayer.getVariable('adminTag');
 
-mp.game.graphics.drawText(data.text, [x, y, z], {
-    font: 0,
-    color: AdminTagManager.GetAdminColor(data.adminlvl),
-    scale: [scale, scale],
-    outline: true
-});
+            if (isTargetNoclip && !isLocalAdminOnDuty) return;
+
+            const scale = 0.45; 
+            const { x, y, z } = player.getBoneCoords(12844, 0.5, 0, 0);
+
+            mp.game.graphics.drawText(data.text, [x, y, z], {
+                font: 0,
+                color: AdminTagManager.GetAdminColor(data.adminlvl),
+                scale: [scale, scale],
+                outline: true
+            });
 
         });
     }

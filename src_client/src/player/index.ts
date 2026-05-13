@@ -2,12 +2,14 @@ import { isEqual } from 'lodash';
 import friends from './friends';
 import './controls';
 //import './nametags';
+import './crouch';
 import './sync';
 import './character';
 import './spawn';
 import './target';
 import './death';
 import './follow';
+import './tickets';
 
 const localPlayer = mp.players.local;
 let headsack = false;
@@ -17,6 +19,9 @@ mp.events.subscribeToDefault({
 		mp.game.player.setHealthRechargeMultiplier(0.0);
 		mp.game.player.restoreStamina(100);
 		mp.game.controls.disableControlAction(2, 243, true);
+        
+        // Dezactivăm nametag-urile default Rage (barele de viață/armură)
+        mp.nametags.enabled = false;
 
 		if (headsack) {
 			mp.game.graphics.drawRect(0.0, 0.0, 1.0, 1.0, 0, 0, 0, 253);
@@ -66,6 +71,15 @@ mp.events.subscribe({
 		mp.browsers.setHideBind(() => mp.browsers.hidePage());
 		mp.game.ui.displayRadar(true);
 		mp.gui.chat.show(true);
+	}
+});
+
+mp.events.add({
+	playerEnterVehicle: () => {
+		mp.events.callBrowser('Player-SetInVehicle', true, false);
+	},
+	playerExitVehicle: () => {
+		mp.events.callBrowser('Player-SetInVehicle', false, false);
 	}
 });
 

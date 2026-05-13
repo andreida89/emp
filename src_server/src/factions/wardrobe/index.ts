@@ -3,9 +3,9 @@ import playerClothes, { ClothesName } from 'player/clothes';
 import factions from 'factions';
 import Faction from 'factions/faction';
 import Wardrobe from './wardrobe';
-import Wardrobepolice from './wardrobepolice';
+import Wardrobepolitie from './wardrobepolitie';
 import Wardrobesindicat from './wardrobesindicat';
-import Wardrobesmurd from './wardrobesmurd';
+import WardrobeUMU from './wardrobeumu';
 class WardrobeCtrl {
 	constructor() {
 		mp.events.subscribe({
@@ -16,11 +16,6 @@ class WardrobeCtrl {
 	}
 
 	create(position: PositionEx, wardrobe: Wardrobe, faction: Faction) {
-		// Înlocuiește instanța dacă e LSPD
-//		if (faction.name.toLowerCase() === 'lspd') {
-//			wardrobe = new Wardrobepolice();
-//		}
-
 		const point = points.create(
 			position,
 			1,

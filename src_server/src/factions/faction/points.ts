@@ -4,8 +4,11 @@ import points from 'helpers/points';
 class FactionPoints {
 	private points: Point[] = [];
 
-	add(point: Point) {
+	add(point: Point, players?: PlayerMp[]) {
 		this.points.push(point);
+		if (players) {
+			players.forEach(p => point.showFor(p));
+		}
 	}
 
 	remove(point: Point) {
@@ -19,6 +22,11 @@ class FactionPoints {
 
 	hideFor(player: PlayerMp) {
 		this.points.forEach((point) => point.hideFor(player));
+	}
+
+	clear() {
+		this.points.forEach((point) => points.delete(point));
+		this.points = [];
 	}
 }
 

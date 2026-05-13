@@ -13,10 +13,10 @@ class WorkshopCtrl {
 	}
 
 	create(position: PositionEx, products: Products, faction: Faction) {
-		if (!faction.warehouse) throw new Error('faction warehouse should be created');
+		//if (!faction.warehouse) throw new Error('faction warehouse should be created');
 
-		const workshop = new Workshop(products, faction.warehouse);
-
+		//const workshop = new Workshop(products, faction.warehouse);
+		const workshop = new Workshop(products);
 		const point = points.create(
 			position,
 			1,
@@ -52,7 +52,7 @@ class WorkshopCtrl {
 		await faction.workshop.craftItem(player, name, amount);
 		await journal.recordAction(player, 'craft', name, amount);
 
-		return faction.warehouse.current;
+		//return faction.warehouse.current;
 	}
 }
 

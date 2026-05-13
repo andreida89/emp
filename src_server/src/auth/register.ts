@@ -10,6 +10,7 @@ type UserData = {
 	password: string;
 	firstName: string;
 	lastName: string;
+	age: number;
 	code: string;
 };
 
@@ -25,7 +26,7 @@ class Register {
 	}
 
 	private async createAccount({ mp: player }: Player, data: UserData) {
-		const error = await this.checkData(player.socialClub, data);
+		const error = await this.checkData(player, player.socialClub, data);
 
 		if (error) return Promise.reject(error);
 
@@ -51,9 +52,28 @@ class Register {
 	}
 
 	private async checkData(
+		playerMp: PlayerMp,
 		socialName: string,
 		data: UserData
 	): Promise<{ field: string; message: string }> {
+		const BanLog = require('../models/BanLog').default;
+		const moment = require('moment');
+		const bannedSerial = await BanLog.findOne({ 
+			bannedSerial: playerMp.serial
+		}).sort({ createdAt: -1 });
+
+		if (bannedSerial) {
+             let stillBanned = false;
+             if (bannedSerial.isPermanent) stillBanned = true;
+             else {
+                 const origUser = await UserModel.findOne({ serial: playerMp.serial }).lean();
+                 if (origUser && origUser.ban && (origUser.ban.permanent || moment().diff(origUser.ban.expires, 'minutes') < 0)) {
+                     stillBanned = true;
+                 }
+             }
+             if (stillBanned) return { field: 'email', message: 'Serial blocked (banned)' };
+		}
+
 		const user = await UserModel.findOne({
 			$or: [{ socialName }, { email: data.email }]
 		})
@@ -97,12 +117,14 @@ class Register {
 		const password = await encrypt(trim(data.password));
 		const firstName = capitalize(trim(data.firstName));
 		const lastName = capitalize(trim(data.lastName));
+		const age = data.age || 25;
 
 		return {
 			email,
 			password,
 			firstName,
-			lastName
+			lastName,
+			age
 		};
 	}
 }

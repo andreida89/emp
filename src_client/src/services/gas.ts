@@ -13,13 +13,6 @@ class Gas {
 	private showMenu(data: any) {
 		const payload = Array.isArray(data) ? data[0] : data;
 
-		// Debug direct în chat
-		mp.gui.chat.push(`[CLIENT][DEBUG] Gas menu received`);
-		mp.gui.chat.push(`FuelType: ${payload.fuelType}`);
-		mp.gui.chat.push(`FuelLevel: ${payload.fuelLevel}%`);
-		mp.gui.chat.push(`VehicleModel: ${payload.vehicleModel}`);
-		mp.gui.chat.push(`VehicleClass: ${payload.vehicleClass}`);
-
 		const {
 			fuelType,
 			fuelLevel,

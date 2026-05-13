@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Circle } from 'rc-progress';
-import Selector from 'components/Common/selector';
 
 type Props = {
 	current: number;
@@ -16,28 +14,17 @@ export default function JobLevel({ current, progress, selectLeveL }: Props) {
 	}, [current, levels.length]);
 
 	return (
-		<div className="job_level">
-			<div className="job_level-current">
-				<Selector
-					className="job_selector"
-					items={levels}
-					value={current}
-					customValue={`${current + 1}`}
-					onChange={selectLeveL}
-				/>
-
-				<span>Nivel</span>
+		<div className="ujob-job-level">
+			<div className="ujob-job-level-current">
+				<span>Nivel {current + 1}</span>
 			</div>
 
-			<Circle
-				className="job_level-progress"
-				strokeWidth={4}
-				trailWidth={4}
-				trailColor="#fff"
-				strokeColor="#ff0082"
-				strokeLinecap="square"
-				percent={progress}
-			/>
+			<div className="ujob-job-level-progress-container">
+                <div 
+                    className="ujob-job-level-progress-bar" 
+                    style={{ width: `${progress}%` }}
+                ></div>
+            </div>
 		</div>
 	);
 }

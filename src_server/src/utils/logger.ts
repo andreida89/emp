@@ -38,8 +38,16 @@ class Logger {
 		return logger;
 	}
 
+	error(message: string) {
+		console.log(chalk.red('[ERROR] ') + message);
+	}
+
 	success(message: string) {
 		console.log(chalk.green('[DONE] ') + message);
+	}
+
+	info(message: string) {
+		console.log(chalk.blue('[INFO] ') + message);
 	}
 }
 

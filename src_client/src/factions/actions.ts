@@ -25,7 +25,7 @@ const items: { [faction: string]: string[] } = {
 		'frisk',
 		'vehicle'
 	],
-	lspd: [
+	politie: [
 		'invite',
 		'docs',
 		'cuff',
@@ -40,84 +40,11 @@ const items: { [faction: string]: string[] } = {
 		'vehicle',
 		'headsack_disable'
 	],
-	ems: ['invite', 'docs', 'heal', 'reanimate', 'medcard_physical', 'medcard_mental'],
-	sang: [
-		'invite',
-		'docs',
-		'cuff',
-		'uncuff',
-		'untie',
-		'follow',
-		'unfollow',
-		'unmask',
-		'vehicle',
-		'headsack_disable',
-		'military_id'
-	],
-	armenian: [
-		'invite',
-		'tie',
-		'untie',
-		'follow',
-		'unfollow',
-		'headsack_enable',
-		'headsack_disable',
-		'vehicle'
-	],
-	families: [
-		'invite',
-		'tie',
-		'untie',
-		'follow',
-		'unfollow',
-		'headsack_enable',
-		'headsack_disable',
-		'vehicle'
-	],
-	ballas: [
-		'invite',
-		'tie',
-		'untie',
-		'follow',
-		'unfollow',
-		'headsack_enable',
-		'headsack_disable',
-		'vehicle'
-	],
-	vagos: [
-		'invite',
-		'tie',
-		'untie',
-		'follow',
-		'unfollow',
-		'headsack_enable',
-		'headsack_disable',
-		'vehicle'
-	],
-	bloods: [
-		'invite',
-		'tie',
-		'untie',
-		'follow',
-		'unfollow',
-		'headsack_enable',
-		'headsack_disable',
-		'vehicle'
-	],
-	marabunta: [
-		'invite',
-		'tie',
-		'untie',
-		'follow',
-		'unfollow',
-		'headsack_enable',
-		'headsack_disable',
-		'vehicle'
-	],
+	umu: ['invite', 'docs', 'heal', 'reanimate', 'medcard_physical', 'medcard_mental'],
     santamuerte: [
         'invite',
         'tie',
-    	'untie',
+	'untie',
         'follow',
         'unfollow',
         'headsack_enable',
@@ -179,16 +106,16 @@ class FactionActions {
 				mp.events.callServer('BagActions-TakeOff', null, false);
 				break;
 			case 'heal':
-				mp.events.callServer('EmsHealth-OfferHeal', null, false);
+				mp.events.callServer('UmuHealth-OfferHeal', null, false);
 				break;
 			case 'reanimate':
-				mp.events.callServer('EmsHealth-Reanimate', null, false);
+				mp.events.callServer('UmuHealth-Reanimate', null, false);
 				break;
 			case 'medcard_physical':
-				mp.events.callServer('EmsLicenses-OfferLicense', 'physical', false);
+				mp.events.callServer('UmuLicenses-OfferLicense', 'physical', false);
 				break;
 			case 'medcard_mental':
-				mp.events.callServer('EmsLicenses-OfferLicense', 'mental', false);
+				mp.events.callServer('UmuLicenses-OfferLicense', 'mental', false);
 				break;
 			case 'military_id':
 				mp.events.callServer('ArmyTicket-Give', null, false);

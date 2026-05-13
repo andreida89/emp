@@ -2,6 +2,7 @@ interface PlayerMp {
 	colshape?: number;
 	colshapes: number[];
 	attachments: number[];
+	admin_duty?: boolean;
 }
 
 interface Player {
@@ -9,8 +10,11 @@ interface Player {
 	performing: boolean;
 	cache: { [name: string]: any };
 	dbId: string;
+	fixId: number;
 	adminLvl: number;
+	admin_duty: boolean;
 	dead: boolean;
+	deathExpiresAt?: number;
 
 	account?: string;
 	waypoint?: Vector3Mp;
@@ -49,10 +53,18 @@ interface Player {
 			phone: string;
 		}[];
 		blacklist: string[];
+		messages: {
+			phone: string;
+			text: string;
+			type: 'incoming' | 'outgoing';
+			date: number;
+			read: boolean;
+		}[];
 		interlocutor?: PlayerMp;
 	};
 
 	callEvent: (name: string, args?: any, pending?: boolean) => Promise<any>;
+	updateState: (data: { type: string; payload?: any }) => Promise<any>;
 	getName: (separator?: boolean) => string;
 	tp: (position: PositionEx, rotation?: number, dimension?: number) => void;
 	entityIsNearby: (target: EntityMp, range?: number) => boolean;

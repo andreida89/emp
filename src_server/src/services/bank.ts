@@ -23,15 +23,44 @@ class Bank extends Service {
 			'Bank-CashOut': this.cashOut.bind(this),
 			'Bank-Replenish': this.replenishAccount.bind(this),
 			'Bank-Transfer': this.transferMoney.bind(this),
-			'Bank-PayHouse': this.payForHouse.bind(this),
-			'Bank-PayBusiness': this.payForBusiness.bind(this)
+			'Bank-SetPin': this.setPin.bind(this),
+			'Bank-CheckPin': this.checkPin.bind(this),
+			'Bank-UpdatePin': this.updatePin.bind(this)
 		});
 	}
 
-	onKeyPress(player: Player) {
+	async onKeyPress(player: Player) {
 		if (player.mp.vehicle) return;
 
-		player.callEvent('Bank-ShowMenu', [player.bankAccount, prices, comission]);
+		const char = await CharModel.findById(player.dbId).select('bankHistory').lean();
+		const history = char?.bankHistory || [];
+
+		player.callEvent('Bank-ShowMenu', [player.bankAccount, prices, comission, !!player.bankPin, history]);
+	}
+
+	private async setPin(player: Player, pin: any) {
+		if (!player.bankAccount) return mp.events.reject('Pentru inceput, inregistrati contul bancar');
+		
+		const pinStr = String(pin);
+		await CharModel.findByIdAndUpdate(player.dbId, { $set: { bankPin: pinStr } });
+		player.bankPin = pinStr;
+
+		return true;
+	}
+
+	private async checkPin(player: Player, pin: string) {
+		if (!player.bankPin) return true; // Safety if not set
+		return player.bankPin === pin;
+	}
+
+	private async updatePin(player: Player, [oldPin, newPin]: [any, any]) {
+		if (player.bankPin && player.bankPin !== String(oldPin)) return mp.events.reject('PIN-ul actual este incorect');
+		
+		const pinStr = String(newPin);
+		await CharModel.findByIdAndUpdate(player.dbId, { $set: { bankPin: pinStr } });
+		player.bankPin = pinStr;
+
+		return true;
 	}
 
 	private async createAccount(player: Player, custom?: string) {
@@ -42,13 +71,16 @@ class Bank extends Service {
 
 			if (isExists) return mp.events.reject('Acest cont bancar este deja inregistrat');
 
-			await money.change(player, 'points', -prices.account, 'custom bank account');
+			await money.change(player, 'points', -prices.account, 'Cont Personalizat');
 		}
 
 		const account = custom || (await this.generateAccount());
 
 		await CharModel.findByIdAndUpdate(player.dbId, { $set: { bankAccount: account } });
 		player.bankAccount = account;
+
+		// We can log a 0 amount if we want, but Money needs adjustment to allow 0.
+		// For now we just won't log the opening if it's free.
 
 		return account;
 	}
@@ -77,7 +109,7 @@ class Bank extends Service {
 //			return mp.events.reject('Pentru inceput, inregistrati contul bancar');
 //		}
 //
-//		await money.exchange(player, 'bank', 'cash', sum, 'cash out');
+//		await money.exchange(player, 'bank', 'cash', sum, 'Retragere Numerar');
 //	}
 
 private async cashOut(player: Player, sum: number) {
@@ -86,7 +118,7 @@ private async cashOut(player: Player, sum: number) {
 	}
 
 	// 1. Scad banii din contul bancar
-	await money.exchange(player, 'bank', 'cash', sum, 'cash out');
+	await money.exchange(player, 'bank', 'cash', sum, 'Retragere Numerar');
 
 	// 2. Adaug banii ca item in inventar
 	await playerInventory.addItem(player, { name: 'ron', amount: sum });
@@ -98,7 +130,7 @@ private async cashOut(player: Player, sum: number) {
 //			return mp.events.reject('Pentru inceput, inregistrati contul bancar');
 //		}
 //
-//		await money.exchange(player, 'cash', 'bank', sum, 'replenish bank');
+//		await money.exchange(player, 'cash', 'bank', sum, 'Depunere Numerar');
 //		await tasks.implement(player, 'bank_replenish');
 //	}
 
@@ -115,7 +147,7 @@ private async replenishAccount(player: Player, sum: number) {
 	}
 
 	// 2. Adaugă suma în contul bancar (folosind sistemul vechi)
-	await money.change(player, 'bank', sum, 'replenish bank');
+	await money.change(player, 'bank', sum, 'Depunere Numerar');
 
 	// 3. (Opțional) trigger task
 	await tasks.implement(player, 'bank_replenish');
@@ -124,7 +156,7 @@ private async replenishAccount(player: Player, sum: number) {
 
 	private async transferMoney(player: Player, account: string, value: any) {
 		const user = await CharModel.findOne({ bankAccount: account })
-			.select({ _id: 1 })
+			.select({ _id: 1, firstName: 1, lastName: 1 })
 			.lean();
 
 		if (!user) return mp.events.reject('Contul indicat nu este inregistrat');
@@ -134,17 +166,8 @@ private async replenishAccount(player: Player, sum: number) {
 
 		if (sumWithComission <= 0) throw new SilentError('wrong sum');
 
-		await money.change(player, 'bank', -sumWithComission, `transfer to ${user._id}`);
-		await money.changeById(user._id, 'bank', sum, `transfer from ${player.dbId}`);
-	}
-
-	private async payForHouse(player: Player, house: number, days: number) {
-		await houseTax.pay(player, house, days);
-		await tasks.implement(player, 'house_tax');
-	}
-
-	private async payForBusiness(player: Player, days: number) {
-		await businessTax.pay(player, player.businesses[0], days);
+		await money.change(player, 'bank', -sumWithComission, `Transfer catre ${user.firstName} ${user.lastName}`);
+		await money.changeById(user._id, 'bank', sum, `Transfer de la Cont #${player.bankAccount}`);
 	}
 }
 

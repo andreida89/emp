@@ -60,7 +60,7 @@ class CruiseControl {
 	}
 
 	private bindKeys() {
-		binder.bind('cruise', 'f9', this.toggle.bind(this));
+		binder.bind('cruise', 'f11', this.toggle.bind(this));
 	}
 }
 

@@ -2,9 +2,9 @@ import { IRoute } from 'routes';
 import Docs from './docs';
 import Garage from './garage';
 import Wardrobe from './wardrobe';
-import Wardrobepolice from './wardrobepolice';
+import Wardrobepolitie from './wardrobepolitie';
 import Wardrobesindicat from './wardrobesindicat';
-import Wardrobesmurd from './wardrobesmurd';
+import WardrobeUMU from './wardrobeumu';
 import Workshop from './workshop';
 import Tablet from '../Tablet';
 
@@ -30,12 +30,12 @@ export default [
 		component: Wardrobe
 	},
 	{
-		path: '/factions/wardrobepolice',
-		component: Wardrobepolice
+		path: '/factions/wardrobepolitie',
+		component: Wardrobepolitie
 	},
 	{
-		path: '/factions/wardrobesmurd',
-		component: Wardrobesmurd
+		path: '/factions/wardrobeumu',
+		component: WardrobeUMU
 	},
 	{
 		path: '/factions/wardrobesindicat',

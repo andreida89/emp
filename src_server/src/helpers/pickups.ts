@@ -33,6 +33,13 @@ class Pickups {
 		};
 
 		this.items.set(id, pickup);
+
+		// Despawn the item after 2 minutes (120,000 ms) automatically
+		setTimeout(() => {
+			if (this.items.has(id)) {
+				this.destroy(id);
+			}
+		}, 120000);
 	}
 
 	async take(player: Player, id: string) {
@@ -56,8 +63,12 @@ class Pickups {
 		const pickup = this.items.get(id);
 
 		if (pickup) {
-			pickup.object.destroy();
-			mp.colshapes.delete(pickup.colshape);
+			if (mp.objects.exists(pickup.object)) pickup.object.destroy();
+			
+			// Try catch on colshape destroy just in case it was already deleted
+			try {
+				if (pickup.colshape) mp.colshapes.delete(pickup.colshape);
+			} catch(e) {}
 
 			this.items.delete(id);
 		}

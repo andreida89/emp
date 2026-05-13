@@ -1,13 +1,15 @@
 import FactionModel from 'models/Faction';
+import { SilentError } from 'utils/errors';
 
 type Member = {
 	rank: string;
+	vaultAccess: boolean;
 };
 
 class FactionMembers {
 	private items: Map<string, Member>;
 
-	private faction: string;
+	public faction: string;
 
 	constructor(faction: string) {
 		this.faction = faction;
@@ -15,7 +17,7 @@ class FactionMembers {
 	}
 
 	load(items: any[]) {
-		items.forEach((item) => this.items.set(item.userId.toString(), { rank: item.rank }));
+		items.forEach((item) => this.items.set(item.userId.toString(), { rank: item.rank, vaultAccess: !!item.vaultAccess }));
 	}
 
 	getAll() {
@@ -23,49 +25,65 @@ class FactionMembers {
 	}
 
 	getMember(player: Player) {
-		return this.items.get(player.dbId);
+		return player?.dbId && this.items.get(player.dbId.toString());
 	}
-getMember2(player: Player) {
-  console.log(`[DEBUG] getMember: player.dbId = ${player.dbId}`);
-  return this.items.get(player.dbId); // verificăm dacă dbId-ul există în Map
-}
 
 	getMemberById(id: string) {
-		return this.items.get(id);
+		return id && this.items.get(id.toString());
 	}
 
-	async add(player: Player, rank: string) {
-		if (this.getMember(player)) throw new SilentError('player is already a member');
+	async add(playerOrId: Player | string, rank: string, vaultAccess = false) {
+		const dbId = typeof playerOrId === 'string' ? playerOrId : playerOrId.dbId.toString();
+
+		if (this.getMemberById(dbId)) throw new SilentError('player is already a member');
 		if (this.getAll().size > 300) throw new SilentError('limit of members reached');
 
 		await FactionModel.findOneAndUpdate(
 			{ name: this.faction },
-			{ $push: { members: { userId: player.dbId, rank } } }
+			{ $push: { members: { userId: dbId, rank, vaultAccess } } }
 		);
-		this.items.set(player.dbId, { rank });
+		this.items.set(dbId, { rank, vaultAccess });
+	}
+
+	async updateRank(playerId: string, rank: string, vaultAccess?: boolean) {
+		const dbId = playerId.toString();
+		const member = this.items.get(dbId);
+		if (!member) throw new Error("member doesn't exists");
+
+		const update: any = { 'members.$.rank': rank };
+		if (vaultAccess !== undefined) update['members.$.vaultAccess'] = vaultAccess;
+
+		await FactionModel.findOneAndUpdate(
+			{ name: this.faction, 'members.userId': dbId },
+			{ $set: update }
+		);
+		member.rank = rank;
+		if (vaultAccess !== undefined) member.vaultAccess = vaultAccess;
 	}
 
 	async update(playerId: string, data: Partial<Member>) {
-		const member = this.items.get(playerId);
+		const dbId = playerId.toString();
+		const member = this.items.get(dbId);
 		if (!member) throw new SilentError("member doesn't exists");
 
-		const updatedMember = { ...member, ...data, userId: playerId };
+		const updatedMember = { ...member, ...data, userId: dbId };
 
 		await FactionModel.findOneAndUpdate(
-			{ name: this.faction, 'members.userId': playerId },
+			{ name: this.faction, 'members.userId': dbId },
 			{ $set: { 'members.$': updatedMember } }
 		);
-		this.items.set(playerId, updatedMember);
+		this.items.set(dbId, updatedMember);
 	}
 
 	async delete(playerId: string) {
-		if (!this.items.has(playerId)) throw new SilentError("member doesn't exists");
+		const dbId = playerId.toString();
+		if (!this.items.has(dbId)) throw new SilentError("member doesn't exists");
 
 		await FactionModel.findOneAndUpdate(
 			{ name: this.faction },
-			{ $pull: { members: { userId: playerId } } }
+			{ $pull: { members: { userId: dbId } } }
 		);
-		this.items.delete(playerId);
+		this.items.delete(dbId);
 	}
 }
 

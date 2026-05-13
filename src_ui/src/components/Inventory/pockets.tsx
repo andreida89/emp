@@ -12,7 +12,7 @@ export default function InventoryPockets({ items }: Props) {
 		<div className="inventory_pockets">
 			<PrimaryTitle className="inventory_title">Buzunare</PrimaryTitle>
 
-			<Grid cells={6} startIndex={0} items={items} />
+			<Grid cells={8} startIndex={0} items={items} />
 		</div>
 	);
 }

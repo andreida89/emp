@@ -23,7 +23,7 @@ class Voice {
 
 		binder.bind('mic', 'N', this.toggleMic.bind(this), null, true);
 		binder.bind('voicelevel', 'Z', this.cycleVoiceLevel.bind(this));
-		binder.bind('voice_reload', 'F2', this.reloadMic.bind(this));
+		binder.bind('voice_reload', 'F9', this.reloadMic.bind(this));
 
 	}
 
@@ -76,6 +76,7 @@ class Voice {
 
 	private reloadMic() {
 		(mp.voiceChat as any).cleanupAndReload(true, true, true);
+		mp.gui.chat.push('!{00FF00}Chatul vocal a fost reincarcat!');
 	}
 
 	private runInterval() {

@@ -48,11 +48,23 @@ class Weapons extends Service {
 		super('weapons', { name: 'Magazin de Arme', model: 110, color: 4 });
 	}
 
+	load() {
+		// Do not load old static weapons shops
+		console.log('[Weapons] Static loading disabled.');
+	}
+
 	protected subscribeToEvents() {
 		mp.events.subscribe({
 			'Weapons-Buy': this.buyWeapon.bind(this),
-			'Weapons-BuyAmmo': this.buyAmmo.bind(this)
+			'Weapons-BuyAmmo': this.buyAmmo.bind(this),
+			'Supermarket-GetCash': this.getCashAmount.bind(this)
 		});
+	}
+
+	private getCashAmount(player: Player) {
+		return player.inventory
+				.filter(i => i.name === 'ron')
+				.reduce((acc, i) => acc + i.amount, 0);
 	}
 
 	onKeyPress(player: Player) {
@@ -98,13 +110,22 @@ class Weapons extends Service {
 			amount: 1
 		};
 
-		playerInventory.checkEnoughSlots(player, [item]);
+		try {
+			playerInventory.checkEnoughSlots(player, [item]);
+		} catch(e) {
+			return 'SPATIU INSUFICIENT IN INVENTAR';
+		}
 
-		//await money.change(player, payment, -price, 'weapons');
-		await pay(player, payment, price, 'weapons');
+		const success = await pay(player, payment, price, 'weapons');
+		if (!success) {
+			if (payment === 'cash') return 'NU AI DESTUI BANI LA TINE';
+			return 'FONDURI BANCARE INSUFICIENTE';
+		}
+
 		await playerInventory.addItem(player, item);
 
 		await tasks.implement(player, 'buy_weapon');
+		return true;
 	}
 }
 

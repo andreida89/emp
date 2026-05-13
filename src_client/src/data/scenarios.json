@@ -49,6 +49,11 @@
 		"attachment": "soda",
 		"duration": 6000
 	},
+	"drink_soda": {
+		"anim": "drinking_water",
+		"attachment": "soda",
+		"duration": 5500
+	},
 	"smoke_cigarette": {
 		"anim": "smoking",
 		"attachment": "cigarette",

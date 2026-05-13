@@ -5,10 +5,8 @@ import Settings from './settings';
 import Maps from './maps';
 import Sim from './sim';
 import Vehicles from './vehicles';
-import Referral from './referral';
 import Support from './support';
-import Donation from './donation';
-
+import Messages from './messages';
 export type PhoneApp = {
 	name: string;
 	component: any;
@@ -24,17 +22,9 @@ const apps: { [key: string]: PhoneApp } = {
         name: 'Info SIM',
         component: Sim
     },
-    referral: {
-        name: 'Referral',
-        component: Referral
-    },
     vehicles: {
         name: 'Vehicule',
         component: Vehicles
-    },
-    donation: {
-        name: 'Magazin',
-        component: Donation
     },
     support: {
         name: 'Suport',
@@ -53,7 +43,7 @@ const apps: { [key: string]: PhoneApp } = {
     },
     messages: {
         name: 'Mesaje',
-        component: Main,
+        component: Messages,
         attached: true
     },
     settings: {

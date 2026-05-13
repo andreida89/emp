@@ -87,7 +87,7 @@ class VehicleControls {
 
 	private bindKeys() {
 		binder.bind('engine', 'Alt', this.toggleEngine);
-		binder.bind('lock', 'L', () => mp.browsers.hud && this.toggleLockStatus());
+		binder.bind('lock', 'Z', () => mp.browsers.hud && this.toggleLockStatus());
 		binder.bind('seatbelt', 'G', () => mp.browsers.hud && this.toggleSeatBelt());
 
 		mp.keys.bind(

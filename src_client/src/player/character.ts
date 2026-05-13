@@ -1,5 +1,4 @@
 import { merge } from 'lodash';
-import startCutscene from 'basic/cutscene';
 
 const player = mp.players.local;
 
@@ -24,7 +23,7 @@ const initialState = {
 	hair: {
 		style: 0,
 		color: 0,
-		highlight: 0
+		highlight: 0 
 	},
 	eyeColor: 0,
 
@@ -181,7 +180,7 @@ class CharacterCreator {
 		await mp.events.callServer('Character-Create', [
 			data,
 			{
-				shirt: this.getStyleOfClothes('tops'),
+				tops: this.getStyleOfClothes('tops'),
 				pants: this.getStyleOfClothes('pants'),
 				shoes: this.getStyleOfClothes('shoes')
 			}
@@ -191,7 +190,17 @@ class CharacterCreator {
 		mp.browsers.hidePage();
 		this.reset();
 
-		startCutscene.play(data.gender as any);
+		mp.game.cam.doScreenFadeOut(500);
+
+		mp.events.add('Intro-VideoEnded', function videoEnded() {
+			mp.events.remove('Intro-VideoEnded', videoEnded);
+			mp.game.cam.doScreenFadeIn(1000);
+			mp.events.callServer('Spawn-ToStart');
+		});
+
+		setTimeout(() => {
+			mp.events.call('PlayGlobalVideo');
+		}, 600);
 	}
 
 	private changeCamera(type: string) {

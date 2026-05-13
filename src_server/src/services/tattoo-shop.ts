@@ -23,6 +23,11 @@ class TattooShop extends Service {
 		super('tattoo_shop', { name: 'Salon Tatuaje', model: 75, color: 61 });
 	}
 
+	load() {
+		// Do not load old static tattoo shops
+		console.log('[TattooShop] Static loading disabled.');
+	}
+
 	protected subscribeToEvents() {
 		mp.events.subscribe({
 			'TattooShop-Buy': this.buy.bind(this),

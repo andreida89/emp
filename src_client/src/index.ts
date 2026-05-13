@@ -10,27 +10,33 @@ import './basic/offer';
 import './basic/fingerpointing';
 import './basic/handsup';
 import './basic/e';
-import './basic/plantatiecayo';
-import './basic/recording';
+import './basic/nitro';
+import './basic/mansions';
 import './basic/atasamente';
-
 import './basic/aduty';
+import './basic/escmenu';
 import './arataid/index';
 
 import './admin';
 import './auth';
 import './player';
+import './shop';
+import './hudsettings';
 import './player/stamina';
 import './player/nametags';
 import './vehicle';
 import './property';
+import './house/houseMarkers';
+import './garage';
+import './garage/garageMarkers';
 import './services';
 import './weapons';
+import './weapons/holster';
+import './weapons/recoil';
 import './jobs';
 import './games';
 import './trading';
 import './factions';
-import './cayo';
 import './mrg';
 import './notificari';
 import './scare';
@@ -40,8 +46,8 @@ import './legitimatii/sindicat';
 import './legitimatii/primarie';
 import './legitimatii/buletin';
 import './legitimatii/politie';
-import './legitimatii/smurd';
-import './notifi';
+import './legitimatii/umu';
+import './notificari';
 
 import './notpolitie';
 import './notsindicat';
@@ -66,10 +72,6 @@ import 'jafmagazin/index';
 import browser from 'helpers/browser';
 
 import './modulenoi/streamdistancemanager.ts';
-
-
-import "./mapeditor/MapEditor";
-
 
 
 const interiorId = mp.game.interior.getInteriorAtCoords(311.2546, -592.4204, 42.32737);
@@ -262,13 +264,16 @@ mp.events.add('render', () => {
 
 // SCOATE VIATA SI ARMURA DE SUB MINIMAP
 
-// UPDATEAZA VIATA ODATA LA 2 SECUNDE
+// UPDATEAZA VIATA SI ARMURA ODATA LA 2 SECUNDE
 setInterval(() => {
 	const health = Math.min(Math.max(mp.players.local.getHealth(), 0), 100);
 	browser.browser.execute(`window.UpdateHealth(${health})`);
+
+	const armour = Math.min(Math.max(mp.players.local.getArmour(), 0), 100);
+	browser.browser.execute(`window.UpdateArmor(${armour})`);
 }, 2000);
 
-// UPDATEAZA VIATA ODATA LA 2 SECUNDE 
+// UPDATEAZA VIATA SI ARMURA ODATA LA 2 SECUNDE 
 
 // FUNCTIE DE UPDATE VIATA INSTANT
 mp.events.add('client:updateHealth', (value: number) => {
@@ -278,8 +283,8 @@ mp.events.add('client:updateHealth', (value: number) => {
 
 
 // FUNCTIE DE UPDATE ARMURA INSTANT
-mp.events.add('client:updateHealth', (value: number) => {
-	browser.browser.execute(`window.UpdateArmura(${value})`);
+mp.events.add('client:updateArmor', (value: number) => {
+	browser.browser.execute(`window.UpdateArmor(${value})`);
 });
 // FUNCTIE DE UPDATE ARMURA INSTANT
 

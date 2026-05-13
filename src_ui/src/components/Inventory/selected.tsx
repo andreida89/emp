@@ -8,6 +8,7 @@ type Props = {
 	name: string;
 	use?: (id: number) => void;
 	separate: () => void;
+	loadAmmo?: () => void;
 	close: () => void;
 	onRemoveAttachments?: (cell: number) => void;
 };
@@ -85,9 +86,15 @@ export default class InventorySelected extends Component<Props, State> {
 						</div>
 					</div>
 					<div className="inventory-card-actions">
-						<button className="use-btn" disabled={!use} onClick={() => use && use(id)}>
-							FOLOSESTE
-						</button>
+						{info.type === 'ammo' || info.type === 'munitie' ? (
+							<button className="use-btn" disabled={!use} onClick={() => use && use(id)}>
+								INCARCA
+							</button>
+						) : (
+							<button className="use-btn" disabled={!use} onClick={() => use && use(id)}>
+								FOLOSESTE
+							</button>
+						)}
 						<span className="divider"></span>
 						<button className="separate-btn" onClick={separate}>
 							SEPARA

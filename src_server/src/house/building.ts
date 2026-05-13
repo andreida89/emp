@@ -21,14 +21,23 @@ class HouseBuilding {
 		const { coords } = houses[data.type];
 		const dimension = 100 + data.index;
 
-		this.createPassage(data.position);
-		this.createPassage(this.getExitPosition(data), dimension);
+		const colshapes: ColshapeMp[] = [];
 
-		if (coords.inventory) this.createInventory(coords.inventory, dimension);
+		const passage1 = this.createPassage(data.position);
+		colshapes.push(passage1.colshape);
+
+		const passage2 = this.createPassage(this.getExitPosition(data), dimension);
+		colshapes.push(passage2.colshape);
+
+		if (coords.inventory) {
+			const inv = this.createInventory(coords.inventory, dimension);
+			colshapes.push(inv.colshape);
+		}
 
 		return {
 			dimension,
-			blip: !data.owner ? this.createBlip(data) : null
+			blip: !data.owner ? this.createBlip(data) : null,
+			colshapes
 		};
 	}
 
@@ -64,15 +73,13 @@ class HouseBuilding {
 					color: 3,
 					scale: 0.85
 				},
-				`Cara nr. ${house.index}`
+				`Casa nr. ${house.index}`
 			);
 		else if (player) mp.blips.delete(player, `Casa nr. ${house.index}`);
 	}
 
 	private createInventory(position: PositionEx & { rotation: number }, dimension = 0) {
-		const { x, y, z } = position;
-
-		mp.colshapes.create(
+		const colshape = mp.colshapes.create(
 			position,
 			1,
 			{
@@ -80,15 +87,12 @@ class HouseBuilding {
 			},
 			{ dimension, data: entities.count }
 		);
-		mp.markers.new(1, new mp.Vector3(x, y, z - 1.2), 0.75, {
-			dimension,
-			color: [255, 219, 0, 100],
-			visible: true
-		});
+
+		return { colshape };
 	}
 
 	private createPassage(position: PositionEx, dimension = 0) {
-		mp.colshapes.create(
+		const colshape = mp.colshapes.create(
 			position,
 			1,
 			{
@@ -96,12 +100,8 @@ class HouseBuilding {
 			},
 			{ dimension, data: entities.count }
 		);
-		mp.markers.new(2, new mp.Vector3(position.x, position.y, position.z), 1, {
-			dimension,
-			color: dimension ? [255, 255, 255, 120] : [255, 0, 156, 120],
-			rotation: new mp.Vector3(180.0, 0.0, 0.0),
-			visible: true
-		});
+
+		return { colshape };
 	}
 
 	private createBlip(house: House) {

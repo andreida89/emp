@@ -54,9 +54,19 @@ class Spawn {
 				break;
 		}
 
-		if (prison.isImprisoned(player)) prison.putToRandomCell(player);
+		if ( prison.isImprisoned( player ) ) prison.putToRandomCell( player );
 
-		player.mp.call('playerSelectSpawn');
+		player.mp.call( 'playerSelectSpawn' );
+
+		if ( player.dead ) {
+			const playerDeath = require( './death' ).default;
+			const remainingTime = (player.deathExpiresAt !== undefined && player.deathExpiresAt !== null) 
+				? Math.max( 0, player.deathExpiresAt - Date.now() ) 
+				: undefined;
+			playerDeath.triggerDeath( player, remainingTime ).catch( console.error );
+		} else {
+			player.callEvent('Browser-HidePage');
+		}
 	}
 
 	private showMenu(player: Player) {

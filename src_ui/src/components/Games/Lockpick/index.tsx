@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { random } from 'lodash';
 import rpc from 'utils/rpc';
-import sound from 'assets/audio/lockpick.mp3';
+// import sound from 'assets/audio/lockpick.mp3';
 import PrimaryTitle from 'components/Common/primary-title';
 import OutlineButton from 'components/Common/outline-button';
 import Hint from 'components/Common/hint';
@@ -66,7 +66,7 @@ export default class Lockpick extends Component<Props, State> {
 		if (pointerAngle > pointAngle - 20 && pointerAngle < pointAngle + 20) {
 			await this.setState((state) => ({ counter: state.counter + 1 }));
 
-			new Audio(sound).play();
+			// new Audio(sound).play();
 
 			if (this.state.counter >= this.state.need) await rpc.callClient('Lockpick-Success');
 			else this.rotate('point', random(0, 360));

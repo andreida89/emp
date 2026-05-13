@@ -8,6 +8,9 @@ export type Entity = {
 	id: string;
 	index: number;
 	type: string;
+	customId?: number;
+	name?: string;
+	price?: number;
 	locked: boolean;
 	inventory: InventoryItem[];
 	position: PositionEx;
@@ -15,6 +18,7 @@ export type Entity = {
 	paid: number;
 	owner?: string;
 	blip?: BlipMp;
+	colshapes?: ColshapeMp[];
 };
 
 class HouseEntities {
@@ -50,10 +54,11 @@ class HouseEntities {
 		cursor.on('close', () => logger.success(`Houses loaded: ${this.count}`));
 	}
 
-	async create(player: Player, type: string) {
+	async create(player: Player, type: string, extraData: { customId?: number, name?: string, price?: number, owner?: string } = {}) {
 		const house = await HouseModel.create({
 			type,
-			position: player.mp.position
+			position: player.mp.position,
+			...extraData
 		});
 
 		this.prepare(house.toObject() as HouseModel);
@@ -68,6 +73,27 @@ class HouseEntities {
 			await HouseModel.findByIdAndDelete(house.id);
 
 			if (house.blip) house.blip.destroy();
+			
+			if (house.colshapes) {
+				house.colshapes.forEach(c => {
+					if (mp.colshapes.exists(c)) c.destroy();
+				});
+			}
+
+			// In case the house had an owner, remove blips and data for all players
+			mp.players.call('house:removeMarker', [index]);
+			mp.players.forEach(p => {
+				if (p && p.houses) {
+					mp.blips.delete(p, `Casa nr. ${house.index}`);
+					
+					// If the player was the owner, update their house list and slots
+					if (house.owner && p.dbId === house.owner) {
+						const houseCtrl = require('./index').default;
+						houseCtrl.changePlayerData(p, house);
+					}
+				}
+			});
+
 			this.items[index] = null;
 		}
 	}
@@ -89,16 +115,22 @@ class HouseEntities {
 		await this.update(house, state);
 	}
 
-	private prepare({ _id, owner, ...data }: HouseModel) {
+	private prepare({ _id, owner, customId, name, price, ...data }: HouseModel) {
 		const entity: Entity = {
 			...data,
 			id: _id.toString(),
 			owner: owner?.toString(),
+			customId,
+			name,
+			price,
 			dimension: 0,
 			index: this.count
 		};
 
-		this.items.push({ ...entity, ...building.create(entity) });
+		const houseObj = { ...entity, ...building.create(entity) };
+		this.items.push(houseObj);
+
+		mp.players.call('house:addMarker', [houseObj.index, houseObj.position, building.getExitPosition(houseObj), houseObj.dimension]);
 	}
 }
 

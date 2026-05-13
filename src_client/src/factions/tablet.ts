@@ -8,7 +8,13 @@ class Tablet {
 	private faction?: string;
 
 	constructor() {
-		binder.bind('tablet', 'F3', this.openMenu.bind(this));
+		binder.bind('faction_tablet', 'F3', () => {
+			if (mp.browsers.hud && !mp.gui.cursor.visible) {
+				this.openMenu();
+			}
+		});
+
+		mp.events.add('Tablet-Close', () => this.closeMenu());
 	}
 
 	canOpenMenu() {
@@ -31,8 +37,13 @@ class Tablet {
 		if (!this.canOpenMenu()) return;
 
 		const faction = player.getVariable('faction');
+		if (!faction) return;
+
+		const isLeader = await mp.events.callServer('Faction-IsLeader');
+		if (!isLeader) return mp.game.ui.notifications.show('error', 'Nu esti liderul factiunii');
+
 		const rank = await mp.events.callServer('Faction-GetPlayerRank');
-		if (!faction || !rank) return;
+		if (!rank) return;
 
 		scenarios.playLocal('use_tablet');
 

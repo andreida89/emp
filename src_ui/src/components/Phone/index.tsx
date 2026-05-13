@@ -23,6 +23,7 @@ class Phone extends Component<Props, State> {
 	};
 
 	componentDidMount() {
+		(window as any).openPhoneApp = this.openApp.bind(this);
 		rpc.register(
 			'Phone-CanClose',
 			() => !document.activeElement || document.activeElement.tagName !== 'INPUT'

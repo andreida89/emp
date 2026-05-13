@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { IoClose } from 'react-icons/io5';
 import rpc from 'utils/rpc';
@@ -25,23 +25,6 @@ type Props = {} & RouteComponentProps<{}, {}, { [name in keyof typeof fields]: s
 
 export default function PlayerPassport({ location }: Props) {
 	const player = location.state;
-	const [headshot, setHeadshot] = useState<string | null>(null);
-
-	useEffect(() => {
-		rpc.callClient('client:requestPassportPhoto');
-
-		const handleHeadshot = (txd: string) => {
-			mp.gui.chat.push(`[REACT] TXD primit: ${txd}`);
-			setHeadshot(txd);
-		};
-
-		mp.events.add('browser:passportPhotoReady', handleHeadshot);
-
-		return () => {
-			mp.events.remove('browser:passportPhotoReady', handleHeadshot);
-			rpc.callClient('client:destroyPassportHeadshot');
-		};
-	}, []);
 
 	return (
 		<div className="player-passport">
@@ -49,7 +32,6 @@ export default function PlayerPassport({ location }: Props) {
 				<span
 					className="faction-docs_close"
 					onClick={() => {
-						rpc.callClient('client:destroyPassportHeadshot');
 						rpc.callClient('Browser-HidePage');
 					}}
 				>

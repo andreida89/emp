@@ -79,6 +79,13 @@
 		"model": "p_watch_05",
 		"equipment": "ears"
 	},
+	"smartwatch": {
+		"type": "tool",
+		"name": "Smartwatch",
+		"weight": 0.1,
+		"stack": 1,
+		"model": "p_watch_03"
+	},
 	"tasks": {
 		"type": "clothes",
 		"name": "Veste",
@@ -835,16 +842,16 @@
     "stack": 500,
     "model": "bkr_prop_fakeid_openpassport"
   },
-  "politie": {
+  "legitimatiepolitie": {
     "type": "politie",
     "name": "Legitimatie Politie",
     "weight": 0,
     "stack": 500,
     "model": "bkr_prop_fakeid_openpassport"
   },
-  "smurd": {
-    "type": "smurd",
-    "name": "Legitimatie SMURD",
+  "legitimatieumu": {
+    "type": "umu",
+    "name": "Legitimatie UMU",
     "weight": 0,
     "stack": 500,
     "model": "bkr_prop_fakeid_openpassport"
@@ -1559,13 +1566,131 @@
   	"model": "COMPONENT_REVOLVER_VARMOD_BOSS",
   	"compatibleWeapons": ["revolver"]
 },
-"gusenberg": {
-	"type": "weapon",
-	"name": "Gusenberg",
-	"weight": 1,
-	"stack": 1000,
-	"ammo": "7.62mm",
-	"model": "w_sb_gusenberg"
-}
-
+	"gusenberg": {
+		"type": "weapon",
+		"name": "Gusenberg",
+		"weight": 1,
+		"stack": 1000,
+		"ammo": "7.62mm",
+		"model": "w_sb_gusenberg"
+	},
+	"sim": {
+		"type": "item",
+		"name": "SIM",
+		"weight": 0.01,
+		"stack": 1,
+		"model": "prop_sim_card_01"
+	},
+	"usbstick": {
+		"type": "item",
+		"name": "USB Stick",
+		"weight": 0.05,
+		"stack": 1,
+		"model": "prop_usb_drive_01"
+	},
+	"telefon": {
+		"type": "item",
+		"name": "Telefon",
+		"weight": 0.2,
+		"stack": 1,
+		"model": "prop_npc_phone_02"
+	},
+	"statie": {
+		"type": "item",
+		"name": "Statie",
+		"weight": 0.3,
+		"stack": 1,
+		"model": "prop_cs_walkie_talkie"
+	},
+	"statieradio": {
+		"type": "item",
+		"name": "Statie",
+		"weight": 0.3,
+		"stack": 1,
+		"model": "prop_cs_walkie_talkie"
+	},
+	"laptop": {
+		"type": "item",
+		"name": "Laptop",
+		"weight": 1.5,
+		"stack": 1,
+		"model": "prop_laptop_01a"
+	},
+	"tableta": {
+		"type": "item",
+		"name": "Tableta",
+		"weight": 0.5,
+		"stack": 1,
+		"model": "prop_cs_tablet"
+	},
+	"usbstickcriptat": {
+		"type": "item",
+		"name": "USB Stick Criptat",
+		"weight": 0.05,
+		"stack": 1,
+		"model": "prop_usb_drive_02"
+	},
+	"gopro": {
+		"type": "item",
+		"name": "GoPro",
+		"weight": 0.1,
+		"stack": 5,
+		"model": "prop_ing_camera_01"
+	},
+	"smartglasses": {
+		"type": "item",
+		"name": "Smart Glasses",
+		"weight": 0.1,
+		"stack": 5,
+		"model": "prop_safety_glasses"
+	},
+	"pizza": {
+		"type": "item",
+		"name": "Pizza",
+		"weight": 0.5,
+		"stack": 10,
+		"model": "prop_pizza_box_01"
+	},
+	"hotdog": {
+		"type": "item",
+		"name": "HotDog",
+		"weight": 0.2,
+		"stack": 20,
+		"model": "prop_hotdog_01"
+	},
+	"shaorma": {
+		"type": "item",
+		"name": "Shaorma",
+		"weight": 0.4,
+		"stack": 20,
+		"model": "prop_food_bs_burger"
+	},
+	"sandwich": {
+		"type": "item",
+		"name": "Sandwich",
+		"weight": 0.2,
+		"stack": 30,
+		"model": "prop_sandwich_01"
+	},
+	"chickenwings": {
+		"type": "item",
+		"name": "Chicken Wings",
+		"weight": 0.3,
+		"stack": 20,
+		"model": "prop_food_bs_cup"
+	},
+	"tacos": {
+		"type": "item",
+		"name": "Tacos",
+		"weight": 0.2,
+		"stack": 20,
+		"model": "prop_taco_01"
+	},
+	"burrito": {
+		"type": "item",
+		"name": "Burrito",
+		"weight": 0.3,
+		"stack": 20,
+		"model": "prop_food_bs_chips"
+	}
 }

@@ -66,6 +66,7 @@ class ClothingShop {
 
 	private showMenu() {
 		mp.browsers.showPage('clothing_shop', null, true, true);
+		mp.browsers.setHideBind(() => {});
 	}
 
 	private async closeMenu() {

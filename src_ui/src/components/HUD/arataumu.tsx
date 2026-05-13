@@ -1,0 +1,59 @@
+import React, { useEffect, useState } from 'react';
+import { IoClose } from 'react-icons/io5';
+
+interface PlayerData {
+	firstName: string;
+	lastName: string;
+	registerAt: string;
+	rank: string;
+}
+
+const PlayerUMU: React.FC = () => {
+	const [player, setPlayer] = useState<PlayerData | null>(null);
+
+useEffect(() => {
+	(window as any).ShowUMU = (data: PlayerData) => {
+		setPlayer(data);
+
+		// Auto-hide după 5 secunde (5000ms)
+		setTimeout(() => {
+			setPlayer(null);
+		}, 5000);
+	};
+}, []);
+
+
+	if (!player) return null;
+
+	return (
+		<div className="player-umu">
+			<div className="player-umu_container">
+				<span
+					className="faction-docs_close"
+					onClick={() => {
+						setPlayer(null);
+					}}
+				>
+					<IoClose />
+				</span>
+
+				<ul className="player-umu_fields">
+					<li className="player-umu_field">
+						<h4 className="player-umu_field-name">Nume:</h4>
+						<span className="player-umu_field-value">{player.firstName}</span>
+					</li>
+					<li className="player-umu_field">
+						<h4 className="player-umu_field-name">Prenume:</h4>
+						<span className="player-umu_field-value">{player.lastName}</span>
+					</li>
+					<li className="player-umu_field">
+						<h4 className="player-umu_field-name">Rang:</h4>
+						<span className="player-umu_field-value">{player.rank}</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	);
+};
+
+export default PlayerUMU;

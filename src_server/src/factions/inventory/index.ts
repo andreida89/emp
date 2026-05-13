@@ -22,9 +22,13 @@ class FactionInventories {
 			position,
 			1,
 			{ onKeyPress: this.showMenu.bind(this) },
-			{ data: faction.name, color: [24, 132, 219, 100] }
+			{ data: faction.name, color: [24, 132, 219, 100], visible: false }
 		);
-		faction.points.add(point);
+		inventory.point = point;
+		
+		// Map online members to PlayerMp array for selective visibility
+		const onlineMembers = faction.getPlayers().map(p => p.mp);
+		faction.points.add(point, onlineMembers);
 
 		return inventory;
 	}

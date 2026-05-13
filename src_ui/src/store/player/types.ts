@@ -8,6 +8,10 @@ export const SET_TASKS = 'SET_TASKS';
 export const SET_ID = 'SET_ID';
 export const SET_BONUS = 'SET_BONUS';
 
+export const SET_HAS_STATIE = 'SET_HAS_STATIE';
+export const SET_HAS_SMARTWATCH = 'SET_HAS_SMARTWATCH';
+export const SET_IN_VEHICLE = 'SET_IN_VEHICLE';
+
 export type Money = {
 	cash: number;
 	bank: number;
@@ -50,6 +54,18 @@ type SetBonusAction = {
 	type: typeof SET_BONUS;
 	payload: number;
 };
+type SetHasStatieAction = {
+	type: typeof SET_HAS_STATIE;
+	payload: boolean;
+};
+type SetHasSmartwatchAction = {
+	type: typeof SET_HAS_SMARTWATCH;
+	payload: boolean;
+};
+type SetInVehicleAction = {
+	type: typeof SET_IN_VEHICLE;
+	payload: boolean;
+};
 
 export type PlayerActionTypes =
 	| SetSatietyAction
@@ -60,7 +76,10 @@ export type PlayerActionTypes =
 	| SetMoneyAction
 	| SetTasksAction
 	| SetIdAction
-	| SetBonusAction;
+	| SetBonusAction
+	| SetHasStatieAction
+	| SetHasSmartwatchAction
+	| SetInVehicleAction;
 
 export interface PlayerState {
 	id: number;
@@ -72,4 +91,7 @@ export interface PlayerState {
 	money: Money;
 	tasks: string[];
 	bonus: number;
+	hasStatie: boolean;
+	hasSmartwatch: boolean;
+	inVehicle: boolean;
 }

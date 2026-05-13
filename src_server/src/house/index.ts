@@ -16,8 +16,19 @@ class HouseController {
 	loadForPlayer(player: Player) {
 		player.houses = [];
 
+		const markers = entities.items
+			.filter(item => item !== null)
+			.map(item => ({
+				id: item.index,
+				entrance: item.position,
+				exit: building.getExitPosition(item),
+				interiorDimension: item.dimension
+			}));
+		
+		player.callEvent('house:initMarkers', [JSON.stringify(markers)]);
+
 		entities.items.forEach((item) => {
-			if (!owning.isOwner(player, item.owner)) return;
+			if (!item || !owning.isOwner(player, item.owner)) return;
 
 			mp.blips.createForPlayer(
 				player,
@@ -48,9 +59,9 @@ class HouseController {
 	}
 
 	getPrice(house: Entity, owner = false) {
-		const { price } = houses[house.type];
+		const price = house.price ?? houses[house.type].price;
 
-		return owner ? (price / 100) * 60 : price;
+		return Math.round(owner ? (price / 100) * 60 : price);
 	}
 
 	showMenu = async (player: Player) => {
@@ -125,8 +136,11 @@ class HouseController {
 
 		if (!owning.isOwner(player, house?.owner)) throw new SilentError('is not owner');
 
-		await money.change(player, 'bank', this.getPrice(house, true), 'house sell');
+		const amount = this.getPrice(house, true);
+		await money.change(player, 'bank', amount, 'house sell');
 		await entities.reset(house);
+
+		hud.showNotification(player, 'success', `Ai vandut casa agentiei pentru ${amount}$ (60% din valoare). Banii au fost transferati in contul bancar.`, true);
 	}
 
 	private async toggleLock(player: Player) {
@@ -141,6 +155,18 @@ class HouseController {
 
 	private subscribeToEvents() {
 		mp.events.subscribe({
+			'house:requestMarkers': (player: Player) => {
+				const markers = entities.items
+					.filter(item => item !== null)
+					.map(item => ({
+						id: item.index,
+						entrance: item.position,
+						exit: building.getExitPosition(item),
+						interiorDimension: item.dimension
+					}));
+				
+				player.callEvent('house:initMarkers', [JSON.stringify(markers)]);
+			},
 			'House-ToEnter': (player: Player) => {
 				building.enter(player, entities.getItem(player));
 			},

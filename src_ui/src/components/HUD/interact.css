@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Tektur:wght@800&display=swap');
+
+:root {
+  --color-yellow-int: #FACC15;
+  --color-dark-int: #252525;
+  --color-black-int: #000000;
+  --color-white-int: #ffffff;
+}
+
+.btn-inter-font {
+  font-family: 'Tektur', sans-serif !important;
+  font-weight: 800 !important;
+  font-style: normal !important;
+  text-transform: uppercase !important;
+  margin: 0 !important;
+  font-variation-settings: 'wdth' 100 !important;
+}
+
+.btn-inter-wrapper {
+  position: absolute !important;
+  bottom: 10% !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 10 !important;
+  display: flex !important;
+  gap: 0.5vw !important;
+  align-items: center !important;
+  justify-content: center !important;
+  user-select: none !important;
+  pointer-events: none !important;
+}
+
+/* Texte mici */
+.btn-inter-text-small {
+  font-size: 0.6vw !important;
+  color: var(--color-white-int) !important;
+  text-align: center !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+  filter: drop-shadow(0 0.1vw 0.1vw rgba(0,0,0,0.6)) !important;
+}
+
+.btn-inter-vertical-text-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
+  width: 0.8vw !important;
+}
+
+.btn-inter-rotated-text {
+  transform: rotate(-90deg) !important;
+  white-space: nowrap !important;
+}
+
+/* Tasta [E] */
+.btn-inter-key-cap {
+  background-color: var(--color-yellow-int) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0.2vh 0.4vw !important;
+  flex-shrink: 0 !important;
+  box-shadow: 0 0.15vw 0.3vw rgba(0, 0, 0, 0.4) !important;
+  transform: rotate(-3deg) skewX(-3deg) !important;
+}
+
+.btn-inter-key-cap-inner {
+  transform: rotate(6deg) scaleX(1.01) scaleY(0.99) skewX(6deg) !important;
+}
+
+.btn-inter-key-text {
+  font-size: 1.2vw !important;
+  color: var(--color-black-int) !important;
+  min-width: 1.2vw !important;
+  text-align: center !important;
+  line-height: 1 !important;
+}
+
+/* Eticheta "A INTERACTIONA" - Dreaptă */
+.btn-inter-action-label {
+  background-color: var(--color-dark-int) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0.3vh 0.5vw !important;
+  flex-shrink: 0 !important;
+  box-shadow: 0 0.1vw 0.2vw rgba(0, 0, 0, 0.3) !important;
+}
+
+.btn-inter-action-text {
+  font-size: 0.8vw !important;
+  color: var(--color-white-int) !important;
+  white-space: nowrap !important;
+  line-height: 1 !important;
+  letter-spacing: 0.01vw !important;
+}

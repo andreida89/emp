@@ -17,6 +17,11 @@ class Barbershop extends Service {
 		super('barbershop', { name: 'Frizerie', model: 71, color: 5 });
 	}
 
+	load() {
+		// Do not load old static barbershops
+		console.log('[Barbershop] Static loading disabled.');
+	}
+
 	protected subscribeToEvents() {
 		mp.events.subscribe({
 			'Barbershop-Buy': this.buy.bind(this),

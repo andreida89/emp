@@ -1,46 +1,55 @@
 const adminTagIntervals: Map<number, NodeJS.Timeout> = new Map();
 function getAdminTops(adminLevel: number): [number, number] {
     switch (adminLevel) {
-        case 1: return [624, 7];
-        case 2: return [624, 6];
-        case 3: return [624, 4];
-        case 4: return [624, 5];
-        case 5: return [624, 3];
-        case 6: return [624, 2];
-        case 7: return [624, 1];
-        case 8: return [624, 0];
-        default: return [624, 7];
+        case 1: return [647, 7];
+        case 2: return [647, 6];
+        case 3: return [647, 4];
+        case 4: return [647, 5];
+        case 5: return [647, 3];
+        case 6: return [647, 2];
+        case 7: return [647, 1];
+        case 8: return [647, 0];
+        default: return [647, 7];
     }
 }
 function getAdminMasks(adminLevel: number): [number, number] {
     switch (adminLevel) {
-        case 1: return [250, 6];
-        case 2: return [250, 5];
-        case 3: return [250, 4];
-        case 4: return [250, 4];
-        case 5: return [250, 3];
-        case 6: return [250, 2];
-        case 7: return [250, 1];
-        case 8: return [250, 0];
-        default: return [250, 1];
+        case 1: return [252, 6];
+        case 2: return [252, 5];
+        case 3: return [252, 4];
+        case 4: return [252, 4];
+        case 5: return [252, 3];
+        case 6: return [252, 2];
+        case 7: return [252, 1];
+        case 8: return [252, 0];
+        default: return [252, 1];
     }
 }
 
 mp.events.addCommand('aduty', (player: PlayerMp, state?: string) => {
     const adminLevel = player.getVariable('adminLvl') || 0;
     if (adminLevel < 1) {
-        player.call('AnuntNotification', ['Nu ai acces la aceasta comanda!', 'danger']);
+        player.call('AnuntNotification2', ['Nu ai acces la aceasta comanda!', 'danger']);
         return;
     }
 
     if (!state || (state !== 'on' && state !== 'off')) {
-        player.notify("Usage: /aduty [on/off]");
+        player.call('AnuntNotification2', ['Usage: /aduty [on/off]', 'warning']);
         return;
     }
 
     if (state === 'on') {
+        if (player.admin_duty) {
+            player.call('AnuntNotification2', ['Esti deja ON DUTY ca STAFF', 'danger']);
+            return;
+        }
 
+        const logicPlayer = mp.players.get(player);
+        if (logicPlayer) {
+            logicPlayer.admin_duty = true;
+        }
         player.admin_duty = true;
+        player.setVariable('admin_duty', true);
         player.setVariable('adminTag', true);
 
         // Salvare haine
@@ -117,19 +126,45 @@ mp.events.addCommand('aduty', (player: PlayerMp, state?: string) => {
         player.setClothes(11, outfit.tops[0], outfit.tops[1], 0);
 
         // Notificări
-        player.call('AnuntNotification', ['Acum esti ON DUTY', 'success']);
+        player.call('AnuntNotification2', ['Acum esti ON DUTY', 'success']);
+        
+        // Invincible on aduty
+        player.setVariable('AGM', true);
+        player.call('Admin-SetGM', [true]);
 
         // Activează tag-ul
-        startAdminTagInterval(player);
-        player.call('client:admin:tag', [player.id, 'STAFF', adminLevel]);
+        // startAdminTagInterval(player);
+        // player.call('client:admin:tag', [player.id, 'STAFF', adminLevel]);
+        player.call('Admin-TriggerReportCountUpdate');
 
     } else {
-        if (!player.oldClothes) {
-            player.call('AnuntNotification', ['Nu ai haine salvate anterior!', 'danger']);
+        if (!player.admin_duty) {
+            player.call('AnuntNotification2', ['Esti deja OFF DUTY ca STAFF', 'danger']);
             return;
         }
 
+        if (!player.oldClothes) {
+            player.call('AnuntNotification2', ['Nu ai haine salvate anterior!', 'danger']);
+            player.admin_duty = false;
+            player.setVariable('adminTag', false);
+            player.setVariable('AGM', false);
+            player.call('Admin-SetGM', [false]);
+            const logicPlayer = mp.players.get(player);
+            if (logicPlayer) logicPlayer.admin_duty = false;
+            player.setVariable('admin_duty', false);
+            player.call('Admin-TriggerReportCountUpdate');
+            
+            // stopAdminTagInterval(player);
+            // mp.players.call('client:admin:tag:destroy', [player.id]);
+            return;
+        }
+
+        const logicPlayer = mp.players.get(player);
+        if (logicPlayer) {
+            logicPlayer.admin_duty = false;
+        }
         player.admin_duty = false;
+        player.setVariable('admin_duty', false);
         player.setVariable('adminTag', false);
 
         const clothes = player.oldClothes;
@@ -149,10 +184,13 @@ mp.events.addCommand('aduty', (player: PlayerMp, state?: string) => {
         player.setClothes(11, clothes.tops.drawable, clothes.tops.texture, clothes.tops.palette);
 
         // Notificări
-        player.call('AnuntNotification', ['Acum esti Admin OFFDUTY', 'danger']);
+        player.call('AnuntNotification2', ['Acum esti Admin OFFDUTY', 'success']);
+        player.setVariable('AGM', false);
+        player.call('Admin-SetGM', [false]);
 
-        stopAdminTagInterval(player);
-        player.call('client:admin:tag:destroy', [player.id]);
+        // stopAdminTagInterval(player);
+        // mp.players.call('client:admin:tag:destroy', [player.id]);
+        player.call('Admin-TriggerReportCountUpdate');
     }
 });
 
@@ -204,7 +242,7 @@ mp.events.addCommand('admini', (player) => {
     });
 
     if (adminiOnline.length === 0) {
-        player.call('AnuntNotification', ['Nu exista administratori ON DUTY in acest moment.', 'danger']);
+        player.call('AnuntNotification2', ['Nu exista administratori ON DUTY in acest moment.', 'warning']);
     } else {
         const lista = adminiOnline.join(' | ');
         player.outputChatBox(`!{e90000}ADMINI ONLINE: !{ffffff}${lista}`);

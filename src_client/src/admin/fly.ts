@@ -19,7 +19,7 @@ class FlyMode {
     private l = 2.0;
 
     constructor() {
-        // Toggle NoClip cu F6
+        //  Toggle NoClip cu F6
         mp.keys.bind(controlsIds.F6, false, this.toggle.bind(this));
 
         // La fiecare frame, actualizează poziția și vizibilitatea jucătorilor
@@ -70,11 +70,17 @@ class FlyMode {
         });
     }
 
-    private toggle() {
-        const adminLvl = player.getVariable('adminLvl');
-        if (!adminLvl) return;
+	private toggle() {
+		const adminLvl = player.getVariable('adminLvl');
+		if (!adminLvl) return;
 
-        this.enabled = !this.enabled;
+		const duty = player.getVariable('adminTag');
+		if (duty !== true) {
+			mp.game.graphics.notify('~r~Trebuie sa fii ON DUTY (/aduty)!');
+			return;
+		}
+
+		this.enabled = !this.enabled;
 
         // Anunță serverul despre schimbarea NoClip
         mp.events.callRemote('Admin-NoClipToggle', this.enabled);

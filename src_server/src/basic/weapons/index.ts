@@ -9,28 +9,24 @@ class Weapons {
 		});
 	}
 
-giveWeapon(player: Player, name: string, item?: InventoryItem) {
-    const ammoType = this.getAmmoOfWeapon(name);
+	giveWeapon(player: Player, name: string, item?: InventoryItem) {
+		const weapon = mp.joaat(`weapon_${name}`);
+		const ammoAmount = item && item.data && typeof item.data.ammo === 'number' ? item.data.ammo : 0;
+		
+		(player.mp as any).removeAllWeaponComponents(weapon);
 
-    let ammo = equipment.getEquipment(player, 'ammo');
-    if (ammo?.name !== ammoType) ammo = null;
+		player.mp.giveWeapon(weapon, ammoAmount);
+		player.callEvent('Weapons-GiveWeapon', [weapon, ammoAmount]);
 
-    const weapon = mp.joaat(`weapon_${name}`);
-    const ammoAmount = ammo?.amount ?? 0;
-(player.mp as any).removeAllWeaponComponents(weapon);
-
-    player.mp.giveWeapon(weapon, ammoAmount);
-    player.callEvent('Weapons-GiveWeapon', [weapon, ammoAmount]);
-
-    // === APLICĂ ATASAMENTELE DACĂ EXISTĂ PE ITEM ===
-    if (item && item.data?.attachments?.length) {
-        for (const model of item.data.attachments) {
-            const componentHash = mp.joaat(model);
-            (player.mp as any).giveWeaponComponent(weapon, componentHash);
-        }
-        console.log(`[DEBUG][WEAPON] Aplic atasamentele ${item.data.attachments.join(',')} pe weapon_${name}`);
-    }
-}
+		// === APLICĂ ATASAMENTELE DACĂ EXISTĂ PE ITEM ===
+		if (item && item.data?.attachments?.length) {
+			for (const model of item.data.attachments) {
+				const componentHash = mp.joaat(model);
+				(player.mp as any).giveWeaponComponent(weapon, componentHash);
+			}
+			console.log(`[DEBUG][WEAPON] Aplic atasamentele ${item.data.attachments.join(',')} pe weapon_${name}`);
+		}
+	}
 
 
 	giveAmmo(player: Player, item: InventoryItem) {
@@ -44,6 +40,8 @@ giveWeapon(player: Player, name: string, item?: InventoryItem) {
 	}
 
 	removeWeapon(player: Player) {
+		player.mp.setVariable('currentWeaponComponents', null);
+		(player.mp as any).__weaponComponents = {};
 		player.mp.removeAllWeapons();
 		player.callEvent('Weapons-RemoveWeapon');
 	}
@@ -64,16 +62,16 @@ giveWeapon(player: Player, name: string, item?: InventoryItem) {
 	}
 
 	private saveAmmo(player: Player) {
-		const ammo = equipment.getEquipment(player, 'ammo');
-		if (!ammo) return;
+		const weapon = equipment.getEquipment(player, 'hands');
+		if (!weapon) return;
 
 		const amount = player.mp.weaponAmmo;
 
-		if (amount > 0) ammo.amount = amount;
-		else {
-			equipment.unequip(player, ammo);
-			inventory.removeItem(player.inventory, ammo);
-		}
+		if (!weapon.data) weapon.data = {};
+		weapon.data.ammo = amount;
+
+		const fakeAmmo = player.equipment['ammo'];
+		if (fakeAmmo) fakeAmmo.amount = amount;
 	}
 }
 

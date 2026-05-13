@@ -58,16 +58,11 @@ class HouseInventory extends Inventory {
 	async transferItem(player: Player, inside: boolean, cell: number, targetCell: number) {
 		const house = houses.getItem(player);
 
-		await this.transfer(
-			player,
-			player.inventory,
-			house.inventory,
-			inside,
-			cell,
-			targetCell
-		);
-		await this.updateInDb(house.id, house.inventory);
-		await playerInventory.updateInDb(player.dbId, player.inventory);
+		await this.transfer(player, player.inventory, house.inventory, inside, cell, targetCell);
+		await Promise.all([
+			this.updateInDb(house.id, house.inventory),
+			playerInventory.updateInDb(player.dbId, player.inventory)
+		]);
 
 		return {
 			item: this.getItemOfCell(inside ? house.inventory : player.inventory, targetCell),

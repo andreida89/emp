@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import rpc from 'utils/rpc';
+import './interact.css';
 
 export default function Interact() {
 	const [key, setKey] = useState<string>();
@@ -13,10 +14,24 @@ export default function Interact() {
 	}, [key]);
 
 	return key ? (
-		<div className="hud_interact">
-			<span className="hud_interact-key">{key}</span>
+		<div className="btn-inter-wrapper">
+			<div className="btn-inter-vertical-text-container">
+				<div className="btn-inter-rotated-text">
+					<p className="btn-inter-font btn-inter-text-small">Apasa</p>
+				</div>
+			</div>
+			
+			<div className="btn-inter-key-cap">
+				<div className="btn-inter-key-cap-inner">
+					<p className="btn-inter-font btn-inter-key-text">{key}</p>
+				</div>
+			</div>
 
-			<span className="hud_interact-action">Interactiune</span>
+			<p className="btn-inter-font btn-inter-text-small">pentru</p>
+
+			<div className="btn-inter-action-label">
+				<p className="btn-inter-font btn-inter-action-text">a interactiona</p>
+			</div>
 		</div>
 	) : null;
 }

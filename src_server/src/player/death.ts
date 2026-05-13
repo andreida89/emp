@@ -1,10 +1,11 @@
 import { sortBy } from 'lodash';
 import { finishWork } from 'jobs';
+import CharModel from 'models/Character';
 import animations from 'helpers/animations';
 import prison from 'basic/prison';
 import hospitals from 'data/hospitals.json';
-import ems from 'factions/ems';
-import emsCalls from 'factions/ems/calls';
+import umu from 'factions/umu';
+import umuCalls from 'factions/umu/calls';
 import cuffsActions from 'factions/actions/cuffs';
 import bagActions from 'factions/actions/bag';
 import hunger from './hunger';
@@ -26,23 +27,35 @@ class PlayerDeath {
 	}
 
 	ressurect(player: Player) {
-		emsCalls.cancelCall(player.dbId);
+		umuCalls.cancelCall(player.dbId);
 
 		player.dead = false;
+		player.deathExpiresAt = undefined;
+		player.mp.setVariable('deathMenuOpened', false);
 		player.mp.health = 50;
 		animations.stopOnServer(player.mp);
+
+		CharModel.findByIdAndUpdate(player.dbId, { 
+			$set: { deathExpiresAt: undefined, health: 50 } 
+		}).exec().catch(() => {});
 	}
 
 	revive(player: Player) {
 		console.log(`Am primit cererea pentru ${player.name}`); // Corrected logging
 	
 		try {
-			emsCalls.cancelCall(player.dbId);
+			umuCalls.cancelCall(player.dbId);
 	
 			player.dead = false;
+			player.deathExpiresAt = undefined;
+			player.mp.setVariable('deathMenuOpened', false);
 			player.mp.health = 100;
 			animations.stopOnServer(player.mp);
 			console.log(`Am dat revive lui ID ${player.dbId}`); // Corrected logging
+
+			CharModel.findByIdAndUpdate(player.dbId, { 
+				$set: { deathExpiresAt: undefined, health: 100 } 
+			}).exec().catch(() => {});
 		} catch (error) {
 			console.error(`Eroare la revive: ${error.message}`);
 		}
@@ -50,12 +63,45 @@ class PlayerDeath {
 
 	
 
+	async triggerDeath(player: Player, remainingTime?: number) {
+		const { mp } = player;
+		player.dead = true;
+		mp.setVariable('deathMenuOpened', true);
+		bagActions.reset(player);
+
+		mp.spawn(mp.position);
+		mp.health = 100;
+
+		animations.stopScenario(player);
+		animations.playOnServer(mp, 'dead');
+
+		const time = remainingTime !== undefined ? remainingTime : this.deathTimeout;
+		if (time > 0) {
+			player.deathExpiresAt = Date.now() + time;
+		}
+
+		CharModel.findByIdAndUpdate(player.dbId, { 
+			$set: { deathExpiresAt: player.deathExpiresAt, health: 0 } 
+		}).exec().catch((err) => console.error(`[Death] DB Update error: ${err.message}`));
+
+		await player.callEvent(
+			'Player-ShowDeathMenu',
+			[time, umu.getPlayers(true).length],
+			true
+		);
+	}
+
 	private async onDeath(player: Player) {
 		const { mp } = player;
 
-		//if (player.dead || mp.dimension > 0 || prison.isImprisoned(player)) {
-		//	return this.death(player);
-		//}
+		if (player.admin_duty) {
+			bagActions.reset(player);
+			cuffsActions.reset(player);
+			mp.spawn(mp.position);
+			this.revive(player);
+			return;
+		}
+
 		if (player.dead || prison.isImprisoned(player) || (mp.dimension > 0 && mp.dimension !== 2)) {
 			return this.death(player);
 		}
@@ -65,21 +111,7 @@ class PlayerDeath {
 			console.log("ACUM PLEACA SI onDeathEvent");
 		}
 
-		bagActions.reset(player);
-
-		mp.spawn(mp.position);
-		mp.health = 100;
-
-		animations.stopScenario(player);
-		animations.playOnServer(mp, 'dead');
-
-		await player.callEvent(
-			'Player-ShowDeathMenu',
-			[this.deathTimeout, ems.getPlayers(true).length],
-			true
-		);
-
-		player.dead = true;
+		return this.triggerDeath(player);
 	}
 
 
@@ -97,7 +129,7 @@ console.log("AM AJUNS PANA LA onDeathEvent");
 
 		await player.callEvent(
 			'Player-ShowDeathMenuEvent',
-			[this.deathTimeout, ems.getPlayers(true).length],
+			[this.deathTimeout, umu.getPlayers(true).length],
 			true
 		);
 
@@ -148,10 +180,12 @@ console.log("AM AJUNS PANA LA onDeathEvent");
 		try {
 			cuffsActions.reset(player);
 			finishWork(player);
-			emsCalls.cancelCall(player.dbId);
+			umuCalls.cancelCall(player.dbId);
 			hunger.reset(player);
 			thirst.reset(player);	
 			player.dead = false;
+			player.deathExpiresAt = undefined;
+			player.mp.setVariable('deathMenuOpened', false);
 			player.mp.health = 100;
 			animations.stopOnServer(player.mp);
 			const hospital = this.getClosestHospital(player.mp);	
@@ -160,6 +194,10 @@ console.log("AM AJUNS PANA LA onDeathEvent");
 			if (prison.isImprisoned(player)) {
 				prison.putToRandomCell(player);
 			}
+
+			CharModel.findByIdAndUpdate(player.dbId, { 
+				$set: { deathExpiresAt: undefined, health: 100 } 
+			}).exec().catch(() => {});
 		
 		} catch (error) {
 		}

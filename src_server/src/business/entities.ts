@@ -7,12 +7,19 @@ export type Entity = {
 	index: number;
 	paid: number;
 	name: string;
+	type: string;
 	price: number;
+	profitPercent: number;
+	customId: number;
 	position: PositionEx;
 	income: number;
 	paymentTime?: Date;
 	owner?: string;
 	blip?: BlipMp;
+	marker?: MarkerMp;
+	pointBlips?: BlipMp[];
+	colshapes?: ColshapeMp[];
+	interactionPoints?: { name: string; position: PositionEx }[];
 };
 
 class BusinessEntities {
@@ -40,25 +47,60 @@ class BusinessEntities {
 		cursor.on('close', () => logger.success(`Businesses loaded: ${this.count}`));
 	}
 
-	async create(player: Player, name: string, price: number, income: number) {
-		const business = await BusinessModel.create({
+	async create(player: Player, name: string, type: string, price: number, income: number, ownerId?: string, profitPercent?: number, customId?: number) {
+		const data: any = {
 			name,
+			type,
 			price,
 			income,
-			position: player.mp.position
-		});
-		return this.prepare(business.toObject() as BusinessModel);
+			customId,
+			profitPercent: profitPercent || 0,
+			position: { x: player.mp.position.x, y: player.mp.position.y, z: player.mp.position.z }
+		};
+
+		if (ownerId && ownerId.length > 0) {
+			data.owner = ownerId;
+		}
+
+		const business = await BusinessModel.create(data);
+		return this.prepare(business.toObject() as any);
 	}
 
-	async delete(index: number) {
+	async delete(id: number) {
+		const index = this.items.findIndex(item => item && (item.customId === id || item.index === id));
 		const entity = this.items[index];
 
 		if (entity) {
+			console.log(`Deleting business: ${entity.name} (Index: ${entity.index}, CustomID: ${entity.customId})`);
 			await BusinessModel.findByIdAndDelete(entity.id);
 
-			if (entity.blip) entity.blip.destroy();
+			if (entity.blip) {
+				entity.blip.destroy();
+				entity.blip = null;
+			}
+			if (entity.marker) {
+				entity.marker.destroy();
+				entity.marker = null;
+			}
+
+			mp.players.forEach(p => {
+				const player = mp.players.get(p);
+				if (player) mp.blips.delete(player, `Afacerea nr. ${entity.index}`);
+			});
+			if (entity.pointBlips) {
+				entity.pointBlips.forEach(blip => blip && blip.destroy());
+				entity.pointBlips = [];
+			}
+			if (entity.colshapes) {
+				entity.colshapes.forEach(shape => shape && shape.destroy());
+				entity.colshapes = [];
+			}
 			this.items[index] = null;
+			return true;
+		} else {
+			console.warn(`Attempted to delete non-existent business with ID: ${id}`);
 		}
+		return false;
 	}
 
 	async update(entity: Entity, data: Partial<Entity>) {

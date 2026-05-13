@@ -4,6 +4,7 @@ const player = mp.players.local;
 
 class HUD {
 	private isVisible = true;
+	private lastInVehicle = false;
 
 	constructor() {
 		mp.game.ui.setHudColour(143, 203, 54, 148, 255);
@@ -13,7 +14,7 @@ class HUD {
 		binder.bind('noHUD', 'F5', this.toggle.bind(this));
 		binder.bind('cursor', '`', () => this.setCursorVisible(!mp.gui.cursor.visible), null);
 
-		mp.events.subscribeToDefault({ render: this.hideUnnecessaryElements });
+		mp.events.subscribeToDefault({ render: this.hideUnnecessaryElements.bind(this) });
 		mp.events.subscribe({
 			'HUD-GetBinds': this.getBinds,
 			'HUD-GetMinimapAnchor': this.getMinimapAnchor,
@@ -126,14 +127,33 @@ class HUD {
 		this.visible = !this.visible;
 	}
 
-	private hideUnnecessaryElements() {
+    private hideUnnecessaryElements = () => {
+        // Forțăm crosshair-ul să fie vizibil (component 14)
+        mp.game.ui.showHudComponentThisFrame(14);
+
 		mp.game.ui.displayAmmoThisFrame(false);
 		mp.game.ui.displayAreaName(false);
+		mp.game.ui.hideHudComponentThisFrame(1);
+		mp.game.ui.hideHudComponentThisFrame(2);
+		mp.game.ui.hideHudComponentThisFrame(3);
+		mp.game.ui.hideHudComponentThisFrame(4);
 		mp.game.ui.hideHudComponentThisFrame(6);
 		mp.game.ui.hideHudComponentThisFrame(7);
 		mp.game.ui.hideHudComponentThisFrame(8);
 		mp.game.ui.hideHudComponentThisFrame(9);
 		mp.game.ui.hideHudComponentThisFrame(13);
+
+		// Radar visibility control
+		if (this.isVisible) {
+			const hasSmartwatch = player.getVariable('hasSmartwatch');
+			const inVehicle = !!player.vehicle;
+			mp.game.ui.displayRadar(!!(hasSmartwatch || inVehicle));
+
+			if (inVehicle !== this.lastInVehicle) {
+				this.lastInVehicle = inVehicle;
+				mp.events.callBrowser('Player-SetInVehicle', inVehicle, false);
+			}
+		}
 	}
 
 	private triggerEvent(name: string, data: any) {
@@ -142,7 +162,7 @@ class HUD {
 		mp.events.callBrowser(name, data, false);
 	}
 	private showGlobalNotification(message: string) {
-			players.notify(message);
+			mp.gui.chat.push(message);
 			mp.console.logInfo([message]);
 			mp.game.audio.playSoundFrontend(-1, "MP_ALERT", "HUD_FRONTEND_DEFAULT_SOUNDSET", false);
     }

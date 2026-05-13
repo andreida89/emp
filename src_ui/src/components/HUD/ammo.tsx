@@ -23,7 +23,7 @@ export default function Ammo() {
 				className="hud_ammo-count"
 				value={count}
 				duration={200}
-				formatValue={parseInt}
+				formatValue={(val: string | number) => Math.floor(Number(val)) || 0}
 			/>
 
 			<svg className="hud_ammo-icon">

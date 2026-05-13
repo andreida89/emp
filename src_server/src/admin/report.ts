@@ -1,6 +1,7 @@
 import moment from 'moment';
 import CharModel from 'models/Character';
 import ReportModel from 'models/Report';
+import TicketModel from 'models/Ticket';
 import hud from 'helpers/hud';
 import permissions from './permissions';
 import Teleport from './teleport'; // Import your teleport class
@@ -28,7 +29,7 @@ class Report {
 		mp.players
 			.toCustomArray()
 			.forEach(
-				(player) => player.adminLvl && hud.showNotification(player, 'info', message, true)
+				(player) => (player.adminLvl && player.admin_duty) && hud.showNotification(player, 'info', message, true)
 			);
 	}
 
@@ -36,7 +37,7 @@ class Report {
 	private async accept(player: Player, reportId: string) {
 		//console.log(`[REPORT] Admin ${player.dbId} is attempting to accept report ID: ${reportId}`);
 	
-		if (!permissions.hasPermission(player, 'helperinteste')) {
+		if (!permissions.hasPermission(player, 'helperinteste', true)) {
 		//console.log(`[REPORT] Access denied for ${player.dbId}`);
 			throw new SilentError('access denied');
 		}
@@ -128,16 +129,17 @@ class Report {
 	}
 
 	private async getReportCount(player: Player) {
-		if (!permissions.hasPermission(player, 'helperinteste')) {
-			throw new SilentError('access denied');
+		if (!permissions.hasPermission(player, 'helperinteste', true)) {
+			return -1;
 		}
 	
 		try {
-			const count = await ReportModel.countDocuments({ admin: { $exists: false } });
-			return count;
+			const reportCount = await ReportModel.countDocuments({ admin: { $exists: false } });
+			const ticketCount = await TicketModel.countDocuments();
+			return reportCount + ticketCount;
 		} catch (err) {
 			console.error('[Admin-GetReportCount]', err);
-			return 0;
+			return -1;
 		}
 	}
 }

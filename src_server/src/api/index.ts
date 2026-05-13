@@ -12,7 +12,7 @@ class API {
 
 	constructor() {
 		this.app = express();
-               this.port = parseInt(process.env.API_PORT, 10) || 40150;
+               this.port = parseInt(process.env.API_PORT, 10) || 40151;
 	}
 
 	init() {

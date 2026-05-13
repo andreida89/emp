@@ -55,7 +55,21 @@ type Props = {
 export default function Character({ items, use, drop }: Props) {
 	function getWearingItem(name: string) {
 		const item = items[name];
-		return item && <Item id={name} name={item.name} amount={1} hideAmount />;
+		if (!item) return null;
+
+		const isAmmoSlot = name === 'ammo';
+		const amount = isAmmoSlot ? (item.amount || 0) : 1;
+		const hideAmount = !isAmmoSlot;
+
+		return (
+			<Item
+				key={`${name}-${item.name}-${item.amount}`}
+				id={name}
+				name={item.name}
+				amount={amount}
+				hideAmount={hideAmount}
+			/>
+		);
 	}
 
 	return (
@@ -71,9 +85,11 @@ export default function Character({ items, use, drop }: Props) {
 							style={itemPositions[key]}
 						>
 							<Cell id={key} onDrop={use}>
-								{getWearingItem(key) || (
-									<img src={images.getImage(`${key}.svg`)} alt={title} />
-								)}
+								<React.Fragment key={items[key] ? `${key}-${items[key].name}` : `${key}-empty`}>
+									{getWearingItem(key) || (
+										<img src={images.getImage(`${key}.svg`)} alt={title} />
+									)}
+								</React.Fragment>
 							</Cell>
 						</div>
 					))}

@@ -55,8 +55,10 @@ class FactionInventory extends Inventory {
 
 	async transferItem(player: Player, inside: boolean, cell: number, targetCell: number) {
 		await this.transfer(player, player.inventory, this.items, inside, cell, targetCell);
-		await this.updateInDb(player.faction, this.items);
-		await playerStorage.updateInDb(player.dbId, player.inventory);
+		await Promise.all([
+			this.updateInDb(player.faction, this.items),
+			playerStorage.updateInDb(player.dbId, player.inventory)
+		]);
 
 		const item = this.getItemOfCell(inside ? this.items : player.inventory, targetCell);
 

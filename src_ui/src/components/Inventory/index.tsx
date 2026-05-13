@@ -14,6 +14,7 @@ import Quick from './quick';
 import Indicator from './indicator';
 import Selected from './selected';
 import Separate from './separate';
+import LoadAmmo from './load-ammo';
 import Preview from './preview';
 import Character from './character';
 import Hints from './hints';
@@ -30,15 +31,39 @@ type Props = WrappedProps & ReturnType<typeof mapStateToProps> & RouteComponentP
 
 type State = {
 	showSeparate: boolean;
+	showLoadAmmo: boolean;
 	selectedItem?: InventoryItem & { storage: string };
 };
 
 class Inventory extends Component<Props, State> {
 	readonly state: State = {
-		showSeparate: false
+		showSeparate: false,
+		showLoadAmmo: false
 	};
 
 	storage = React.createRef<any>();
+
+	componentDidMount() {
+		window.addEventListener('keydown', this.handleKeyDown);
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('keydown', this.handleKeyDown);
+	}
+
+	handleKeyDown = (e: KeyboardEvent) => {
+		if (e.key === 'Escape') {
+			if (this.state.showSeparate) {
+				this.toggleSeparate();
+			} else if (this.state.showLoadAmmo) {
+				this.toggleLoadAmmo();
+			} else if (this.state.selectedItem) {
+				this.selectItem();
+			} else {
+				rpc.callClient('Browser-HidePage');
+			}
+		}
+	};
 
 	selectItem(item?: InventoryItem) {
 		if (item && item?.cell < 0) return;
@@ -61,28 +86,31 @@ class Inventory extends Component<Props, State> {
 
 			this.selectItem();
 
-			this.props.setItems(
-				data.item
+			this.props.updateData({
+				items: data.inventory || (data.item
 					? items.map((item) => (item.cell === cell ? data.item : item))
-					: items.filter((item) => item.cell !== cell)
-			);
-			this.props.setWeight(data.weight);
-
-			if (data.equipment) {
-				this.props.setEquipment({ ...equipment, [data.equipment]: data.item });
-			}
+					: items.filter((item) => item.cell !== cell)),
+				equipment: data.equipment,
+				weight: data.weight
+			});
 		} catch (err: any) {
 			if (err.msg) showNotification('error', err.msg);
 		}
 	}
 
-	async toQuickSlot(cell: number, slot: string) {
-		const { items, equipment } = this.props;
-
-		const equipedItem = await rpc.callServer('Inventory-ToQuick', [cell, slot]);
-
-		this.props.setItems(items.filter((item) => item.cell !== cell));
-		this.props.setEquipment({ ...equipment, [slot]: equipedItem });
+	async toQuickSlot(cell: number | string, slot: string) {
+		try {
+			const data = await rpc.callServer('Inventory-ToQuick', [cell, slot]);
+			
+			if (data) {
+				this.props.updateData({
+					equipment: data.equipment,
+					items: data.inventory
+				});
+			}
+		} catch (err: any) {
+			if (err.msg) showNotification('error', err.msg);
+		}
 	}
 
 async unequipItem(slot: string, cell: number) {
@@ -94,41 +122,41 @@ async unequipItem(slot: string, cell: number) {
 		const data = await rpc.callServer('Inventory-UnequipItem', [slot, cell]);
 
 		// Dacă serverul returnează un obiect cu chei (equipment, inventory, weight)
-		if (data) {
-			if (data.equipment) this.props.setEquipment(data.equipment);
-			if (data.inventory) this.props.setItems(data.inventory);
-			if (typeof data.weight === 'number') this.props.setWeight(data.weight);
+		if (data && data.equipment && data.inventory) {
+			this.props.updateData({
+				items: data.inventory,
+				equipment: data.equipment,
+				weight: data.weight
+			});
 			return;
 		}
 
 		// fallback vechi (dacă serverul returnează doar un cell)
-		this.props.setEquipment({ ...equipment, [slot]: undefined } as any);
-		this.props.setItems([...items, { ...item, cell: data }]);
+		this.props.updateData({
+			equipment: { ...equipment, [slot]: undefined } as any,
+			items: [...items, { ...item, cell: data }]
+		});
 	} catch (err: any) {
 		if (err.msg) showNotification('error', err.msg);
 	}
 }
 
 
-moveItem(id: number | string, cell: number, storage: string) {
-    console.log('[DEBUG][moveItem][CLIENT] id:', id, '| cell:', cell, '| storage:', storage);
-    console.log('[DEBUG][moveItem][CLIENT] selectedItem:', this.state.selectedItem, '| props.name:', this.props.name);
-
+moveItem(id: number | string, cell: number | string, storage: string) {
     if (this.state.selectedItem || id === cell) {
-        console.log('[DEBUG][moveItem][CLIENT] Early return: selectedItem exists or id === cell');
         return;
     }
     if (isString(id)) {
-        console.log('[DEBUG][moveItem][CLIENT] id is string, calling unequipItem');
-        return this.unequipItem(id, cell);
+        return this.unequipItem(id, cell as number);
+    }
+    if (isString(cell)) {
+        return this.useItem(id as number);
     }
 
     if (storage !== this.props.name && this.storage.current) {
-        console.log('[DEBUG][moveItem][CLIENT] storage !== props.name, calling storage.current.move');
-        this.storage.current.move(id, cell);
+        this.storage.current.move(id as number, cell as number);
     } else {
-        console.log('[DEBUG][moveItem][CLIENT] calling props.move');
-        this.props.move(id, cell);
+        this.props.move(id as number, cell as number);
     }
 }
 
@@ -148,20 +176,24 @@ moveItem(id: number | string, cell: number, storage: string) {
 
 async dropItem(id: number | string) {
 	const { items, equipment } = this.props;
-	const data = await rpc.callServer('Inventory-Drop', id);
+	try {
+		const data = await rpc.callServer('Inventory-Drop', id);
 
-	// Verifici dacă ai primit direct toate cheile
-	if (data) {
-		if (data.equipment) this.props.setEquipment(data.equipment);
-		if (data.inventory) this.props.setItems(data.inventory);
-		if (typeof data.weight === 'number') this.props.setWeight(data.weight);
-		return;
+		if (data && data.equipment && data.inventory) {
+			this.props.updateData({
+				items: data.inventory,
+				equipment: data.equipment,
+				weight: data.weight
+			});
+			return;
+		}
+
+		// fallback vechi
+		if (isString(id)) this.props.updateData({ equipment: { ...equipment, [id]: undefined } as any });
+		else this.props.updateData({ items: items.filter((item) => item.cell !== id) });
+	} catch (err: any) {
+		if (err.msg) showNotification('error', err.msg);
 	}
-
-	// fallback vechi
-	if (isString(id)) this.props.setEquipment({ ...equipment, [id]: undefined } as any);
-	else this.props.setItems(items.filter((item) => item.cell !== id));
-	this.props.setWeight(data); // dacă data e doar weight
 }
 
 
@@ -214,9 +246,34 @@ async handleQuickSlotSwap(slot: string) {
     }
 }
 
+	toggleLoadAmmo() {
+		this.setState((state) => ({ showLoadAmmo: !state.showLoadAmmo }));
+	}
+
+	async handleLoadAmmo(amount: number) {
+		const { selectedItem } = this.state;
+		if (!selectedItem) return;
+
+		try {
+			const data = await rpc.callServer('Inventory-LoadAmmo', [selectedItem.cell, amount]);
+			if (data) {
+				this.props.updateData({
+					items: data.inventory,
+					weight: data.weight,
+					equipment: data.equipment
+				});
+			}
+		} catch (err: any) {
+			if (err.msg) showNotification('error', err.msg);
+		}
+
+		this.selectItem();
+		this.toggleLoadAmmo();
+	}
+
 	render() {
 		const { cells, weight, satiety, thirst, equipment } = this.props;
-		const { showSeparate, selectedItem } = this.state;
+		const { showSeparate, showLoadAmmo, selectedItem } = this.state;
 		const { storage: storageState } = this.props.location.state as any;
 
 		const items = this.props.getItemsForCells();
@@ -272,7 +329,13 @@ async handleQuickSlotSwap(slot: string) {
 						)}
 
 						{/* AICI ADAUGI EXACT ASTA */}
-						{showSeparate && selectedItem ? (
+						{showLoadAmmo && selectedItem ? (
+							<LoadAmmo
+								amount={selectedItem.amount}
+								confirm={this.handleLoadAmmo.bind(this)}
+								cancel={this.toggleLoadAmmo.bind(this)}
+							/>
+						) : showSeparate && selectedItem ? (
 							<Separate
 								amount={selectedItem.amount}
 								confirm={this.separateItem.bind(this)}
@@ -289,6 +352,7 @@ async handleQuickSlotSwap(slot: string) {
 											: undefined
 									}
 									separate={this.toggleSeparate.bind(this)}
+									loadAmmo={this.toggleLoadAmmo.bind(this)}
 									close={() => this.selectItem()}
 									onRemoveAttachments={this.handleRemoveAttachments}
 								/>

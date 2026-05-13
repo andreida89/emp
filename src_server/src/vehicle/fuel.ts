@@ -58,10 +58,10 @@ useJerrycan(player: Player, vehicle: VehicleMp) {
 }
 
 
-async fillUp(player: Player, amount: number) {
+async fillUp(player: Player, amount: number, vehicleInput?: VehicleMp) {
 	if (!player || amount <= 0) return;
 
-	const vehicle = player.mp.vehicle;
+	const vehicle = vehicleInput || player.mp.vehicle;
 	if (!vehicle) return;
 
 	const fuel: Fuel = vehicle.getVariable('fuel');
@@ -71,7 +71,7 @@ async fillUp(player: Player, amount: number) {
 	player.callEvent('Gas-CloseMenu');
 
 	// Coboară din mașină
-	if (player.mp.vehicle) player.mp.removeFromVehicle();
+	if (player.mp.vehicle && player.mp.vehicle === vehicle) player.mp.removeFromVehicle();
 
 	// === Actualizează imediat combustibilul ===
 	const total = Math.round(fuel.current + amount);

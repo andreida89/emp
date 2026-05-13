@@ -38,6 +38,8 @@ function isSprintKeyHeld(): boolean {
 }
 
 function logicTick(deltaSec: number) {
+    if (mp.players.local.getVariable('AGM')) return; // Check if AGM is active
+
     const speed = getSpeedMS();
     const sprintKey = isSprintKeyHeld();
     const effectivelySprinting = isOnFoot() && sprintKey && speed > 1.0 && !sprintLocked;

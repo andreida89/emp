@@ -1,8 +1,6 @@
 {
-	"lspd": "POLITIE",
-	"ems": "SMURD",
+	"politie": "POLITIE",
+	"umu": "UMU",
 	"sindicat": "SINDICAT",
-	"primarie": "PRIMARIE",
-	"santamuerte": "SANTA MUERTE"
-
+	"primarie": "PRIMARIE"
 }

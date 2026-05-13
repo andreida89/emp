@@ -1,0 +1,147 @@
+.dialog-inter-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(0, 0, 0, 0.6) !important;
+    z-index: 1000 !important;
+}
+
+.dialog-inter-card {
+    min-width: 180px !important;
+    max-width: 70vw !important;
+    background: #141414 !important;
+    border-radius: 5px !important;
+    padding: 8px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.9) !important;
+    border: 1px solid rgba(255,255,255,0.03) !important;
+    pointer-events: auto !important;
+    overflow: hidden !important;
+}
+
+.dialog-inter-top-bar {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    position: relative !important;
+}
+
+.dialog-inter-title {
+    color: #f1c40f !important;
+    font-size: 14px !important;
+    font-weight: 900 !important;
+    font-style: italic !important;
+    text-transform: uppercase !important;
+}
+
+.dialog-inter-close-btn {
+    position: absolute !important;
+    right: 0 !important;
+    background-color: #ef4444 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 0.5vw !important;
+    padding: 0.4vw !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 1.5vw !important;
+    height: 1.5vw !important;
+}
+
+.dialog-inter-close-btn:hover {
+    background-color: #dc2626 !important;
+    transform: rotate(180deg) !important;
+}
+
+.dialog-inter-desc-box {
+    background: #0d0d0d !important;
+    padding: 8px !important;
+    border-radius: 4px !important;
+}
+
+.dialog-inter-desc-text {
+    color: #ffffff !important;
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    text-align: center !important;
+    line-height: 1.3 !important;
+    margin: 0 !important;
+}
+
+.dialog-inter-buttons-row {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 8px !important;
+    width: 100% !important;
+    margin-top: 2px !important;
+}
+
+.dialog-inter-btn {
+    position: relative !important;
+    flex: 1 !important;
+    min-width: 100px !important;
+    height: 30px !important;
+    border: none !important;
+    border-radius: 3px !important;
+    font-weight: 900 !important;
+    font-style: italic !important;
+    font-size: 11px !important;
+    text-transform: uppercase !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 15px !important;
+    white-space: nowrap !important;
+}
+
+.dialog-inter-btn::before, .dialog-inter-btn::after {
+    content: '' !important;
+    position: absolute !important;
+    width: 2px !important;
+    height: 2px !important;
+    background: rgba(255,255,255,0.3) !important;
+}
+
+.dialog-inter-btn::before {
+    top: 2px !important;
+    left: 2px !important;
+    clip-path: polygon(0 0, 100% 0, 0 100%) !important;
+}
+
+.dialog-inter-btn::after {
+    bottom: 2px !important;
+    right: 2px !important;
+    clip-path: polygon(100% 100%, 0 100%, 100% 0) !important;
+}
+
+.dialog-inter-btn-refuz {
+    background: #ff4d4d !important;
+    color: #ffffff !important;
+}
+
+.dialog-inter-btn-refuz:hover {
+    background: #ff3333 !important;
+    filter: brightness(1.1) !important;
+}
+
+.dialog-inter-btn-accept {
+    background: #f1c40f !important;
+    color: #000 !important;
+}
+
+.dialog-inter-btn-accept:hover {
+    filter: brightness(1.1) !important;
+}

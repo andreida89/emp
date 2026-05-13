@@ -6,13 +6,13 @@
 	"loglevel": 4,
 	"maxplayers" : 2000,
 	"name" : "👑 EMPIRE ROMANIA ROLEPLAY - discord.gg/empirero - IN CONSTRUCTIE [roleplay] [voice]",
-	"url" : "https://empirerp.eu",
+	"url" : "https://empirerp.ro",
 	"voice-chat" : true,
 	"gamemode" : "roleplay",
 	"stream-distance" : 500.0,
 	"announce" : false,
 	"csharp" : "disabled",
-	"port": 22005,
+	"port": 22010,
 	"allow-cef-debugging": true,
 	"bind" : "46.4.30.230",
 	"language" : "ro",
@@ -20,5 +20,5 @@
 	"http-threads": 30,
 	"enable-clothing-dlc": true,
 	"limit-time-of-connections-per-ip": 0,
-	"fqdn": "connect.empirerp.eu"
+	"fqdn": "connect.empirerp.ro"
 }

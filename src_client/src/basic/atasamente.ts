@@ -81,7 +81,7 @@ mp.events.add("nukePlayerWeaponComponents", (player: ExtendedPlayerMp) => {
 });
 
 mp.events.add('entityStreamIn', (entity) => {
-    if (entity.type === 'player') {
+    if (entity.type === 'player' && entity.handle !== mp.players.local.handle) {
         // Oferim o proprietate custom pentru interval
         if (entity.syncInterval) clearInterval(entity.syncInterval);
 
@@ -118,6 +118,13 @@ mp.events.addDataHandler("currentWeaponComponents", (entity: EntityMp, value: st
     if (entity.type === "player" && entity.handle !== 0) {
         const extPlayer = entity as ExtendedPlayerMp;
         if (!extPlayer.__weaponComponentData) extPlayer.__weaponComponentData = {};
+
+        if (!value) {
+            // Weapon removed or value explicitly null/empty string.
+            // Reset local data and let standard weapon removal handle it.
+            extPlayer.__weaponComponentData = {};
+            return;
+        }
 
         let [weaponHash, components] = value.split(".");
         const wHash = parseInt(weaponHash, 36);

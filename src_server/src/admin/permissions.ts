@@ -1,4 +1,5 @@
 import UserModel from 'models/User';
+import hud from 'helpers/hud';
 
 export type PermissionLevel = 'helperinteste' | 'helper' | 'moderator' | 'moderatoravansat' | 'administrator' | 'manager' | 'cofondator' | 'fondator';
 
@@ -18,8 +19,17 @@ class Permissions {
 		};
 	}
 
-	hasPermission(player: Player, level: PermissionLevel) {
-		return player.adminLvl >= this.list[level];
+	hasPermission(player: Player, level: PermissionLevel, silent = false) {
+		if (player.adminLvl < this.list[level]) return false;
+
+		const onDuty = player.admin_duty || (player.mp && player.mp.getVariable('admin_duty')) || (player.mp && (player.mp as any).admin_duty) || (player.mp && player.mp.getVariable('adminTag'));
+
+		if (player.adminLvl > 0 && !onDuty) {
+			if (!silent) hud.showNotification(player, 'error', 'Trebuie sa fii ON DUTY (/aduty)!', true);
+			return false;
+		}
+
+		return true;
 	}
 
 	async giveAccess(player: Player, level: PermissionLevel) {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import rpc from 'utils/rpc';
 
 export default function AdminTicketCount() {
-	const [reportCount, setReportCount] = useState(0);
+	const [reportCount, setReportCount] = useState(-1);
 
 	useEffect(() => {
 		const getReportCount = async () => {
@@ -13,14 +13,15 @@ export default function AdminTicketCount() {
 		getReportCount();
 		const interval = setInterval(getReportCount, 10000);
 		(window as any).AdminTickets = (newCount: number) => setReportCount(newCount);
+		(window as any).AdminTicketsUpdate = getReportCount;
 		return () => clearInterval(interval);
 	}, []);
 
-	if (reportCount === 0) return null;
+	if (Number(reportCount) < 0) return null;
 
 	return (
-		<span className="hud_tickets">
-			TICKETE: <strong>{reportCount}</strong>
+		<span className="hud_tickets" style={{ color: '#fff' }}>
+			TICKETE: <strong style={{ color: '#BA2000' }}>{reportCount}</strong>
 		</span>
 	);
 }

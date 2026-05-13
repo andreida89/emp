@@ -4,6 +4,7 @@ import Permis from './permis';
 import Licenses from './licenses';
 import Death from './death';
 import DeathEvent from './deathevent';
+import TicketSystem from './tickets';
 
 export default [
 	{
@@ -25,5 +26,9 @@ export default [
 	{
 		path: '/player/deathevent',
 		component: DeathEvent
+	},
+	{
+		path: '/player/tickets',
+		component: TicketSystem
 	}
 ] as IRoute[];

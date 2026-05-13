@@ -28,8 +28,8 @@ class FactionWardrobe {
 	constructor() {
 		mp.events.subscribe({
 			'FactionWardrobe-ShowMenu': this.showMenu.bind(this),
-			'FactionWardrobe-ShowMenuPolice': this.showMenuPolice.bind(this),
-			'FactionWardrobe-ShowMenuSmurd': this.showMenuSmurd.bind(this),
+			'FactionWardrobe-ShowMenuPolitie': this.showMenuPolitie.bind(this),
+			'FactionWardrobe-ShowMenuUMU': this.showMenuUMU.bind(this),
 			'FactionWardrobe-ShowMenuSindicat': this.showMenuSindicat.bind(this),
 			'FactionWardrobe-CloseMenu': this.closeMenu.bind(this),
 			'FactionWardrobe-ChangeType': this.changeType.bind(this),
@@ -43,18 +43,18 @@ class FactionWardrobe {
 		mp.browsers.showPage('factions/wardrobe', { onDuty }, true, true);
 	}
 
-	// DESCHIDE MENIUL DE HAINE DIN VESTIARUL FACTIUNII POLITIE (lspd)
-	private showMenuPolice() {
+	// DESCHIDE MENIUL DE HAINE DIN VESTIARUL FACTIUNII POLITIE (Politie)
+	private showMenuPolitie() {
 		const onDuty: boolean = player.getVariable('factionWork');
 
-		mp.browsers.showPage('factions/wardrobepolice', { onDuty }, true, true);
+		mp.browsers.showPage('factions/wardrobepolitie', { onDuty }, true, true);
 	}	
 
-	// DESCHIDE MENIUL DE HAINE DIN VESTIARUL FACTIUNII SMURD (ems)
-	private showMenuSmurd() {
+	// DESCHIDE MENIUL DE HAINE DIN VESTIARUL FACTIUNII UMU (umu)
+	private showMenuUMU() {
 		const onDuty: boolean = player.getVariable('factionWork');
 
-		mp.browsers.showPage('factions/wardrobesmurd', { onDuty }, true, true);
+		mp.browsers.showPage('factions/wardrobeumu', { onDuty }, true, true);
 	}	
 
 	// DESCHIDE MENIUL DE HAINE DIN VESTIARUL FACTIUNII SINDICAT

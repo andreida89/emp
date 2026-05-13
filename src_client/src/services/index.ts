@@ -11,3 +11,6 @@ import './surgeon';
 import './passport';
 import './bank';
 import './vehicle-dump';
+import './tool-shop';
+import './electronics-shop';
+import './fastfood';

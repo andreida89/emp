@@ -8,9 +8,11 @@ import playerCtrl from 'player';
 import token from './token';
 import logger from 'utils/logger';
 import axios from 'axios';
-import { isWhitelisted } from 'helpers/whitelist';
+import { checkWhitelist } from 'helpers/whitelist';
+import BanLog from '../models/BanLog';
+import moment from 'moment';
 
-const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1342880129486950431/1L3rbI05FiGZMRb_ILtKTqX3wd4JgPE8Cx12q0EoU0TC5nn7PsuvFadoA4oXRawcIC8d';
+const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1496794790614925322/ImEPmLo42Krw_tfpc4gkRjnHTyldVsNpcf7zdwy1ZBf4i0_2lOHxljCYbD-x7OMINoDJ';
 
 async function sendDiscordLog(data: any) {
     try {
@@ -18,7 +20,7 @@ async function sendDiscordLog(data: any) {
             embeds: [data] // Fix: embeds should be an array, not inside "content"
         });
     } catch (error) {
-        console.error('Failed to send Discord log:', error.response?.data || error);
+        //console.error('Failed to send Discord log:', error.response?.data || error);
     }
 }
 
@@ -35,12 +37,12 @@ constructor() {
 
     mp.events.subscribeToDefault(
         {
-            playerReady: (player: Player) => {
+            playerReady: async (player: Player) => {
                 // Debug serial la connect
                 const serial = player.mp.serial;
                 console.log(`[DEBUG][playerReady] Serial primit: ${serial}`);
 
-                const whitelisted = isWhitelisted(serial);
+                const whitelisted = await checkWhitelist(player, serial);
                 //console.log(`[DEBUG][playerReady] Este whitelisted? ${whitelisted}`);
 
                 if (!whitelisted) {
@@ -62,6 +64,36 @@ constructor() {
 
     private async signIn(player: Player, email: string, password: string) {
         const user = await UserModel.findOne({ email }).populate('character');
+        
+        // Also check if this serial is banned globally
+        const bannedSerial = await BanLog.findOne({ 
+            bannedSerial: player.mp.serial,
+            $or: [{ isPermanent: true }, { term: { $ne: 'Permanent' } }] // We will parse term check below
+        }).sort({ createdAt: -1 });
+
+        if (bannedSerial) {
+             let stillBanned = false;
+             if (bannedSerial.isPermanent) stillBanned = true;
+             else if (bannedSerial.term !== 'Permanent') {
+                 // But wait, the expiry date is in UserModel, in BanLog we saved "term" like "5 ZILE"
+                 // Actually, it's easier to check UserModel but BanLog helps track the serial
+                 // Let's find the original banned user's account to get exact expiry
+                 const origUser = await UserModel.findOne({ serial: player.mp.serial }).lean();
+                 if (origUser && origUser.ban && (origUser.ban.permanent || moment().diff(origUser.ban.expires, 'minutes') < 0)) {
+                     stillBanned = true;
+                 }
+             }
+             if (stillBanned) {
+                hud.showNotification(
+                    player,
+                    'error',
+                    `Serialul tau este blocat pentru un ban anterior.`,
+                    true
+                );
+                throw new SilentError('user is blocked');
+             }
+        }
+
         const error = await this.checkData(user, password);
 
         if (error) return Promise.reject(error);
@@ -113,13 +145,6 @@ constructor() {
         await user.populate({ path: 'character' }).execPopulate();
         await playerCtrl.load(player, user);
 
-
-
-    // RESTABILEȘTE ARMURA
-    const charData = user.character as any;
-    const armorValue = charData.armorValue ?? 0;
-    player.mp.armour = armorValue;
-
         user.loginAt = new Date().toISOString();
         if (!user.ip.includes(player.mp.ip)) user.ip.push(player.mp.ip);
         await user.save();
@@ -139,7 +164,7 @@ constructor() {
 				{ name: "**ADRESA IP**", value: `\`${playerIP}\``, inline: true },
 				{ name: "**ID IC**", value: `\`${IDb}\``, inline: true }
 			],
-			footer: { text: "Loguri server | Empire", icon_url: "https://redland.ro/empirerp.png" },
+			footer: { text: "Loguri server | Empire", icon_url: "https://empirerp.ro/empirerp.png" },
 			timestamp: new Date().toISOString()
 		});
 		

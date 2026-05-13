@@ -3,10 +3,10 @@ import CharModel from 'models/Character';
 import offers from 'helpers/offers';
 import { finishWork } from 'jobs';
 import vehicleDespawn from 'vehicle/despawn';
-import emsCalls from 'factions/ems/calls';
+import umuCalls from 'factions/umu/calls';
 import axios from 'axios';
 
-const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1255211705311694872/zql4ztkNdbXnGOjMCGSXMT88xjIfwkPBq5gmD7x3MQMLYJI3snraFC23OJCCv9kQO80s';
+const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1496794801339629648/hPzTvpjSyb6fz811RK5mn1T1TEoR3YlskQ0RY09NuLFYAdJWiVZuTgwZMGwqm0nCXjrc';
 
 async function sendDiscordLog(embed: any) {
     try {
@@ -25,12 +25,24 @@ class PlayerEvents {
 			playerSelectTarget: (player: Player, target: any) => {
 				player.target = target;
 			},
-			playerCreateWaypoint: (player: Player, coords: PositionEx) => {
-				if (!coords) return;
+        "server:playerCreateWaypoint": (player: PlayerMp, data: { vehicle_id: number, x: number, y: number, z: number }) => {
+                const vehicle_id = data.vehicle_id;
+                const vehicle = mp.vehicles.at(vehicle_id)
+                
+                if (!vehicle || !mp.vehicles.exists(vehicle)) return console.log("!!!vehiculu nu exista")
+                const coords = new mp.Vector3(data.x, data.y, data.z);
+                        
+                const passengers = vehicle
+                    .getOccupants()
+                    .filter(p => (p.seat as number) >= 0);
 
-				const { x, y, z } = coords;
-				player.waypoint = new mp.Vector3(x, y, z);
-			},
+                passengers.forEach(passenger => {
+                    passenger.call("client:syncWaypoint", [coords.x, coords.y])
+                });
+
+                //console.log("pasagerii sincronizati:", passengers.length);
+                //console.log("!!! pasagerii", passengers, vehicle, coords)
+            },
 			'Player-KickAfk': (player: Player) => {
 				player.mp.kick('AFK');
 			}
@@ -65,12 +77,11 @@ private async onLeave(player: PlayerMp, reason: string) {
     // Salvează pentru log (opțional)
     const playerName = player.name || "Unknown Player";
     const playerIP = player.ip || "Unknown IP";
-    //const gameUID = player.getVariable("uid") || "Unknown Game UID";
-const gameUID =
-    player.fixId ||
-    (player.mp && player.mp.fixId) ||
-    (player.getVariable && player.getVariable('fixId')) ||
-    "Unknown Game UID";
+    const gameUID =
+        data?.uid ||
+        (player as any).fixId ||
+        (player.getVariable && player.getVariable('uid')) ||
+        "Unknown Game UID";
 
 
     console.log(`[DEBUG] Player Quit - Name: ${playerName}, Reason: ${reason}, IP: ${playerIP}, Game UID: ${gameUID}`);
@@ -78,7 +89,7 @@ const gameUID =
 
     if (dbId) {
         // FĂ lucrurile dependente de player/data AICI (cât încă e valid!)
-        if (isDead) emsCalls.cancelCall(dbId);
+        if (isDead) umuCalls.cancelCall(dbId);
 
         offers.refuse(data);
         finishWork(data);
@@ -95,7 +106,8 @@ const gameUID =
                     health: currentHealth,
                     paydayTime,
                     bonusTime,
-                    armorValue
+                    armorValue,
+                    deathExpiresAt: (isDead && data?.deathExpiresAt) ? data.deathExpiresAt : undefined
                 },
                 $inc: {
                     playedTime: moment().diff(loginAt, "minutes")
@@ -122,7 +134,7 @@ const gameUID =
             ],
             footer: {
                 text: "Server Logs | Empire",
-                icon_url: "https://empirerp.eu/empirerp.png"
+                icon_url: "https://empirerp.ro/empirerp.png"
             },
             timestamp: new Date().toISOString()
         };

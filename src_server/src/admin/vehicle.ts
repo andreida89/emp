@@ -22,7 +22,7 @@ class AdminVehicle {
 		)
 			return;
 
-		const player = !temporary && mp.players.getByDbId(targetId);
+		const player = !temporary && mp.players.getByFixId(targetId);
 		const owner = { player: player ? player.dbId : admin.dbId };
 		const { position } = admin.mp;
 

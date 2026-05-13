@@ -18,7 +18,7 @@ class BusinessController {
 		player.businesses = [];
 
 		entities.items.forEach((item) => {
-			if (!owning.isOwner(player, item.owner)) return;
+			if (!item || !owning.isOwner(player, item.owner)) return;
 
 			building.createBlipForPlayer(player, item);
 			this.changePlayerData(player, item);
@@ -57,6 +57,38 @@ class BusinessController {
 			paid: entity.paid,
 			tax: tax.getTax(entity)
 		});
+	};
+
+	showInteractionPointMenu = (player: Player, biz: Entity, point: any) => {
+		const serviceMap: { [key: string]: string } = {
+			'Magazin 24/7': 'supermarket',
+			'Magazin de Haine': 'clothing_shop',
+			'Magazin de haine': 'clothing_shop',
+			'Benzinarie': 'gas',
+			'Gunshop': 'weapons',
+			'Magazin de Arme': 'weapons',
+			'Frizerie': 'barbershop',
+			'Tattoo Shop': 'tattoo_shop',
+			'Tattoo shop': 'tattoo_shop',
+			'Magazin de unelte': 'tool_shop',
+			'Magazin de Unelte': 'tool_shop',
+			'MAGAZIN DE UNELTE': 'tool_shop',
+			'Magazin de electronice': 'electronics_shop',
+			'Magazin de Electronice': 'electronics_shop',
+			'MAGAZIN DE ELECTRONICE': 'electronics_shop',
+			'FASTFOOD': 'fastfood',
+			'Fastfood': 'fastfood',
+			'FastFood': 'fastfood',
+			'Tuning': 'lscustoms',
+			'Service': 'lscustoms',
+			'Service auto': 'lscustoms',
+			'Service tuning': 'lscustoms'
+		};
+
+		const serviceName = serviceMap[point.name];
+		if (serviceName) {
+			mp.events.call('Services-ShowMenu', player.mp, serviceName);
+		}
 	};
 
 	async withdraw(entity: Entity) {

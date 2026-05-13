@@ -61,6 +61,13 @@ mp.events.subscribe({
 	}
 });
 
+mp.events.add('Services-ShowMenu', (playerMp: PlayerMp, name: string) => {
+	const player = mp.players.get(playerMp);
+	if (!player) return;
+	const service = items[name];
+	if (service) service.onKeyPress(player);
+});
+
 /*
 async function importServices() {
 	Object.keys(items).forEach(async (item) => {

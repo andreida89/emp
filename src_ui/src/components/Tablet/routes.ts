@@ -8,7 +8,7 @@ import Rank from './pages/ranks/rank';
 import Money from './pages/money';
 import Materials from './pages/materials';
 import MedicCalls from './pages/medic-calls';
-import PoliceCalls from './pages/police-calls';
+import PolitieCalls from './pages/police-calls';
 import Database from './pages/database';
 import DatabaseUsers from './pages/database/users';
 import DatabaseUser from './pages/database/users/user';
@@ -73,7 +73,7 @@ const pages: typeof f7.routes = [
 	},
 	{
 		path: '/pol_calls/',
-		component: PoliceCalls
+		component: PolitieCalls
 	},
 	{
 		path: '/database/',

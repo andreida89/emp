@@ -6,9 +6,26 @@ import hud from './hud';
 
 class Money {
 	async change(player: Player, type: PaymentType, value: any, note?: string) {
-		const sum = parseInt(value, 10);
+		const sum = Math.round(parseInt(value, 10));
 
 		if (!isNumber(sum) || sum === 0) throw new SilentError('wrong value');
+
+		if (type === 'cash') {
+			const playerInventory = require('player/inventory').default;
+			if (sum > 0) {
+				await playerInventory.addItem(player, { name: 'ron', amount: sum });
+			} else {
+				try {
+					await playerInventory.removeItemAmount(player, 'ron', -sum);
+				} catch (e) {
+					console.log(`[MONEY] Update failed for ${player.dbId} (${type}) value: ${sum}`);
+					hud.showNotification(player, 'error', this.getErrorMessage(type), true);
+					throw new SilentError('insufficient funds');
+				}
+			}
+			this.logOperation(player.dbId, type, sum, note);
+			return;
+		}
 
 		const status = await this.updateInDb(
 			type === 'points' ? player.account : player.dbId,
@@ -16,6 +33,7 @@ class Money {
 			sum
 		);
 		if (!status) {
+			console.log(`[MONEY] Update failed for ${player.dbId} (${type}) value: ${sum}`);
 			hud.showNotification(player, 'error', this.getErrorMessage(type), true);
 			throw new SilentError('insufficient funds');
 		}
@@ -52,27 +70,20 @@ class Money {
 
 		if (!isNumber(sum) || sum <= 0) throw new SilentError('wrong value');
 
-		const status = await CharModel.updateOne(
-			{ _id: player.dbId, [`money.${from}`]: { $gt: sum - 1 } },
-			{ $inc: { [`money.${from}`]: -sum, [`money.${to}`]: sum } }
-		);
-
-		if (!status.nModified) {
-			hud.showNotification(player, 'error', this.getErrorMessage(from), true);
-			//throw new SilentError('insufficient funds');
-		}
-
-		this.updatePlayer(player, {
-			[from]: player.money[from] - sum,
-			[to]: player.money[to] + sum
-		});
-
-		this.logOperation(player.dbId, from, sum, note);
+		await this.change(player, from, -sum, note);
+		await this.change(player, to, sum, note);
 	}
 
 	updatePlayer(player: Player, money: Partial<PlayerMoney>) {
 		player.money = { ...player.money, ...money };
 		hud.updateMoney(player.mp, player.money);
+	}
+
+	syncCashWithHUD(player: Player) {
+		const cashAmount = player.inventory
+			.filter(i => i.name === 'ron')
+			.reduce((acc, i) => acc + i.amount, 0);
+		this.updatePlayer(player, { cash: cashAmount });
 	}
 
 	private async updateInDb(userId: string, type: PaymentType, sum: number) {
@@ -100,6 +111,23 @@ class Money {
 			sum,
 			note
 		});
+
+		if (payment === 'bank' && sum !== 0) {
+			const entry = {
+				name: note || (sum > 0 ? 'Creditare' : 'Debitare'),
+				amount: sum,
+				date: new Date().toLocaleString('ro-RO')
+			};
+			CharModel.findByIdAndUpdate(user, { 
+				$push: { 
+					bankHistory: { 
+						$each: [entry], 
+						$position: 0, 
+						$slice: 20 
+					} 
+				} 
+			}).catch(err => console.error(`[BANK_LOG] Failed for ${user}:`, err));
+		}
 	}
 
 	private getErrorMessage(payment: PaymentType) {

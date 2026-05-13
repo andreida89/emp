@@ -1,6 +1,9 @@
 import binder from 'utils/binder';
 import scenarios from './scenarios';
 import voice from './voice';
+import rpc from 'rage-rpc';
+
+import browser from 'helpers/browser';
 
 const localPlayer = mp.players.local;
 
@@ -41,12 +44,29 @@ class Phone {
 
 			this.menu = false;
 			mp.browsers.hidePage();
-		} else if (this.canOpenMenu()) {
-			this.openMenu();
+		} else {
+			const hasPhone = await mp.events.callServer('Phone-HasPhone');
+			if (!hasPhone) {
+				mp.events.call('AnuntNotification2', 'Nu ai un telefon in inventar!', 'rosu');
+				return;
+			}
+
+			if (this.canOpenMenu()) {
+				await this.openMenu();
+			}
 		}
 	}
 
-	private openMenu() {
+	private async openMenu() {
+        // Dacă are ceva în mâini (obiect/armă), forțăm holster-ul
+        if (localPlayer.getVariable('inHand') || (localPlayer.weapon !== 0xA271D1D3 && localPlayer.weapon !== 0)) {
+            // Dezarmăm jucătorul complet înainte de a scoate telefonul
+            mp.game.invoke('0xADF692B254977C0C', localPlayer.handle, 0xA271D1D3, true); // SET_CURRENT_PED_WEAPON -> Unarmed
+            
+            // Așteptăm un pic să se facă animația de holster
+            await mp.game.waitAsync(400);
+        }
+
 		scenarios.playLocal('use_phone');
 
 		mp.events.callBrowser('Phone-SetWallpaper', mp.storage.data.phone.wallpaper);
@@ -108,6 +128,16 @@ class Phone {
 			'Phone-StopCall': this.stopCall.bind(this),
 			'Phone-SetWallpaper': this.setWallpaper,
 			'Phone-CanOpen': this.canOpenMenu
+		});
+		
+		rpc.register('Phone-SetWaypoint', (coordsStr: string) => {
+			const [x, y] = coordsStr.split(',').map(Number);
+			mp.game.ui.setNewWaypoint(x, y);
+			mp.game.graphics.notify('~g~Waypoint setat către locație!');
+		});
+
+		mp.events.add('Phone-ReceiveMessage', (data) => {
+			if (browser.browser) browser.browser.execute("if(window.refreshPhoneMessages) window.refreshPhoneMessages();");
 		});
 	}
 }

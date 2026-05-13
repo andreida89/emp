@@ -14,20 +14,20 @@ type State = {
 	calls: Call[];
 };
 
-export default class PoliceCalls extends Component<{}, State> {
+export default class PolitieCalls extends Component<{}, State> {
 	readonly state: State = {
 		calls: []
 	};
 
 	componentDidMount() {
 		rpc
-			.callServer( 'PoliceCalls-GetList' )
+			.callServer( 'PolitieCalls-GetList' )
 			.then( ( calls ) => this.setState( () => ( { calls } ) ) );
 	}
 
 	async markPosition( id: string ) {
 		try {
-			await rpc.callServer('PoliceCalls-MarkPosition', id);
+			await rpc.callServer('PolitieCalls-MarkPosition', id);
 			showNotification('info', 'Locatia a fost marcata pe harta');			
 		} catch ( err: any ) {
 			if ( err.msg ) showNotification( 'error', err.msg );

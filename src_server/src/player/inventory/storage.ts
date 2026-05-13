@@ -2,6 +2,7 @@ import { last } from 'lodash';
 import CharModel from 'models/Character';
 import Inventory, { StorageData } from 'basic/inventory';
 import backpack from './backpack';
+import money from 'helpers/money';
 
 class PlayerInventoryStorage extends Inventory {
 	constructor() {
@@ -57,7 +58,31 @@ class PlayerInventoryStorage extends Inventory {
 	}
 
 	async updateInDb(id: string, data: InventoryItem[]) {
-		await CharModel.findByIdAndUpdate(id, { $set: { inventory: data } });
+		await CharModel.findByIdAndUpdate(id, { $set: { inventory: JSON.parse(JSON.stringify(data)) } });
+
+		// Sync statie & smartwatch status with UI
+		const player = mp.players.getByDbId(id);
+		if (player) {
+			this.syncHasStatie(player);
+			this.syncHasSmartwatch(player);
+		}
+	}
+
+	syncHasStatie(player: Player) {
+		if (!player.inventory) return;
+		const hasStatie = player.inventory.some((i: any) => i.name === 'statie' || i.name === 'statieradio');
+		if (player.updateState) {
+			player.updateState({ type: 'SET_HAS_STATIE', payload: hasStatie });
+		}
+	}
+
+	syncHasSmartwatch(player: Player) {
+		if (!player.inventory) return;
+		const hasSmartwatch = player.inventory.some((i: any) => i.name === 'smartwatch');
+		if (player.updateState) {
+			player.updateState({ type: 'SET_HAS_SMARTWATCH', payload: hasSmartwatch });
+		}
+		player.mp.setVariable('hasSmartwatch', hasSmartwatch);
 	}
 
 	private async moveItem(player: Player, cell: number, targetCell: number) {
@@ -67,14 +92,16 @@ class PlayerInventoryStorage extends Inventory {
 
 		await this.updateInDb(player.dbId, player.inventory);
 
-		return player.inventory;
+		return JSON.parse(JSON.stringify(player.inventory));
 	}
 
 	private async separateItem(player: Player, cell: number, amount: number) {
 		await this.separate(player, player.inventory, cell, amount);
 		await this.updateInDb(player.dbId, player.inventory);
 
-		return last(player.inventory);
+		money.syncCashWithHUD(player);
+
+		return JSON.parse(JSON.stringify(last(player.inventory)));
 	}
 
 	private async transferItem(
@@ -95,6 +122,9 @@ class PlayerInventoryStorage extends Inventory {
 		);
 		await this.updateInDb(target.dbId, target.inventory);
 		await this.updateInDb(player.dbId, player.inventory);
+
+		money.syncCashWithHUD(player);
+		money.syncCashWithHUD(target);
 
 		return {
 			item: this.getItemOfCell(inside ? target.inventory : player.inventory, targetCell),

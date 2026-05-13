@@ -41,9 +41,10 @@ class Browser {
 	}
 
 	hidePage(page = 'hud') {
+		const hudVisibility = (global as any).currentHudVisibility || {};
 		mp.gui.cursor.show(false, false);
-		mp.gui.chat.show(true);
-		mp.game.ui.displayRadar(true);
+		mp.gui.chat.show(hudVisibility.showChat !== false);
+		mp.game.ui.displayRadar(hudVisibility.showMinimap !== false);
 
 		mp.events.callBrowser('Browser-ShowPage', page, false);
 
@@ -54,6 +55,10 @@ class Browser {
 			player.freezePosition(false);
 			this.freeze = false;
 		}
+	}
+
+	execute(code: string) {
+		this.browser.execute(code);
 	}
 
 	setHideBind(handler: Function, key = 'esc') {
@@ -78,6 +83,9 @@ class Browser {
 		mp.gui.chat.colors = false;
 
 		mp.events.subscribe({ 'Browser-HidePage': this.hidePage.bind(this) });
+		mp.events.subscribeToDefault({
+			'Browser-ShowPage': (page: string) => this.showPage(page)
+		});
 
 		mp.browsers.showPage = this.showPage.bind(this);
 		mp.browsers.hidePage = this.hidePage.bind(this);

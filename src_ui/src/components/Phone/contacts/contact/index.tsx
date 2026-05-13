@@ -22,6 +22,14 @@ class Contact extends Component<Props> {
 	async onControlClick( type: string ) {
 		const { contact } = this.props;
 
+        if ( type === 'message' ) {
+            (window as any).targetMessagePhone = contact.phone;
+            if ((window as any).openPhoneApp) {
+                (window as any).openPhoneApp('messages');
+            }
+            return;
+        }
+
 		if ( type !== 'call' ) return;
 
 		try {

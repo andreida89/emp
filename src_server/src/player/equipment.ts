@@ -6,7 +6,6 @@ import armor from './armor';
 // import { giveWeaponComponent } from 'basic/atasamente'; // nu mai e nevoie de import direct
 
 const slots = {
-	ammo: 'ammo',
 	armor: 'armor',
 	weapon: 'hands',
 	backpack: 'backpack',
@@ -35,9 +34,18 @@ class PlayerEquipment {
 		clothes.clear(player);
 		player.inventory.forEach((item) => {
 			const slot = item.data?.slot;
+			const quickSlot = item.data?.quickSlot;
 
-			if (this.isQuickSlot(slot)) this.setToSlot(player, slot, item);
-			else if (slot) this.equip(player, item);
+			// Dacă piesa avea un fast slot asignat, refacem legătura în obiectul de echipament
+			if (quickSlot && this.isQuickSlot(quickSlot)) {
+				this.setToSlot(player, quickSlot, item);
+			}
+
+			if (this.isQuickSlot(slot)) {
+				this.setToSlot(player, slot, item);
+			} else if (slot) {
+				this.equip(player, item);
+			}
 		});
 	}
 
@@ -50,6 +58,18 @@ class PlayerEquipment {
 
 		await this.setItem(player, data.type, item);
 		this.setToSlot(player, slot, item);
+
+		// EXTRA LOGIC FOR WEAPON AMMO UI:
+		if (data.type === 'weapon') {
+			const ammoType = data.ammo; 
+			const ammoAmount = item.data?.ammo || 0;
+			if (ammoType && ammoAmount > 0) {
+				const fakeAmmoItem = { name: ammoType, amount: ammoAmount, data: { slot: 'ammo' }, cell: -1 };
+				this.setToSlot(player, 'ammo', fakeAmmoItem as any);
+			} else {
+				this.setToSlot(player, 'ammo', undefined);
+			}
+		}
 
 		return slot;
 	}
@@ -64,9 +84,7 @@ class PlayerEquipment {
 			switch (data.type) {
 				case 'weapon':
 					weapons.removeWeapon(player);
-					break;
-				case 'ammo':
-					weapons.removeAmmo(player);
+					this.setToSlot(player, 'ammo', undefined);
 					break;
 				case 'clothes':
 					clothes.hide(player, item.name as any);
@@ -77,7 +95,6 @@ class PlayerEquipment {
 				case 'backpack':
 					await backpack.remove(player, item);
 					break;
-				// La 'atasament' nu mai faci nimic aici, totul e în inventory!
 				default:
 					break;
 			}
@@ -90,8 +107,27 @@ class PlayerEquipment {
 	setToSlot(player: Player, slot: string, item?: InventoryItem) {
 		if (item) {
 			item.cell = -1;
+			// Păstrează informația despre quick slot la relog/echipare pe hands
+			let previousQuickSlot = undefined;
+			if (this.isQuickSlot(slot)) {
+				previousQuickSlot = slot;
+			} else if (item.data?.quickSlot) {
+				previousQuickSlot = item.data.quickSlot;
+			} else if (this.isQuickSlot(item.data?.slot)) {
+				previousQuickSlot = item.data.slot;
+			}
+
 			item.data = { ...item.data, slot };
+			if (previousQuickSlot) {
+				item.data.quickSlot = previousQuickSlot;
+			}
+
 			player.equipment[slot] = item;
+
+			// Dacă îl punem în mâini, dar el era pe un quick slot, actualizăm referința în memorie și pe acel slot rapid (dacă nu e deja)
+			if (slot === 'hands' && previousQuickSlot && previousQuickSlot !== slot) {
+				player.equipment[previousQuickSlot] = item;
+			}
 		} else {
 			delete player.equipment[slot];
 		}
@@ -104,6 +140,7 @@ class PlayerEquipment {
 
 	private getSlotForItem(item: InventoryItem) {
 		const data = inventoryHelper.getItemData(item.name);
+		if (data?.type === 'ammo') return undefined;
 		const slot: string = slots[data?.type] ?? data?.equipment;
 
 		return slot;
@@ -124,9 +161,6 @@ class PlayerEquipment {
 				break;
 			case 'weapon':
 				weapons.giveWeapon(player, item.name, item);
-				break;
-			case 'ammo':
-				await weapons.giveAmmo(player, item);
 				break;
 			// La 'atasament' nu mai faci nimic aici!
 			default:

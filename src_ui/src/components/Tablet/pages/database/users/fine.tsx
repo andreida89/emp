@@ -16,7 +16,7 @@ export default function UserFine( { f7router, userId }: Props ) {
 		try {
 			if ( !userId ) return;
 
-			await rpc.callServer( 'Police-WriteTicket', [ userId, { sum, reason } ] );
+			await rpc.callServer( 'Politie-WriteTicket', [ userId, { sum, reason } ] );
 
 			f7router.back();
 		} catch ( err: any ) {

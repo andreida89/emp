@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import notificationSound from 'assets/audio/notificarepolitie.mp3';
+// import notificationSound from 'assets/audio/notificarepolitie.mp3';
 
 interface AlertaPolitie {
   id: number;
@@ -8,16 +8,16 @@ interface AlertaPolitie {
 
 let counter = 0;
 
-const PoliceNotifications: React.FC = () => {
+const PolitieNotifications: React.FC = () => {
   const [messages, setMessages] = useState<AlertaPolitie[]>([]);
 
   useEffect(() => {
     (window as any).AlertaPolitie = (message: string) => {
       const id = counter++;
 
-      const audio = new Audio(notificationSound);
-      audio.volume = 0.2;
-      audio.play().catch(() => {});
+      // const audio = new Audio(notificationSound);
+      // audio.volume = 0.2;
+      // audio.play().catch(() => {});
 
       setMessages((prev) => [
         ...prev,
@@ -34,18 +34,18 @@ const PoliceNotifications: React.FC = () => {
   }, []);
 
   return (
-    <div id="police-notif-container">
+    <div id="politie-notif-container">
       {messages.map((msg) => (
-        <div key={msg.id} className="police-notification">
+        <div key={msg.id} className="politie-notification">
           <div
-            className="police-notification-icon"
+            className="politie-notification-icon"
             style={{ backgroundImage: `url('https://empirerp.eu/pol1.gif')` }}
           ></div>
-          <div className="police-notif-message">{msg.message}</div>
+          <div className="politie-notif-message">{msg.message}</div>
         </div>
       ))}
     </div>
   );
 };
 
-export default PoliceNotifications;
+export default PolitieNotifications;

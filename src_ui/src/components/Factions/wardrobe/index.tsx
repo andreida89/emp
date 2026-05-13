@@ -58,15 +58,15 @@ class FactionWardrobe extends Component<Props, State> {
 	}
 
 	// ON DUTY PENTRU FACTIUNEA POLITIE (ACTIVAT) 
-	async startWorkPolice() {
-		await rpc.callServer('Factions-StartWorkPolice');
+	async startWorkPolitie() {
+		await rpc.callServer('Factions-StartWorkPolitie');
 		this.setState(() => ({ onDuty: true }));
 	}
 
-	async finishWorkPolice() {
+	async finishWorkPolitie() {
 		if (!this.state.onDuty) return;
 
-		await rpc.callServer('Factions-FinishWorkPolice');
+		await rpc.callServer('Factions-FinishWorkPolitie');
 		this.setState(() => ({ onDuty: false }));
 	}
 

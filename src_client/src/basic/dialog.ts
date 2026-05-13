@@ -1,6 +1,6 @@
 import { fromObject } from 'utils/vector';
 import peds from 'data/peds.json';
-import conversations from 'data/сonversations.json';
+import conversations from 'data/conversations.json';
 import hud from './hud';
 
 const player = mp.players.local;
@@ -57,7 +57,7 @@ class Dialog {
 		if (conversation) {
 			player.setAlpha(0);
 
-			this.setCamera();
+			// this.setCamera();
 
 			mp.browsers.showPage('dialog', conversation, true, true);
 		}

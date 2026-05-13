@@ -6,10 +6,11 @@ import Register from './register';
 import Forgot from './forgot';
 import Confirm from './confirm';
 
-type Props = {} & RouteComponentProps<{}, {}, { email: string }>;
+type Props = {} & RouteComponentProps<{}, {}, { email: string; password?: string }>;
 
 type State = {
 	email: string;
+	password?: string;
 	activeForm?: string;
 };
 
@@ -49,6 +50,7 @@ return (
 		setEmail={this.setEmail.bind(this)}
 		openForm={this.openForm}
 		email={email || this.props.location.state?.email || ''}
+		password={this.state.password || this.props.location.state?.password || ''}
 	/>
 );
 

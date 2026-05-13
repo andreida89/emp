@@ -13,7 +13,7 @@ export default function InventoryBackpack({ items, cells }: Props) {
 		<div className="inventory_backpack">
 			<PrimaryTitle className="inventory_backpack-title">Ghiozdan / Geanta</PrimaryTitle>
 
-			<Grid startIndex={7} cells={40} available={cells - 6} items={items} />
+			<Grid startIndex={8} cells={40} available={cells - 8} items={items} />
 		</div>
 	);
 }

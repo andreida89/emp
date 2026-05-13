@@ -20,3 +20,21 @@ export const SET_BLIP_SCALE = (blip, scale) =>
 	mp.game.invoke('0xD38744167B2FA257', blip, scale); // SET_BLIP_SCALE
 export const SET_ENTITY_NO_COLLISION_ENTITY = (entity1, entity2, collision) =>
 	mp.game.invoke('0xA53ED5520C07654A', entity1.handle, entity2.handle, collision); // SET_ENTITY_NO_COLLISION_ENTITY
+
+export const GET_QUADBIKE_DISPLAY_VARIATIONS = (p0: any): any => 
+    mp.game.invoke('0x953563CE563143AF', p0);
+
+export const REGISTER_PEDHEADSHOT = (pedHandle: number): number => 
+    mp.game.invoke('0x4462658788425076', pedHandle);
+
+export const IS_PEDHEADSHOT_VALID = (id: number): boolean => 
+    mp.game.invoke('0xA0A9668F158129A2', id);
+
+export const IS_PEDHEADSHOT_READY = (id: number): boolean => 
+    mp.game.invoke('0x7085228842B13A67', id);
+
+export const GET_PEDHEADSHOT_TXD_STRING = (id: number): string => 
+    mp.game.invoke('0xDB4EACD4AD0A5D6B', id);
+
+export const UNREGISTER_PEDHEADSHOT = (id: number) => 
+    mp.game.invoke('0x96B1361D9B24C2FF', id);

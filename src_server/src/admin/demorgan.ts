@@ -34,7 +34,7 @@ class AdminDemorgan {
 			return mp.events.reject('Durata maxima - 2 ore');
 		}
 
-		const target = mp.players.getByDbId(userId);
+		const target = mp.players.getByFixId(userId);
 
 		if (target) {
 			await prison.imprisonPlayer(target, minutes, reason);
@@ -42,34 +42,32 @@ class AdminDemorgan {
 			chat.sendSystem(
 				`${admin.getName()} a dat jail lui ${target.getName()} (${reason})`
 			);
-					// ✅ Fetch the correct email from the Users collection
-		const user = await UserModel.findOne({ character: userId }).lean();
-		const email = user ? user.email : "Unknown Email";
+			
+			// ✅ Fetch the correct email from the Users collection
+			const targetCharId = target.dbId;
+			if (targetCharId && targetCharId.length === 24) {
+				const user = await UserModel.findOne({ character: targetCharId }).lean();
+				const email = user ? user.email : "Unknown Email";
 	
 				// ✅ Fetch character document from `characters` collection
-				let characterUid = "Unknown UID";
-				if (user.character) {
-					const characterData = await CharacterModel.findById(user.character).lean(); // Use Correct Model
-					if (characterData && characterData.uid) {
-						characterUid = characterData.uid.toString();
-					}
-				}
-
-		// ✅ Send Ban Log to Discord
-		const embed = {
-			title: '🔨 Player Jail',
-			color: 16711680,
-			description: `**${target.getName()}** a primit jail de la **${admin.getName()}**`,
-			fields: [
-				{ name: '**Player ID**', value: `\`${characterUid}\``, inline: true },
-				{ name: '**Email**', value: `\`${email}\``, inline: true },
-				{ name: '**Duration**', value: `\`${minutes}\``, inline: true },
-				{ name: '**Reason**', value: `\`${reason}\``, inline: false }
-			],
-			footer: { text: 'Server Logs | Empire', icon_url: 'https://redland.ro/empirerp.png' },
-			timestamp: new Date().toISOString()
-		};
-		await sendDiscordLog(JAIL_DISCORD_WEBHOOK_URL, embed);
+				let characterUid = target.fixId.toString();
+				
+				// ✅ Send Ban Log to Discord
+				const embed = {
+					title: '🔨 Player Jail',
+					color: 16711680,
+					description: `**${target.getName()}** a primit jail de la **${admin.getName()}**`,
+					fields: [
+						{ name: '**Player ID**', value: `\`${characterUid}\``, inline: true },
+						{ name: '**Email**', value: `\`${email}\``, inline: true },
+						{ name: '**Duration**', value: `\`${minutes}\``, inline: true },
+						{ name: '**Reason**', value: `\`${reason}\``, inline: false }
+					],
+					footer: { text: 'Server Logs | Empire', icon_url: 'https://redland.ro/empirerp.png' },
+					timestamp: new Date().toISOString()
+				};
+				await sendDiscordLog(JAIL_DISCORD_WEBHOOK_URL, embed);
+			}
 		}
 	}
 
@@ -78,26 +76,20 @@ class AdminDemorgan {
 			return mp.events.reject('Nu ai suficiente drepturi!');
 		}
 
-		const target = mp.players.getByDbId(userId);
-
-		const user = await UserModel.findOne({ character: userId }).lean();
-		const email = user ? user.email : "Unknown Email";
-
-		let characterUid = "Unknown UID";
-		if (user.character) {
-			const characterData = await CharacterModel.findById(user.character).lean(); // Use Correct Model
-			if (characterData && characterData.uid) {
-				characterUid = characterData.uid.toString();
-			}
-		}
+		const target = mp.players.getByFixId(userId);
 
 		if (target && prison.isImprisoned(target)) {
 			prison.releasePlayer(target);
 
-		//	journal.recordAction(admin, 'prison_release', target.getName(), userId);
-		chat.sendSystem(`${admin.getName()} a debanat pe ${email}`);
+			const targetCharId = target.dbId;
+			if (targetCharId && targetCharId.length === 24) {
+				const user = await UserModel.findOne({ character: targetCharId }).lean();
+				const email = user ? user.email : "Unknown Email";
+				const characterUid = target.fixId.toString();
 
-				// ✅ Send Unban Log to Discord
+				chat.sendSystem(`${admin.getName()} a debanat pe ${email}`);
+
+				// ✅ Send Unjail Log to Discord
 				const embed = {
 					title: '✅ Player Unjail',
 					color: 65280,
@@ -110,6 +102,7 @@ class AdminDemorgan {
 					timestamp: new Date().toISOString()
 				};
 				await sendDiscordLog(UNJAIL_DISCORD_WEBHOOK_URL, embed);
+			}
 		}
 	}
 

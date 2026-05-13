@@ -52,7 +52,6 @@ class ClothingShop extends Service {
 	}
 
 	load(data: (PositionEx & { radius?: number })[]) {
-		super.load(data);
 		this.loadClothesList();
 	}
 
@@ -104,26 +103,49 @@ class ClothingShop extends Service {
 		const clothes = this.getClothesOfGender(player);
 		const item = this.prepareForInventory(clothes, product);
 
-		playerInventory.checkEnoughSlots(player, [item]);
+		try {
+			playerInventory.checkEnoughSlots(player, [item]);
+		} catch (e) {
+			return 'SPATIU INSUFICIENT IN INVENTAR';
+		}
 
 		const price = this.getPrice(clothes, product.type, product.index);
 
-		await pay(player, payment, price, 'clothing shop');
+		if (payment === 'cash') {
+			const cashAmount = player.inventory
+				.filter((i) => i.name === 'ron')
+				.reduce((acc, i) => acc + i.amount, 0);
+			if (cashAmount < price) return 'NU AI DESTUI BANI LA TINE';
+		} else {
+			if (player.money[payment as keyof PlayerMoney] < price) return 'FONDURI BANCARE INSUFICIENTE';
+		}
+
+		const success = await pay(player, payment, price, 'clothing shop', true);
+		if (!success) return 'TRANZACTIE RESPINSA';
+
 		await playerInventory.addItem(player, item);
 
 		await tasks.implement(player, 'buy_clothes');
+
+		return true;
 	}
 private async buyfree(player: Player, product: Product, payment: PaymentType) {
 	const clothes = this.getClothesOfGender(player);
 	const item = this.prepareForInventory(clothes, product);
 
-	playerInventory.checkEnoughSlots(player, [item]);
-	await pay(player, payment, price, 'clothing shop');
+	try {
+		playerInventory.checkEnoughSlots(player, [item]);
+	} catch (e) {
+		return 'SPATIU INSUFICIENT IN INVENTAR';
+	}
+
 	await playerInventory.addItem(player, item);
 
 	await tasks.implement(player, 'buy_clothes');
 
 	player.call('AnuntNotification', ['Articolul a fost adaugat in inventar', 'success']);
+	
+	return true;
 }
 
 

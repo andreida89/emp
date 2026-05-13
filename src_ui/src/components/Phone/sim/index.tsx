@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import rpc from 'utils/rpc';
 import { showNotification } from 'utils/notifications';
-import logo from 'assets/images/phone/racoon-logo.svg';
+// import logo from 'assets/images/phone/racoon-logo.svg';
 import Form from './form';
 import Prices from './prices';
 import Button from './button';
@@ -54,7 +54,7 @@ export default class Sim extends Component<{}, State> {
 		return (
 			<div className="sim">
 				<div className="sim_logo">
-					<img src={logo} alt="racoon" />
+					{/* <img src={logo} alt="racoon" /> */}
 				</div>
 
 				{form ? (

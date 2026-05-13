@@ -1,5 +1,10 @@
 /* eslint-disable import/first */
-require('dotenv').config();
+const result = require('dotenv').config();
+if (result.error) {
+	console.log('[DOTENV] Error loading .env file:', result.error);
+} else {
+	console.log('[DOTENV] .env file loaded successfully.');
+} 
 
 import 'source-map-support/register';
 import mongoose from 'mongoose';
@@ -16,16 +21,17 @@ import './basic/doors';
 import './basic/fingerpointing';
 import './basic/handsup';
 import './basic/e';
-import './basic/cayococa';
+import './basic/escmenu';
+import './basic/dust2';
 
 import './basic/cosuridegunoi';
-
+import './basic/mansions';
 import './basic/atasamente';
+import './basic/tickets';
 
 import './basic/aduty';
 import './arataid/index';
 
-//import './basic/cayomaria';
 import antiCheat from './basic/anti-cheat';
 import logger from './utils/logger';
 import './phone';
@@ -35,6 +41,7 @@ import { loadJobs } from './jobs';
 import { loadServices } from './services/service';
 import houses from './house/entities';
 import businesses from './business/entities';
+import garages from './garage/entities';
 import './awards/daily';
 import './admin';
 import './utils/savepos';
@@ -42,13 +49,12 @@ import './utils/savepos';
 
 
 import factions from './factions';
-import './factions/army';
-import './factions/police';
-import './factions/ems';
+import './factions/politie';
+import './factions/umu';
 import './factions/sindicat';
 import './factions/primarie';
-import './factions/mafia';
-import './factions/gangs';
+//import './factions/mafia';
+//import './factions/gangs';
 import './donation';
 import './vehicle';
 
@@ -83,8 +89,6 @@ import { spawnCosuri } from 'basic/cosuridegunoi';
 
 import './modulenoi/streamdistancemanager';
 
-import "./mapeditor";
-
 function sendGlobalNotification(admin: Player, text: string) {
 	console.log(`Global Notification Received: ${text}`);
     if (!permissions.hasPermission(admin, 'admin')) {
@@ -105,7 +109,7 @@ function sendGlobalNotification(admin: Player, text: string) {
 
 // Register the event
 mp.events.subscribe({
-    'Admin-GlobalNotify': sendGlobalNotification
+    'Admin-GlobalNotify': sendGlobalNotification,
 });
 
 
@@ -121,6 +125,19 @@ class App {
 		});
 
 		logger.success('Database connected.');
+		try {
+			await Character.updateMany({ age: { $exists: false } }, { $set: { age: 25 } });
+
+			// Initialize server settings
+			const ServerSettings = require('./models/ServerSettings').default;
+			const exists = await ServerSettings.findOne({ key: 'whitelistEnabled' });
+			if (!exists) {
+				await ServerSettings.create({ key: 'whitelistEnabled', value: false });
+			}
+
+		} catch(err) {
+			console.log('Database init error:', err);
+		}
 	}
 
 	async init() {
@@ -140,6 +157,7 @@ class App {
 			await loadServices();
 			await loadJobs();
 			await houses.load();
+			await garages.load();
 			await businesses.load();
 			await factions.load();
 
@@ -152,8 +170,8 @@ class App {
 	}
 }
 
-const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1345187485075902596/KxxvVxJdetCKZ5KEjcONqyQT4cfefkJvKMuQSLfN5z7BiaV8qTmAONKkq_IwtxhHgJVK';
-const DISCORD_WEBHOOK_URLCK = 'https://discord.com/api/webhooks/1354163525366448228/XC3osYp5ZdgE0TO_W3Dq3GCrq9RbPUiCkcSLkJ5iDjpTTI3M9VWjI32RfBK6_FgKpwBB';
+const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1496797404790525962/Di7o4zuDRn_5UdfTFrFiyFNAkQXvejha8lv9NQjwFTFejtUNHbkDta6K86mbE0qIIqzW';
+const DISCORD_WEBHOOK_URLCK = 'https://discord.com/api/webhooks/1496797498851856417/dPRpHgBiBEGKRRHuE7jzBuklNgM2Q1Teroot-Huv3FMXUkaogzSY-_85hibx8r6Fa6YV';
 
 async function sendDiscordLog(data: any) {
     try {
@@ -519,6 +537,13 @@ mp.events.addCommand('notify', (player, message) => {
 });
 
 mp.events.addCommand('veh', (player, models) => {
+    let admin = player.getVariable('adminLvl') || 0;
+	if (admin > 0 && !player.admin_duty) { player.notify('~r~Trebuie sa fii ON DUTY (/aduty)!'); return; }
+    if (admin < 1) { // assuming you need admin level for /veh?
+        player.notify(`~r~Nu ai aceasta permisiune!`);
+        return;
+    }
+
     if (!models) return player.outputChatBox('/veh [model]');
     let tpos = player.position;
     tpos.x = tpos.x + 2;
@@ -538,7 +563,7 @@ mp.events.addCommand('veh', (player, models) => {
 
 
 /**
-const DISCORD_WEBHOOK_URLSTATUS = 'https://discord.com/api/webhooks/1355953194756215016/KkhTJCEv9sWwpUcvcBcOehSxDOHG6z0MBaj7oGqXVjI6JEr3pGv3PyJIFnZgQD01TUqQ';
+const DISCORD_WEBHOOK_URLSTATUS = 'https://discord.com/api/webhooks/1496796561584427009/TMFCqjDgvMejtMFj6bRFCK3N2YYQ80LgIwRoDcsLMthB9QoPA1FSMzhQiMXa83nPriPK';
 const PEAK_FILE = './peak.json';
 
 let lastMessageId: string | null = null;
@@ -698,24 +723,6 @@ spawnCosuri();
 // INCARCARE COSURI DE GUNOI END
 
 
-// DETECTARE WAYPOINT PENTRU COMANDA TPW START
-
-mp.events.add('playerCommand', (command) => {
-    if (command === "tpw") {
-        const blip = mp.game.ui.getFirstBlipInfoId(8); // 8 = Waypoint
-        if (!mp.blips.exists(blip)) {
-            mp.gui.chat.push("~r~Nu ai niciun waypoint marcat pe hartă.");
-            return;
-        }
-        const coords = mp.game.ui.getBlipInfoIdCoord(blip);
-        // Trimite coordonatele către server
-        mp.events.callRemote('tpw:goto', coords.x, coords.y, coords.z);
-    }
-});
-
-// DETECTARE WAYPOINT PENTRU COMANDA TPW STOP
-
-
 // COMANDA DE SHAKE CAMERA
 // server/shake.ts
 // Register: /shake <effect> <timeSec> [intensity]
@@ -763,4 +770,3 @@ mp.events.addCommand("shake", (player: PlayerMp, fullText: string) => {
   );
 });
 // COMANDA DE SHAKE CAMERA
-

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
-import { FaUniversity } from 'react-icons/fa';
 import prettify from 'utils/prettify';
+import images from 'utils/images';
 
 type Props = {
 	cash: number;
@@ -46,25 +46,27 @@ export default function Money({ cash, bank }: Props) {
 				status: cash > prevMoney.cash
 			});
 
-		if (prevMoney && prevMoney.bank !== bank)
-			setChanges({
-				type: 'bank',
-				amount: bank - prevMoney.bank,
-				status: bank > prevMoney.bank
-			});
-
 		setTimeout(() => setChanges(undefined), 2000);
-	}, [cash, bank, prevMoney]);
+	}, [cash, prevMoney]);
 
 	return (
-		<div className="hud_money">
-			<p className="hud_money-item">
-				{prettify.price(cash)}
-
-				{changes?.type === 'cash' && (
-					<MoneyChange status={changes.status} amount={changes.amount} />
-				)}
-			</p>
+<div className="hud_money">
+	<div className="hud_money-cash" style={{ position: 'relative', display: 'inline-block', width: '18vh' }}>
+		<img src={images.getImage('moneyhud.svg')} alt="money bg" style={{ display: 'block', width: '100%', height: 'auto' }} />
+		
+		<div className="hud_money-cash-wrapper" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'flex-end', paddingRight: '15%' }}>
+			<span className="hud_money-cash-amount" style={{ color: '#fff', fontWeight: 'bold', fontSize: '1.6vh' }}>
+				{cash.toString().replace(/(\d{1,3}(?=(?:\d\d\d)+(?!\d)))/g, `$1 `)}
+			</span>
 		</div>
+
+		{changes?.type === 'cash' && (
+			<div style={{ position: 'absolute', bottom: '-2vh', right: 0 }}>
+				<MoneyChange status={changes.status} amount={changes.amount} />
+			</div>
+		)}
+
+	</div>
+</div>
 	);
 }

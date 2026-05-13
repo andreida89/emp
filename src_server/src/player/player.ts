@@ -2,6 +2,7 @@ import events from 'helpers/events';
 import antiCheat from 'basic/anti-cheat';
 import licenses from 'player/licenses';
 import level from 'player/level';
+import rpc from 'rage-rpc';
 
 class PlayerEntity implements Player {
 	public readonly mp: PlayerMp;
@@ -11,6 +12,8 @@ class PlayerEntity implements Player {
 	public cache = {};
 
 	public performing = false;
+	
+	public admin_duty = false;
 
 	public adminLvl = 0;
 
@@ -19,7 +22,7 @@ class PlayerEntity implements Player {
 	public vehicleSlots = 0;
 
 	public vehicles: string[] = [];
-
+	public waypoint?: Vector3Mp;
 	public experience = 0;
 
 	constructor(player: PlayerMp) {
@@ -82,6 +85,10 @@ class PlayerEntity implements Player {
 
 	callEvent(name: string, args?: any, pending = false) {
 		return events.callClient(this.mp, name, args, pending);
+	}
+
+	updateState(data: { type: string; payload?: any }) {
+		return rpc.callBrowsers(this.mp, 'Browser-UpdateState', data);
 	}
 }
 

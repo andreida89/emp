@@ -10,7 +10,7 @@ let animations = {
                 animDict = "special_ped@pamela@monologue_12@monologue_12d";
                 animClip = "pamela_ig_1_p12_nowonderthisplaceis_3";
                 break;
-            
+
             case "sprijinit1":
                 animDict = "missfam3";
                 animClip = "argument_outro_coach";
@@ -37,15 +37,47 @@ let animations = {
                 break;
 
             case "vomita":
-                    animDict = "missheistpaletoscore1leadinout";
-                    animClip = "trv_puking_leadout";
-                    break;
+                animDict = "missheistpaletoscore1leadinout";
+                animClip = "trv_puking_leadout";
+                break;
 
             case "whistle":
-                    animDict = "rcmnigel1c";
-                    animClip = "hailing_whistle_waive_a";
-                    break;
-                    
+                animDict = "rcmnigel1c";
+                animClip = "hailing_whistle_waive_a";
+                break;
+            case "sitchair":
+                animDict = "anim@amb@business@cfid@cfid_desk_no_work_bgen_chair_no_work@";
+                animClip = "phone_search_lazyworker";
+
+                animFlag = 1;
+                break;
+            case "sitchair2":
+                animDict = "timetable@maid@couch@";
+                animClip = "base";
+
+                animFlag = 1;
+                break;
+            case "sitchair3":
+                animDict = "timetable@reunited@ig_10";
+                animClip = "base_amanda";
+
+                animFlag = 1;
+                break;
+            case "sitchair4":
+                animDict = "missheist_jewelleadinoutjh_endscene";
+                animClip = "loop_mic";
+
+                animFlag = 49;
+                break;
+
+
+            case "sit":
+                animDict = "anim@amb@business@bgen@bgen_no_work@";
+                animClip = "sit_phone_phoneputdown_idle_nowork";
+
+                animFlag = 1;
+                break;
+
             case "k":
                 this.kneelSequence(isRemote, player);
                 return; // Don't proceed further since we're running multiple animations

@@ -63,7 +63,7 @@ class Inventory {
 		if (isExists) {
 			mp.events.callServer('Inventory-EquipQuickSlot', slot);
 		} else {
-			mp.gui.chat.push(`Nu există nicio armă pe acest slot rapid!`);
+			//mp.gui.chat.push(`Nu există nicio armă pe acest slot rapid!`);
 		}
 	}
 	// -----------------------------------

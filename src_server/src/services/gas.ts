@@ -17,7 +17,7 @@ import {
 type Basket = {
 	diesel: number;
 	benzina: number;
-	electricitate: number;
+	electric: number;
 	kerosen: number;
 	jerrycan: number;
 };
@@ -25,7 +25,7 @@ type Basket = {
 const prices = {
 	diesel: 15,
 	benzina: 18,
-	electricitate: 20,
+	electric: 20,
 	kerosen: 25,
 	jerrycan: 400
 };
@@ -33,6 +33,11 @@ const prices = {
 class Gas extends Service {
 	constructor() {
 		super('gas', { name: 'Benzinarie', model: 361, color: 78, scale: 0.75 }, 5);
+	}
+
+	load() {
+		// Do not load old static gas stations to avoid duplicate interaction points and blips
+		console.log('[Gas] Static gas stations loading disabled.');
 	}
 
 	protected subscribeToEvents() {
@@ -43,8 +48,14 @@ class Gas extends Service {
 	}
 
 	onKeyPress(player: Player) {
-		const { vehicle } = player.mp;
-		if (!vehicle) return;
+		if (player.mp.vehicle) {
+			return hud.showNotification(player, 'error', 'Trebuie sa te dai jos din masina pentru a putea alimenta!', true);
+		}
+
+		const vehicle = this.getClosestVehicle(player, 5.0);
+		if (!vehicle) {
+			return hud.showNotification(player, 'error', 'Nu a fost gasit niciun vehicul in apropiere!', true);
+		}
 
 		const fuelType = this.getFuelType(vehicle);
 		const vehicleModel = this.getVehicleName(vehicle); // "BW M2 F87"
@@ -64,6 +75,23 @@ class Gas extends Service {
 			vehicleClass,
 			prices
 		});
+	}
+
+	private getClosestVehicle(player: Player, range: number): VehicleMp | null {
+		const pos = player.mp.position;
+		let closest: VehicleMp | null = null;
+		let minDist = range;
+
+		mp.vehicles.forEach((v) => {
+			if (!v || !mp.vehicles.exists(v)) return;
+			const dist = player.mp.dist(v.position);
+			if (dist < minDist) {
+				minDist = dist;
+				closest = v;
+			}
+		});
+
+		return closest;
 	}
 
 	private getPricePerLiter(type: string): number {
@@ -126,17 +154,17 @@ private addToInventory(player: Player, basket: Basket) {
 
 
 private async fillJerrycan(player: Player, fuelType: string, payment: PaymentType) {
-	if (fuelType === 'electricitate') {
-		hud.showNotification(player, 'error', 'Nu poți umple canistra cu electricitate', true);
-		return;
+	if (fuelType === 'electric') {
+		// hud.showNotification(player, 'error', 'Nu poți umple canistra cu electricitate', true);
+		return 'Nu poți umple canistra cu electricitate';
 	}
 
 	const inventory = player.inventory;
 	const emptyJerrycan = inventoryHelper.findItem(inventory, 'jerrycan');
 
 	if (!emptyJerrycan) {
-		hud.showNotification(player, 'error', 'Nu ai nicio canistră goală', true);
-		return;
+		// hud.showNotification(player, 'error', 'Nu ai nicio canistră goală', true);
+		return 'Nu ai nicio canistră goală';
 	}
 
 	const prices: Record<string, number> = {
@@ -147,12 +175,21 @@ private async fillJerrycan(player: Player, fuelType: string, payment: PaymentTyp
 
 	const price = prices[fuelType];
 	if (!price) {
-		hud.showNotification(player, 'error', 'Tip de combustibil invalid', true);
-		return;
+		// hud.showNotification(player, 'error', 'Tip de combustibil invalid', true);
+		return 'Tip de combustibil invalid';
+	}
+
+	if (payment === 'cash') {
+		const cashAmount = player.inventory
+			.filter(i => i.name === 'ron')
+			.reduce((acc, i) => acc + i.amount, 0);
+		if (cashAmount < price) return 'Nu ai suficienti bani cash (RON)';
+	} else {
+		if (player.money[payment as keyof PlayerMoney] < price) return 'Fonduri bancare insuficiente';
 	}
 
 	const success = await pay(player, payment, price, 'gas-jerrycan');
-	if (!success) return;
+	if (!success) return 'Tranzactie respinsa';
 
 	inventoryHelper.changeItemAmount(inventory, emptyJerrycan, -1);
 
@@ -162,7 +199,8 @@ private async fillJerrycan(player: Player, fuelType: string, payment: PaymentTyp
 		data: { fuelType }
 	});
 
-	hud.showNotification(player, 'success', `Ai umplut canistra cu ${fuelType.toUpperCase()}`, true);
+	// hud.showNotification(player, 'success', `Ai umplut canistra cu ${fuelType.toUpperCase()}`, true);
+	return true;
 }
 
 
@@ -173,8 +211,20 @@ private async fillJerrycan(player: Player, fuelType: string, payment: PaymentTyp
 
 
 private async buy(player: Player, basket: Basket, payment: PaymentType) {
-	const { vehicle } = player.mp;
-	const fuelType = this.getFuelType(vehicle);
+	if (player.mp.vehicle) {
+		return 'Trebuie sa fii in afara vehiculului!';
+	}
+
+	let { vehicle } = player.mp;
+	if (!vehicle) {
+		vehicle = this.getClosestVehicle(player, 5.0);
+	}
+
+	if (!vehicle && (basket.diesel > 0 || basket.benzina > 0 || basket.electric > 0 || basket.kerosen > 0)) {
+		return 'Nu a fost gasit niciun vehicul in apropiere';
+	}
+
+	const fuelType = vehicle ? this.getFuelType(vehicle) : 'benzina'; // default if only buying jerrycan
 	const price = this.getFullPrice(basket, fuelType);
 
 	console.log(`[DEBUG] Incepe cumpararea | FuelType: ${fuelType}, Price: ${price}, Basket:`, basket);
@@ -188,34 +238,48 @@ private async buy(player: Player, basket: Basket, payment: PaymentType) {
 		);
 
 		if (invalidFuel) {
-			hud.showNotification(player, 'error', 'COMBUSTIBIL INCOMPATIBIL', true);
-			return;
+			return 'COMBUSTIBIL INCOMPATIBIL';
 		}
 
-		this.checkInventorySlots(player, basket);
+		try {
+			this.checkInventorySlots(player, basket);
+		} catch(e) {
+			return 'Nu ai destul spațiu în inventar';
+		}
 		console.log('[DEBUG] Verificare sloturi inventar OK');
+
+		if (payment === 'cash') {
+			const cashAmount = player.inventory
+				.filter(i => i.name === 'ron')
+				.reduce((acc, i) => acc + i.amount, 0);
+			if (cashAmount < price) return 'Nu ai suficienti bani cash (RON)';
+		} else {
+			if (player.money[payment as keyof PlayerMoney] < price) return 'Fonduri bancare insuficiente';
+		}
 
 		// ✅ Verificăm dacă are bani
 		const success = await pay(player, payment, price, 'gas');
-		if (!success) return;
+		if (!success) return 'Tranzactie respinsa';
 
 		console.log('[DEBUG] Plata efectuata cu succes');
 
 		const litres = basket[fuelType as keyof Basket] || 0;
 
-		if (litres > 0 && vehicle && player.isDriver()) {
+		if (litres > 0 && vehicle) {
 			console.log(`[DEBUG] Adaug combustibil: ${litres}`);
-			await vehicleFuel.fillUp(player, litres);
+			await vehicleFuel.fillUp(player, litres, vehicle);
 			await tasks.implement(player, 'refuel');
 			console.log('[DEBUG] Combustibil adaugat + task completat');
 		} else {
-			console.log(`[DEBUG] NU adauga combustibil | litres: ${litres}, vehicle valid: ${!!vehicle}, isDriver: ${player.isDriver()}`);
+			console.log(`[DEBUG] NU adauga combustibil | litres: ${litres}, vehicle valid: ${!!vehicle}`);
 		}
 
 		this.addToInventory(player, basket);
 		console.log('[DEBUG] Itemele din cos au fost adaugate in inventar');
+		return true;
 	} catch (err) {
 		console.log('[DEBUG] Eroare in buy:', err);
+		return 'Eroare la tranzactie';
 	}
 }
 

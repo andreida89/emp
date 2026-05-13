@@ -5,27 +5,47 @@ class Mailer {
 	private transporter: nodemailer.Transporter;
 
 	constructor() {
-		this.init();
+		// Removed auto-init to ensure dotenv is loaded first
 	}
 
-	private init() {
+	init() {
+		const host = process.env.MAIL_HOST || 'smtp.zoho.eu';
+		const port = parseInt(process.env.MAIL_PORT || '465');
+		const secure = process.env.MAIL_SECURE === 'true';
+		const user = process.env.MAIL_USER;
+		const pass = process.env.MAIL_PASS;
+
+		console.log(`[MAILER DEBUG] Testing credentials: User: ${user ? 'exists' : 'MISSING'}, Pass: ${pass ? 'exists' : 'MISSING'}`);
+		console.log(`[MAILER DEBUG] Config: Host: ${host}, Port: ${port}, Secure: ${secure}`);
+
+		if (!user || !pass) {
+			logger.error('Email credentials (MAIL_USER or MAIL_PASS) are missing in environment variables.');
+			console.log('[EMAIL ERROR] Missing MAIL_USER or MAIL_PASS in .env');
+			return;
+		}
+
 		this.transporter = nodemailer.createTransport({
-			host: 'smtp.zoho.eu',
-			port: 465, // Use 465 for SSL, or switch to 587 for TLS
-			secure: true, // Must be true for SSL (false for TLS on port 587)
+			host: host,
+			port: port,
+			secure: secure,
 			auth: {
-				user: process.env.MAIL_USER,
-				pass: process.env.MAIL_PASS
+				user: user,
+				pass: pass
 			},
 			tls: {
-				rejectUnauthorized: false // Helps with SSL verification issues
+				rejectUnauthorized: false
 			}
 		});
 
 		this.transporter.verify((error) => {
 			if (error) {
-				logger.error(`Email Transporter Error: ${error.message}`);
-				console.log(`[EMAIL ERROR]: ${error.message}`);
+				if (error.message.includes('Connection closed')) {
+					// GCP/CloudRun often blocks SMTP outbound. Do not spam console with expected errors.
+					console.log('[EMAIL] Verification skipped. (Environment outbound SMTP block identified)');
+				} else {
+					logger.error(`Email Transporter Error: ${error.message}`);
+					console.log(`[EMAIL ERROR]: ${error.message}`);
+				}
 			} else {
 				logger.success('Email server ready.');
 				console.log('[EMAIL] Transporter ready.');
@@ -34,6 +54,11 @@ class Mailer {
 	}
 
 	send(email: string, subject: string, text: string) {
+		if (!this.transporter) {
+			console.log('[EMAIL ERROR] Cannot send email: Transporter not initialized.');
+			return;
+		}
+
 		const mailOptions = {
 			from: process.env.MAIL_USER,
 			to: email,

@@ -7,6 +7,7 @@ type Character = {
 	uid: number;
 	firstName: string;
 	lastName: string;
+	age: number;
 	position?: PositionEx;
 	money: PlayerMoney;
 	playedTime: number;
@@ -23,11 +24,37 @@ type Character = {
 	licenses: { [name: string]: string };
 	tasks: { [name: string]: number };
 	skills: { [name: string]: number };
+	hudSettings?: {
+		visibility: {
+			showLogo: boolean;
+			showIdUsers: boolean;
+			showMoneyCash: boolean;
+			showMissions: boolean;
+			showSpeedometer: boolean;
+			showHealthArmor: boolean;
+			showFoodWater: boolean;
+			showStamina: boolean;
+			showMic: boolean;
+			showLocation: boolean;
+			showMinimap: boolean;
+			showChat: boolean;
+		};
+		styles: {
+			statusBarsVariant: number;
+			speedometerVariant: number;
+		};
+	};
 	dailyBonus: {
 		day: number;
 		pickedAt?: string;
 	};
 	bankAccount?: string;
+	bankPin?: string;
+	bankHistory: {
+		name: string;
+		amount: number;
+		date: string;
+	}[];
 	phone: {
 		number?: string;
 		contacts: {
@@ -36,8 +63,16 @@ type Character = {
 			phone: string;
 		}[];
 		blacklist: string[];
+		messages: {
+			phone: string;
+			text: string;
+			type: 'incoming' | 'outgoing';
+			date: number;
+			read: boolean;
+		}[];
 	};
 	arrest?: { time: number; reason: string };
+	deathExpiresAt?: number;
 	createdAt: string;
 } & mongoose.Document;
 
@@ -54,6 +89,10 @@ const characterSchema = new Schema({
 		type: String,
 		required: true
 	},
+	age: {
+		type: Number,
+		default: 25
+	},
 	health: {
 		type: Number,
 		default: 100
@@ -68,6 +107,8 @@ const characterSchema = new Schema({
 		default: 100
 	},
 	bankAccount: String,
+	bankPin: String,
+	bankHistory: { type: Array, default: [] },
 	appearance: Object,
 	position: Object,
 	money: {
@@ -107,6 +148,29 @@ const characterSchema = new Schema({
 		type: Object,
 		default: {}
 	},
+	hudSettings: {
+		type: Object,
+		default: {
+			visibility: {
+				showLogo: true,
+				showIdUsers: true,
+				showMoneyCash: true,
+				showMissions: true,
+				showSpeedometer: true,
+				showHealthArmor: true,
+				showFoodWater: true,
+				showStamina: true,
+				showMic: true,
+				showLocation: true,
+				showMinimap: true,
+				showChat: true
+			},
+			styles: {
+				statusBarsVariant: 1,
+				speedometerVariant: 1
+			}
+		}
+	},
 	tasks: {
 		type: Object,
 		default: {}
@@ -114,7 +178,8 @@ const characterSchema = new Schema({
 	phone: {
 		number: String,
 		contacts: Array,
-		blacklist: Array
+		blacklist: Array,
+		messages: { type: Array, default: [] }
 	},
 	inventory: {
 		type: Array,
@@ -131,6 +196,9 @@ const characterSchema = new Schema({
 	arrest: {
 		time: Number,
 		reason: String
+	},
+	deathExpiresAt: {
+		type: Number
 	},
 	createdAt: {
 		type: Date,

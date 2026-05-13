@@ -35,79 +35,85 @@ class ChatCommands {
 		return id >= COMMANDS.FACTION;
 	}
 
-	// 🟢 Returnează badge-ul în funcție de adminLvl
-private getAdminBadge(player: any): string {
-	const lvl = player?.mp?.getVariable?.('adminLvl') || 0;
+	getAdminBadge(player: any): string {
+		const lvl = player?.mp?.getVariable?.('adminLvl') || player?.adminLvl || 0;
+		const aduty = player?.admin_duty || player?.mp?.getVariable?.('admin_duty') || player?.mp?.getVariable?.('adminTag') || false;
 
-	switch (lvl) {
-		case 1:
-			return `[badge:lightgreen]HELPER IN TESTE[/badge]`;
-		case 2:
-			return `[badge:green]HELPER[/badge]`;
-		case 3:
-			return `[badge:cyan]MODERATOR[/badge]`;
-		case 4:
-			return `[badge:cyan]MODERATOR AVANSAT[/badge]`;
-		case 5:
-			return `[badge:blue]ADMIN[/badge]`;
-		case 6:
-			return `[badge:purple]MANAGER[/badge]`;
-		case 7:
-			return `[badge:yellow]COFONDATOR[/badge]`;
-		case 8:
-			return `[badge:red]FONDATOR[/badge]`;
-		default:
-			return '';
-	}
-}
+		if (!aduty) return '';
 
-
-prepareString(str: string, players: Player[]) {
-	let prepared = str;
-
-	players.forEach((player) => {
-		const id = player.mp.id;
-		const name = player.getName();
-		const fixId = player.fixId;
-		const faction = factions.getFaction(player.faction);
-		const factionName = faction?.name?.toUpperCase() || '';
-		const rankName = factionsApi.getPlayerRank(player) || '';
-		//console.log(`[DEBUG] Chat prepareString: fixId=${fixId}, id=${id}, name=${name}`);
-
-		// Badge de facțiune (doar pentru EMS și LSPD)
-		let factionBadge = '';
-		if (factionName === 'LSPD') {
-			factionBadge = `[badge:blue]POLITIE[/badge]`;
-		} else if (factionName === 'EMS') {
-			factionBadge = `[badge:red]SMURD[/badge]`;
+		switch (lvl) {
+			case 1:
+				return `[badge:lightgreen]HELPER IN TESTE[/badge]`;
+			case 2:
+				return `[badge:green]HELPER[/badge]`;
+			case 3:
+				return `[badge:cyan]MODERATOR[/badge]`;
+			case 4:
+				return `[badge:blue]MOD AVANSAT[/badge]`;
+			case 5:
+				return `[badge:blue]ADMIN[/badge]`;
+			case 6:
+				return `[badge:purple]MANAGER[/badge]`;
+			case 7:
+				return `[badge:yellow]CO-FONDATOR[/badge]`;
+			case 8:
+				return `[badge:red]FONDATOR[/badge]`;
+			default:
+				return '';
 		}
+	}
 
-		const adminBadge = this.getAdminBadge(player);
+	prepareString(str: string, players: Player[]) {
+		let prepared = str;
 
-		const finalBadge = `${adminBadge}${factionBadge}`;
+		players.forEach((player) => {
+			const id = player.mp.id;
+			const name = player.getName();
+			const fixId = player.fixId;
+			const faction = factions.getFaction(player.faction);
+			const factionName = faction?.name?.toUpperCase() || '';
+			const rankName = factionsApi.getPlayerRank(player) || '';
 
-		// Înlocuiește toate valorile
-		prepared = prepared
-			.replace('[id]', `${id}`)
-			.replace('[fixId]', `${fixId}`)
-			.replace('[name]', `${name}`)
-			.replace('[[faction]]', factionName)
-			.replace('[rank]', rankName)
-			.replace('[badge]', finalBadge); // chiar dacă e "", îl înlocuiește
-	});
+			let factionBadge = '';
+			let facColor = colors.white;
 
-	return prepared;
-}
+			if (factionName === 'POLITIE') {
+				factionBadge = `[badge:blue]POLITIE[/badge]`;
+				facColor = colors.blue;
+			} else if (factionName === 'UMU') {
+				factionBadge = `[badge:red]UMU[/badge]`;
+				facColor = colors.red;
+			}
 
+			const aduty = player?.admin_duty || player?.mp?.getVariable?.('admin_duty') || player?.mp?.getVariable?.('adminTag') || false;
+			const adminBadge = this.getAdminBadge(player);
+			const finalBadge = `${adminBadge}${factionBadge}`;
 
+			let nameColor = colors.white;
+			if (!aduty && (facColor === colors.blue || facColor === colors.red)) {
+				nameColor = facColor;
+			}
+
+			prepared = prepared
+				.replace('[id]', `${id}`)
+				.replace('[fixId]', `${fixId}`)
+				.replace('[name]', `${name}`)
+				.replace('[[faction]]', factionName)
+				.replace('[rank]', rankName)
+				.replace('[nameColor]', nameColor)
+				.replace('[badge]', finalBadge);
+		});
+
+		return prepared;
+	}
 
 	getTemplate(text: string, command: number) {
-	const currentHour = new Date().getHours(); // ora serverului (0-23)
-    const isNight = (currentHour >= 19 || currentHour < 5); // între 19:00 și 04:59
+		const currentHour = new Date().getHours();
+		const isNight = (currentHour >= 19 || currentHour < 5);
+
 		switch (command) {
-        case COMMANDS.SAY:
-            const nameColor = isNight ? colors.orange : colors.black;
-            return `[badge][badge:black][fixId][/badge] !{${nameColor}}[name]!{${colors.white}}: ${text}`;
+			case COMMANDS.SAY:
+				return `[badge] !{[nameColor]}[name] ([id])!{${colors.white}}: ${text}`;
 
 			case COMMANDS.DO:
 				return `[badge:purple]Actiune[/badge]([name]) !{${colors.lilac}}${text}`;
@@ -116,14 +122,14 @@ prepareString(str: string, players: Player[]) {
 				return `[badge:purple]Try[/badge]!{${colors.lilac}}[id] ${text} (${random(0, 1) ? 'Reusit' : 'Esuat'})`;
 
 			case COMMANDS.NRP:
-				return `[badge]!{${colors.white}}[id]: (( ${text} ))`;
+				return `[badge]!{${colors.white}}[name] ([id]): (( ${text} ))`;
 
 			case COMMANDS.SCREAM:
-				return `[badge]!{${colors.white}}[id] a strigat: ${text}`;
+				return `[badge]!{${colors.white}}[name] ([id]) a strigat: ${text}`;
 
 			case COMMANDS.WHISPER: {
 				const [, ...msg] = text.split(' ');
-				return `[badge]!{${colors.white}}[id] a soptit: ${msg.join(' ')}`;
+				return `[badge]!{${colors.white}}[name] ([id]) a soptit: ${msg.join(' ')}`;
 			}
 
 			case COMMANDS.TODO: {
@@ -153,7 +159,7 @@ prepareString(str: string, players: Player[]) {
 				return `!{${colors.blue}}[Organizatie] [rank] [name]: (( ${text} ))`;
 
 			default:
-				return `!{${colors.white}}[id]: ${text}`;
+				return `!{${colors.white}}[name] ([id]): ${text}`;
 		}
 	}
 }

@@ -18,7 +18,11 @@ import Games from 'components/Games';
 import Trading from 'components/Trading';
 import Admin from 'components/Admin';
 import Factions from 'components/Factions';
+import Garage from 'components/Garage';
 import Construction from 'components/Construction';
+import Shop from 'components/Shop';
+import HudSettings from 'components/HudSettings';
+import EscMenu from 'components/EscMenu';
 
 export interface IRoute {
 	path: string;
@@ -48,7 +52,11 @@ export default function Routes( { history }: Props ) {
 				<Route exact path="/dialog" component={Dialog} />
 				<Route exact path="/job" component={Job} />
 				<Route exact path="/admin" component={Admin} />
+				<Route exact path="/garage" component={Garage} />
 				<Route exact path="/construction" component={Construction} />
+				<Route exact path="/shop" component={Shop} />
+				<Route exact path="/hudsettings" component={HudSettings} />
+				<Route exact path="/escmenu" component={EscMenu} />
 
 				{routes.map( ( props ) => (
 					<Route exact {...props} key={props.path} />

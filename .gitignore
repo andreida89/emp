@@ -2,6 +2,15 @@
 .idea/
 .DS_Store
 
+bin/
+client_packages/
+node_modules/
+linux_x64.tar.gz
+testserver
+*.gz
+*.tar
+*.tar.gz
+
 ## Node
 node_modules/
 

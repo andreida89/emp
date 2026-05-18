@@ -856,12 +856,55 @@
     "stack": 500,
     "model": "bkr_prop_fakeid_openpassport"
   },
-
-
-
-
-
-
+  "permisa": {
+    "type": "permisa",
+    "name": "Permis cat. A",
+    "weight": 0,
+    "stack": 1,
+    "model": "bkr_prop_fakeid_openpassport"
+  },
+  "permisb": {
+    "type": "permisb",
+    "name": "Permis cat. B",
+    "weight": 0,
+    "stack": 1,
+    "model": "bkr_prop_fakeid_openpassport"
+  },
+  "permisc": {
+    "type": "permisc",
+    "name": "Permis cat. C",
+    "weight": 0,
+    "stack": 1,
+    "model": "bkr_prop_fakeid_openpassport"
+  },
+  "permisab": {
+    "type": "permisab",
+    "name": "Permis cat. A+B",
+    "weight": 0,
+    "stack": 1,
+    "model": "bkr_prop_fakeid_openpassport"
+  },
+  "permisbc": {
+    "type": "permisbc",
+    "name": "Permis cat. B+C",
+    "weight": 0,
+    "stack": 1,
+    "model": "bkr_prop_fakeid_openpassport"
+  },
+  "permisac": {
+    "type": "permisac",
+    "name": "Permis cat. A+C",
+    "weight": 0,
+    "stack": 1,
+    "model": "bkr_prop_fakeid_openpassport"
+  },
+  "permisabc": {
+    "type": "permisabc",
+    "name": "Permis cat. A+B+C",
+    "weight": 0,
+    "stack": 1,
+    "model": "bkr_prop_fakeid_openpassport"
+  },
 
 "incarcatorsns": {
   	"type": "atasament",

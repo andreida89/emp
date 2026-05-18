@@ -34,7 +34,20 @@ class VehicleController {
 	}
 
 	getTypeData(model: string) {
-		return vehicles[model] ? (vehicleTypes[vehicles[model].type] || vehicleTypes.sedan) : vehicleTypes.sedan;
+		const data = vehicles[model];
+		if (!data) return vehicleTypes.sedan;
+
+		const type = vehicleTypes[data.type] || vehicleTypes.sedan;
+
+		return {
+			...type,
+			tank: data.fuel_tank || type.tank,
+			fuel: data.fuel || type.fuel,
+			trunk: data.trunk ? {
+				cells: Math.ceil(data.trunk / 1.5),
+				slots: data.trunk
+			} : type.trunk
+		};
 	}
 
 	async loadPlayerVehicles(player: Player) {

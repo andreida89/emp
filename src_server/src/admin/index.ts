@@ -20,6 +20,7 @@ import CharacterModel from 'models/Character';
 import playerDeath from 'player/death';
 import factions from 'factions';
 import FactionModel from 'models/Faction';
+import { jailPlayer } from './jail_work';
 
 class Admin {
 	private delAllTimeouts: NodeJS.Timeout[] = [];
@@ -805,6 +806,13 @@ class Admin {
 				}
 				
 				banSystem.banPlayer(player, targetId, term, reason, isPermanent, withPayment);
+			} else if (action === 'jail_input') {
+				const targetId = data.id;
+				const checkpoints = parseInt(data.price);
+				if (isNaN(checkpoints) || checkpoints < 1) {
+					return playerMp.notify('~r~Numar de puncte invalid.');
+				}
+				jailPlayer(player, targetId, checkpoints);
 			} else if (action === 'tp_to_player') {
 				const target = this.findCharacterById(data.id);
 				if (target) {

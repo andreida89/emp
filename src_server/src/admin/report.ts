@@ -134,9 +134,8 @@ class Report {
 		}
 	
 		try {
-			const reportCount = await ReportModel.countDocuments({ admin: { $exists: false } });
-			const ticketCount = await TicketModel.countDocuments();
-			return reportCount + ticketCount;
+			const ticketCount = await TicketModel.countDocuments({ status: 'OPEN' });
+			return ticketCount;
 		} catch (err) {
 			console.error('[Admin-GetReportCount]', err);
 			return -1;

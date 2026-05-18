@@ -349,12 +349,13 @@ class PlayerInventory {
 					const [firstName, ...lastNameParts] = fullName.trim().split(' ');
 					const lastName = lastNameParts.join(' ');
 
-					const registerAt = player.mp.getVariable?.('createdAt') ?? 'Necunoscut';
+					const dataDobandire = player.registerAt ? moment(player.registerAt).format('L') : '18/05/2026';
 
 					const docData = {
-						firstName: firstName ?? 'Necunoscut',
-						lastName: lastName ?? '',
-						registerAt
+						nume: lastName || '',
+						prenume: firstName || 'Necunoscut',
+						sex: player.gender === 'male' ? 'M' : 'F',
+						data: dataDobandire
 					};
 					const faction = factions.getFaction(player.faction);
 
@@ -555,6 +556,54 @@ class PlayerInventory {
 
 					if (!found) {
 						hud.showNotification(player, 'error', 'Nimeni in apropiere pentru a arata legitimatia.', true);
+					}
+
+					break;
+				}
+
+				case 'permisa':
+				case 'permisb':
+				case 'permisc':
+				case 'permisab':
+				case 'permisac':
+				case 'permisbc':
+				case 'permisabc': {
+					const fullName = player.getName?.() ?? 'Necunoscut';
+					const [firstName, ...lastNameParts] = fullName.trim().split(' ');
+					const lastName = lastNameParts.join(' ');
+
+					const dataDobandire = player.licenses?.car ? moment(player.licenses.car).subtract(30, 'days').format('L') : '18/05/2026';
+
+					const categories = {
+						a: !!player.db?.permisa,
+						b: !!player.db?.permisb,
+						c: !!player.db?.permisc
+					};
+
+					const docData = {
+						nume: lastName || '',
+						prenume: firstName || 'Necunoscut',
+						sex: player.gender === 'male' ? 'M' : 'F',
+						data: dataDobandire,
+						categories
+					};
+
+					let found = false;
+
+					mp.players.forEach((p) => {
+						const pos = p.position;
+						if (!pos || p.dimension !== player.mp.dimension) return;
+
+						const dist = player.mp.dist(pos);
+
+						if (dist <= 4 || p.id === player.mp.id) {
+							p.call('ShowPermis', [docData]);
+							found = true;
+						}
+					});
+
+					if (!found) {
+						hud.showNotification(player, 'error', 'Nimeni in apropiere pentru a arata permisul.', true);
 					}
 
 					break;
@@ -835,6 +884,12 @@ class PlayerInventory {
 
 		await this.storage.updateInDb(player.dbId, player.inventory);
 		if (itemName === 'ron') money.syncCashWithHUD(player);
+	}
+
+	getAmount(player: Player, itemName: string) {
+		return player.inventory
+			.filter(i => i.name === itemName)
+			.reduce((acc, i) => acc + (i.amount || 0), 0);
 	}
 
 }

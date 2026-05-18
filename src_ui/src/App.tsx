@@ -12,6 +12,7 @@ import AdminMenu from 'components/AdminMenu';
 import AdminTicketSystem from 'components/Admin/tickets';
 import Notificari from 'components/HUD/notificari';
 import Notifi from 'components/HUD/notifi';
+import DmvDialog from 'components/Exams/DMV/DmvDialog';
 import 'moment/locale/ru';
 
 import 'assets/styles/framework7/index.less';
@@ -27,7 +28,11 @@ const history = createHashHistory();
 rpc.register( 'Browser-ShowPage', ( page: string, data = {} ) => {
 	const path = `/${ page }`;
 
-	if ( history.location.pathname === path ) history.push( '/', {} );
+	if ((window as any).isPlayerDead && page !== 'player/death' && page !== 'player/deathevent' && page !== 'hud') return;
+
+	if (page === 'hud') (window as any).isPlayerDead = false;
+
+	if (history.location.pathname === path ) history.push( '/', {} );
 	history.push( path, data );
 } );
 
@@ -71,8 +76,22 @@ export default function App() {
 	window.showInterface = (route: string) => {
 		const path = `/${route}`;
 
+		if ((window as any).isPlayerDead && route !== 'player/death' && route !== 'player/deathevent' && route !== 'hud') return;
+
+		if (route === 'hud') (window as any).isPlayerDead = false;
+
 		if (history.location.pathname === path) history.push('/', {});
 		history.push(path, {});
+	}
+
+	//@ts-ignore
+	window.PescarMinigame = (fishInfoJson: string, text: string, durationSec: number) => {
+		history.push('/games/fishing', { fishInfoJson, text, durationSec });
+	}
+
+	//@ts-ignore
+	window.OpenDMVExam = () => {
+		history.push('/exams/dmv');
 	}
 
 
@@ -85,6 +104,7 @@ export default function App() {
 			<AdminTicketSystem />
 			<Notificari />
 			<Notifi />
+			<DmvDialog />
 
 			<ToastContainer
 				enableMultiContainer

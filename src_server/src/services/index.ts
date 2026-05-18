@@ -17,3 +17,4 @@ import './vanzarepiata';
 import './tool-shop';
 import './electronics-shop';
 import './fastfood';
+import './dmv';

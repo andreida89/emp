@@ -161,11 +161,15 @@ private async changeType(type: string) {
 	}
 
 	private getPriceOfItem() {
-		return this.clothes[this.type][this.item][1];
+		const category = this.clothes[this.type];
+		if (!category || !category[this.item]) return 0;
+		return category[this.item][1];
 	}
 
 	private getStyleOfItem() {
-		return this.clothes[this.type][this.item][0];
+		const category = this.clothes[this.type];
+		if (!category || !category[this.item]) return 0;
+		return category[this.item][0];
 	}
 
 	private switchCamera() {

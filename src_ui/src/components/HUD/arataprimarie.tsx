@@ -39,11 +39,11 @@ useEffect(() => {
 				<ul className="player-primarie_fields">
 					<li className="player-primarie_field">
 						<h4 className="player-primarie_field-name">Nume</h4>
-						<span className="player-primarie_field-value">{player.firstName}</span>
+						<span className="player-primarie_field-value">{player.lastName}</span>
 					</li>
 					<li className="player-primarie_field">
 						<h4 className="player-primarie_field-name">Prenume</h4>
-						<span className="player-primarie_field-value">{player.lastName}</span>
+						<span className="player-primarie_field-value">{player.firstName}</span>
 					</li>
 				</ul>
 			</div>

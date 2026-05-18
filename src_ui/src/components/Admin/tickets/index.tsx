@@ -18,6 +18,7 @@ export default function AdminTicketSystem() {
     useEffect(() => {
         // @ts-ignore
         window.toggleAdminTickets = () => {
+            if (!isOpen && (window as any).isPlayerDead) return;
             setIsOpen(prev => {
                 const newState = !prev;
                 if (newState) fetchTickets();
@@ -143,6 +144,7 @@ export default function AdminTicketSystem() {
                                     </div>
                                     <div className="ats-cell-cat">
                                         <span className="ats-cat-tag">{ticket.category}</span>
+                                        {ticket.adminJail && <span className="ats-cat-tag" style={{background: 'rgba(239, 68, 68, 0.2)', color: '#ef4444', border: '0.1vw solid rgba(239, 68, 68, 0.4)'}}>JAIL ({ticket.jailCheckpoints})</span>}
                                     </div>
                                     <div className="ats-cell-msg">{ticket.title}</div>
                                     <div className="ats-cell-priority">
@@ -186,6 +188,12 @@ export default function AdminTicketSystem() {
                                 <span className="ats-det-label">CATEGORIE</span>
                                 <span className="ats-det-text">{selectedTicket.category}</span>
                             </div>
+                            {selectedTicket.adminJail && (
+                                <div className="ats-det-row">
+                                    <span className="ats-det-label" style={{color: '#ef4444'}}>JAIL STATUS</span>
+                                    <span className="ats-det-text" style={{color: '#ef4444'}}>{selectedTicket.jailCheckpoints} CP rămase</span>
+                                </div>
+                            )}
                             {selectedTicket.isVip && <div style={{marginTop:'1.2vw'}}><StarIcon /></div>}
                         </div>
 

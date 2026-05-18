@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-// import sound from 'assets/audio/anuntgloballast.mp3';
+import sound from 'assets/audio/anuntgloballast.mp3';
 
 const TickerNotification: React.FC = () => {
 	const [text, setText] = useState('');
@@ -8,9 +8,9 @@ const TickerNotification: React.FC = () => {
 
 useEffect(() => {
     (window as any).AnuntGlobal = (message: string, duration: number) => {
-        // const audio = new Audio(sound);
-        // audio.volume = 0.5;
-        // audio.play().catch(() => {});
+        const audio = new Audio(sound);
+        audio.volume = 0.5;
+        audio.play().catch(() => {});
 
         setText(message);
         setAnimationDuration(`${duration}s`);
@@ -18,7 +18,7 @@ useEffect(() => {
 
         setTimeout(() => {
             setVisible(false);
-        }, duration * 1000); // exact cât durează mesajul
+        }, duration * 1000);
     };
 }, []);
 

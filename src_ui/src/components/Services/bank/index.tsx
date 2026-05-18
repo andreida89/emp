@@ -102,6 +102,21 @@ class Bank extends Component<Props, State> {
         };
     }
 
+    componentDidMount() {
+        window.addEventListener('keydown', this.handleEsc, true);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('keydown', this.handleEsc, true);
+    }
+
+    handleEsc = (e: KeyboardEvent) => {
+        if (e.key === 'Escape' || e.keyCode === 27) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    };
+
     handlePinSubmit = async (e?: any) => {
         if (e) e.preventDefault();
         const { pinInput } = this.state;

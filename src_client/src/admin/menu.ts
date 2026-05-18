@@ -6,6 +6,7 @@ let blockEscTimer = 0;
 mp.keys.bind(0x7B, true, () => {
     // F12 pressed
     const player = mp.players.local;
+    if (player.getVariable('deathMenuOpened')) return;
     const adminLvl = player.getVariable('adminLvl') as number || 0;
     if (adminLvl > 0) {
         mp.events.callRemote('server:requestAdminMenu');
@@ -19,6 +20,7 @@ mp.events.add('client:openAdminMenu', (adminLvl: number, adminDuty: boolean, whi
 mp.keys.bind(0x79, true, () => {
     // F10 pressed
     const player = mp.players.local;
+    if (player.getVariable('deathMenuOpened')) return;
     const adminLvl = player.getVariable('adminLvl') as number || 0;
     if (adminLvl > 0) {
         const adminDuty = player.getVariable('admin_duty') || false;

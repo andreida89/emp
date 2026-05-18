@@ -22,18 +22,23 @@ import './hudsettings';
 
 class PlayerController {
 	async load(player: Player, user: UserModel) {
-		const { mp } = player;
-		const { character: data } = user as UserModel & { character: CharModel };
+		const pMp = player.mp;
+		const { character: data } = user as any;
 
-		mp.setVariables({
+		if (!data) {
+			console.error(`[PlayerController] Failed to load character for user ${user._id} (character missing or not populated)`);
+			return;
+		}
+
+		pMp.setVariables({
 			uid: data.uid,
 			fixId: data.uid,
 			adminLvl: user.adminLvl
 		});
 
-		mp.health = data.health > 0 ? data.health : 100;
-		mp.armour = data.armorValue || 0;
-		mp.name = `${data.firstName}_${data.lastName}`;
+		pMp.health = data.health > 0 ? data.health : 100;
+		pMp.armour = data.armorValue || 0;
+		pMp.name = `${data.firstName}_${data.lastName}`;
 
 		player.dbId = data._id.toString();
 		player.fixId = data.uid;
@@ -51,8 +56,15 @@ class PlayerController {
 		player.bankPin = data.bankPin;
 		player.hudSettings = data.hudSettings;
 		player.arrest = data.arrest;
+		player.adminJail = data.adminJail;
 		player.paydayTime = data.paydayTime;
 		player.deathExpiresAt = data.deathExpiresAt;
+		player.permisboral = data.permisboral;
+		player.permisbpractic = data.permisbpractic;
+		player.permisa = data.permisa;
+		player.permisb = data.permisb;
+		player.permisc = data.permisc;
+		player.db = data;
 
 		// Ensure phone is initialized correctly as a plain object with arrays
 		const phoneData = data.toObject().phone || {};
@@ -76,7 +88,7 @@ class PlayerController {
 			messages: messages
 		};
 
-		time.setTimeOnClient(mp);
+		time.setTimeOnClient(pMp);
 
 		const moneyData = data.toObject().money || { cash: 0, bank: 0 };
 		const actualCash = (player.inventory || [])
@@ -102,7 +114,26 @@ class PlayerController {
 
 		await vehicleCtrl.loadPlayerVehicles(player);
 
-		if (data.position) player.tp(data.position, 90, mp.id + 1);
+		if (data.adminJail) {
+			const JAIL_COORDS = { x: -1089.87, y: 4908.06, z: 214.58 };
+			const JAIL_DIMENSION = 10000;
+			
+			player.mp.setVariable('jailCheckpoints', data.jailCheckpoints);
+			player.mp.setVariable('isJailed', true);
+			
+			// Set dimension and position immediately
+			player.mp.dimension = JAIL_DIMENSION;
+			player.tp(JAIL_COORDS as any, 90, JAIL_DIMENSION);
+
+			setTimeout(() => {
+				const players = mp.players as any;
+				if (players && players.exists && players.exists(pMp)) {
+					player.tp(JAIL_COORDS as any, 90, JAIL_DIMENSION);
+					pMp.dimension = JAIL_DIMENSION;
+					pMp.call('client:admin:jail', [data.jailCheckpoints]);
+				}
+			}, 3000);
+		} else if (data.position) player.tp(data.position, 90, pMp.id + 1);
 		else spawn.toStart(player);
 
 		if (data.hudSettings) {
@@ -135,7 +166,14 @@ class PlayerController {
 						experience: player.experience,
 						hudSettings: player.hudSettings,
 						arrest: player.arrest,
-						deathExpiresAt: player.deathExpiresAt
+						adminJail: player.mp.getVariable('isJailed') || false,
+						jailCheckpoints: player.mp.getVariable('jailCheckpoints') || 0,
+						deathExpiresAt: player.deathExpiresAt,
+						permisa: player.permisa,
+						permisb: player.permisb,
+						permisc: player.permisc,
+						permisboral: player.permisboral,
+						permisbpractic: player.permisbpractic
 					}
 				}
 			});

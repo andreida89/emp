@@ -19,7 +19,7 @@ class Thirst {
 	}
 
 	decrease(player: Player) {
-		if (prison.isImprisoned(player) || player.mp.getVariable('AGM')) return;
+		if (prison.isImprisoned(player) || player.mp.getVariable('AGM') || player.mp.getVariable('isJailed')) return;
 
 		if (player.thirst > 0) this.updateForPlayer(player, player.thirst - 0.5);
 		else player.mp.health -= 5;

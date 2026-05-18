@@ -79,6 +79,17 @@ const Garage = ({ location }: any) => {
     }
   }, [vehicles, selectedVehicle, nearbyVehicleId]);
 
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+        if (e.key === 'Escape' || e.keyCode === 27) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    };
+    window.addEventListener('keydown', handleEsc, true);
+    return () => window.removeEventListener('keydown', handleEsc, true);
+  }, []);
+
   const detailImage = "/assets/images/vehicule/default.webp";
 
   const getVehicleImage = (v: Vehicle | null) => {

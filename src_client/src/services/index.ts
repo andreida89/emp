@@ -14,3 +14,5 @@ import './vehicle-dump';
 import './tool-shop';
 import './electronics-shop';
 import './fastfood';
+import './dmv';
+import './dmv_practic';

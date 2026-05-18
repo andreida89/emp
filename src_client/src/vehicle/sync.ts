@@ -68,7 +68,7 @@ class VehicleSync {
 		this.stopRadioSync();
 		this.radioSyncInterval = setInterval(this.syncRadioStation, 1000);
 
-		vehicle.setEngineOn(state.engine, true, true);
+		vehicle.setEngineOn(!!state.engine, true, true);
 		vehicle.setUndriveable(!state.engine);
 		vehicle.setCanBeDamaged(true);
 		vehicle.setInvincible(false);
@@ -84,7 +84,7 @@ class VehicleSync {
 
 		this.stopRadioSync();
 
-		vehicle.setEngineOn(state.engine, true, true);
+		vehicle.setEngineOn(!!state.engine, true, true);
 		vehicle.setUndriveable(!state.engine);
 		vehicle.setCanBeDamaged(true);
 		vehicle.setInvincible(false);

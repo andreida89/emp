@@ -1,7 +1,9 @@
+import { SilentError } from 'utils/errors';
 import money from 'helpers/money';
 import tasks from 'awards/tasks';
 import vehicleCreator, { Builder } from 'vehicle/creator';
 import vehicleList from 'data/vehicles.json';
+import VehicleModel from 'models/Vehicle';
 import Service from '../service';
 
 const shops: { [name: string]: VehicleShop } = {};
@@ -31,11 +33,19 @@ class VehicleShop extends Service {
 				player: Player,
 				type: string,
 				model: string,
-				color: RGB
+				color: RGB,
+				paymentMethod?: PaymentType
 			) => {
 				const shop = shops[type];
+				if (!shop) return;
 
-				await shop.buy(player, model, color);
+				try {
+					await shop.buy(player, model, color, paymentMethod);
+					//player.notify('~g~Ai achizitionat vehiculul');
+				} catch (e: any) {
+					//player.notify(`~r~${e.message}`);
+					throw new SilentError(e.message);
+				}
 			},
 			'VehicleShop-Exit': (player: Player) => {
 				player.togglePrivateDimension();
@@ -53,10 +63,15 @@ class VehicleShop extends Service {
 
 	protected getPrices() {
 		const prices: { [name: string]: number } = {};
+		const isMainShowroom = this.name === 'premium_carshop';
+		const targets = isMainShowroom ? Object.keys(vehicleList) : this.vehicles;
 
-		this.vehicles.forEach((name) => {
-			if (vehicleList[name]) {
-				prices[name] = vehicleList[name].price;
+		targets.forEach((name) => {
+			const data = vehicleList[name];
+			if (data) {
+				if (!isMainShowroom || !data.faction || data.faction === 'civil') {
+					prices[name] = data.price || 0;
+				}
 			}
 		});
 
@@ -64,22 +79,45 @@ class VehicleShop extends Service {
 	}
 
 	protected getPriceOfModel(model: string) {
-		return this.vehicles.includes(model) ? vehicleList[model]?.price : 0;
+		const isMainShowroom = this.name === 'premium_carshop';
+		const targets = isMainShowroom ? Object.keys(vehicleList) : this.vehicles;
+		
+		if (!targets.includes(model)) return -1;
+		return vehicleList[model]?.price ?? 0;
 	}
 
-	protected async canBuy(player: Player) {
+	protected async canBuy(player: Player, model: string) {
 		if (!player.isEnoughVehicleSlots()) {
-			return mp.events.reject('Nu ai suficiente sloturi pentru noi vehicule');
+			throw new SilentError('Nu ai suficiente sloturi pentru noi vehicule');
+		}
+
+		const count = await VehicleModel.countDocuments({ owner: player.dbId, name: model });
+		if (count > 0) {
+			throw new SilentError('Ai deja un vehicul de acest model!');
 		}
 	}
 
-	async buy(player: Player, model: string, color: RGB) {
-		await this.canBuy(player);
+	async buy(player: Player, model: string, color: RGB, paymentMethod?: PaymentType) {
+		await this.canBuy(player, model);
 
 		const price = this.getPriceOfModel(model);
-		if (!price) throw new SilentError('wrong vehicle');
+		if (price === -1) throw new SilentError('Modelul vehiculului este invalid');
 
-		await money.change(player, this.payment, -price, `${this.name} buy`);
+		if (price > 0) {
+			const method = paymentMethod || this.payment;
+			if (method === 'cash') {
+				const playerInventory = require('player/inventory').default;
+				const playerRon = await playerInventory.getAmount(player, 'ron');
+				if (playerRon < price) throw new SilentError('Nu ai destui bani cash');
+			} else if (method === 'bank') {
+				const currentBank = player.money?.bank || 0;
+				if (currentBank < price) throw new SilentError('Nu ai suficienti bani in banca!');
+			} else if (method === 'points') {
+				if (player.account.donate < price) throw new SilentError('Nu ai suficente puncte premium pentru aceasta achizitie!');
+			}
+
+			await money.change(player, method, -price, `${this.name} buy`);
+		}
 
 		const builder = new Builder(model, { x: 0, y: 0, z: 0 }, 90, 1000);
 		builder.installTuning({

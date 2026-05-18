@@ -40,11 +40,11 @@ useEffect(() => {
 				<ul className="player-umu_fields">
 					<li className="player-umu_field">
 						<h4 className="player-umu_field-name">Nume:</h4>
-						<span className="player-umu_field-value">{player.firstName}</span>
+						<span className="player-umu_field-value">{player.lastName}</span>
 					</li>
 					<li className="player-umu_field">
 						<h4 className="player-umu_field-name">Prenume:</h4>
-						<span className="player-umu_field-value">{player.lastName}</span>
+						<span className="player-umu_field-value">{player.firstName}</span>
 					</li>
 					<li className="player-umu_field">
 						<h4 className="player-umu_field-name">Rang:</h4>

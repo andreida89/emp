@@ -27,7 +27,7 @@ export default function InventoryItem({
 	storage = 'self',
 	hideAmount
 }: Props) {
-	const { selectItem } = useContext(InventoryContext)!;
+	const { selectItem, useItem } = useContext(InventoryContext)!;
 
 	const [, drag] = useDrag({
 		item: {
@@ -44,6 +44,7 @@ export default function InventoryItem({
 			className="inventory_item"
 			id={`item-${id}`}
 			onClick={() => selectItem({ cell: id, name, amount, storage })}
+			onDoubleClick={() => useItem(id as number)}
 		>
 			<img src={images.getImage(`${name}.png`, 'inventory')} alt={name} />
 
@@ -53,4 +54,3 @@ export default function InventoryItem({
 		</div>
 	);
 }
-

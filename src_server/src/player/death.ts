@@ -16,7 +16,7 @@ class PlayerDeath {
 	private deathTimeout: number;
 
 	constructor() {
-		this.deathTimeout = 10 * 60 * 1000;
+		this.deathTimeout = 30 * 60 * 1000;
 
 		mp.events.subscribeToDefault({ playerDeath: this.onDeath.bind(this) });
 
@@ -102,6 +102,14 @@ class PlayerDeath {
 			return;
 		}
 
+		if (mp.dimension === 10000) {
+			bagActions.reset(player);
+			cuffsActions.reset(player);
+			mp.spawn(mp.position);
+			this.revive(player);
+			return;
+		}
+
 		if (player.dead || prison.isImprisoned(player) || (mp.dimension > 0 && mp.dimension !== 2)) {
 			return this.death(player);
 		}
@@ -172,7 +180,12 @@ console.log("AM AJUNS PANA LA onDeathEvent");
 		player.mp.spawn(new mp.Vector3(hospital.x, hospital.y, hospital.z));
 		player.mp.dimension = 0;
 
-		if (prison.isImprisoned(player)) prison.putToRandomCell(player);
+		if (prison.isImprisoned(player)) {
+			prison.putToRandomCell(player);
+		} else if (player.adminJail || player.mp.getVariable('isJailed')) {
+			player.mp.dimension = 10000;
+			player.mp.position = new mp.Vector3(3080.15, -4776.47, 6.08);
+		}
 	}
 
 	rspwn(player: Player) {

@@ -347,7 +347,7 @@ const Chat = (props: any) => {
   useEffect(() => {
     const handleKeyDown = (e: any) => {
       const activeElement = document.activeElement;
-      if (!isInputActive && e.keyCode === 84 && activeElement?.tagName !== 'INPUT' && activeElement?.tagName !== 'TEXTAREA') {
+      if (!isInputActive && e.keyCode === 84 && !(window as any).isPlayerDead && activeElement?.tagName !== 'INPUT' && activeElement?.tagName !== 'TEXTAREA') {
           try {
              if ((window as any).lastHudSettingsVisibility) {
                  const vis = JSON.parse((window as any).lastHudSettingsVisibility);

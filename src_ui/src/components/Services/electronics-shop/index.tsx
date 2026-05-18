@@ -128,6 +128,17 @@ const ElectronicsShop: React.FC<Props> = (props) => {
     }).catch(() => {});
   }, []);
 
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+        if (e.key === 'Escape' || e.keyCode === 27) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    };
+    window.addEventListener('keydown', handleEsc, true);
+    return () => window.removeEventListener('keydown', handleEsc, true);
+  }, []);
+
   const categories = [
     { id: 'TOATE', label: 'ELECTRONICE', icon: <Icons.Smartphone size="0.9vw" /> },
   ];

@@ -12,16 +12,20 @@ const Spawn = (props: Props) => {
   const jail = locationState?.jail || false;
   const exit = locationState?.exit !== undefined ? locationState.exit : true;
 
-  useEffect(() => {
-    const preventEsc = (e: KeyboardEvent) => {
-      if (e.keyCode === 27) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-    };
-    window.addEventListener('keydown', preventEsc, true);
-    return () => window.removeEventListener('keydown', preventEsc, true);
-  }, []);
+	useEffect(() => {
+		const preventEsc = (e: KeyboardEvent) => {
+			if (e.keyCode === 27) {
+				e.preventDefault();
+				e.stopPropagation();
+			}
+		};
+		window.addEventListener('keydown', preventEsc, true);
+		window.addEventListener('keyup', preventEsc, true);
+		return () => {
+			window.removeEventListener('keydown', preventEsc, true);
+			window.removeEventListener('keyup', preventEsc, true);
+		};
+	}, []);
 
   useEffect(() => {
     const interval = setInterval(() => {

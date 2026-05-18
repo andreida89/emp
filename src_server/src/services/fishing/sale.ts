@@ -3,7 +3,7 @@ import playerInventory from 'player/inventory';
 import hud from 'helpers/hud';
 import Service from '../service';
 
-const prices = {
+export const prices = {
     oblete: 15,
     biban: 20,
     caras: 25,
@@ -51,7 +51,7 @@ class FishSale extends Service {
 		//await money.change(player, 'cash', price, 'fish sale');
 		await playerInventory.addItem(player, { name: 'ron', amount: price });
 		//hud.showNotification(player, 'success', `Ati vandut pestele pentru ${price} RON`, true);
-		player.mp.call("AnuntNotification", [`Ai vandut pestele pentru ${price} RON`, 'success']);
+		player.mp.call("AnuntNotification2", [`Ai vandut pestele pentru ${price} RON`, 'verde']);
 	}
 }
 
@@ -83,7 +83,7 @@ class CiuperciSale extends Service {
 		//await money.change(player, 'cash', price, 'ciuperci sale');
 		await playerInventory.addItem(player, { name: 'ron', amount: price });
 		//hud.showNotification(player, 'success', `Ati vandut ciupercile pentru ${price} RON`, true);
-		player.mp.call("AnuntNotification", [`Ai vandut ciupercile pentru ${price} RON`, 'success']);
+		player.mp.call("AnuntNotification2", [`Ai vandut ciupercile pentru ${price} RON`, 'verde']);
 	}
 }
 const ciuperciService = new CiuperciSale();

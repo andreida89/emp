@@ -72,7 +72,14 @@ type Character = {
 		}[];
 	};
 	arrest?: { time: number; reason: string };
+	adminJail?: boolean;
+	jailCheckpoints?: number;
 	deathExpiresAt?: number;
+	permisa?: boolean;
+	permisb?: boolean;
+	permisc?: boolean;
+	permisboral?: boolean;
+	permisbpractic?: boolean;
 	createdAt: string;
 } & mongoose.Document;
 
@@ -197,8 +204,36 @@ const characterSchema = new Schema({
 		time: Number,
 		reason: String
 	},
+	adminJail: {
+		type: Boolean,
+		default: false
+	},
+	jailCheckpoints: {
+		type: Number,
+		default: 0
+	},
 	deathExpiresAt: {
 		type: Number
+	},
+	permisa: {
+		type: Boolean,
+		default: false
+	},
+	permisb: {
+		type: Boolean,
+		default: false
+	},
+	permisc: {
+		type: Boolean,
+		default: false
+	},
+	permisboral: {
+		type: Boolean,
+		default: false
+	},
+	permisbpractic: {
+		type: Boolean,
+		default: false
 	},
 	createdAt: {
 		type: Date,

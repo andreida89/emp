@@ -7,60 +7,6 @@ type CarShopData = {
 };
 
 const shops: CarShopData[] = [
-	{
-		id: 'cheap_carshop',
-		vehicles: [
-      'brioso2',
-      'asbo',
-      'club',
-      'asea',
-      'emperor2',
-      'premier',
-      'cheburek',
-      'tornado3',
-      'journey',
-      'surfer2',
-      'asterope',
-      'blista',
-      'fugitive',
-      'regina',
-      'ingot',
-		],
-		blip: {
-			name: 'Dealer Auto (Ieftine)',
-			model: 225,
-			color: 3
-		}
-	},
-	{
-		id: 'mid_carshop',
-		vehicles: [
-      'hellion',
-      'glendale',
-      'brioso',
-      'kanjo',
-      'issi2',
-      'oracle',
-      'felon',
-      'oracle2',
-      'jackal',
-      'sentinel',
-      'zion',
-      'blade',
-      'buccaneer',
-      'dukes',
-      'warrener',
-      'dubsta',
-      'baller3',
-      'rebla',
-      'vstr',
-		],
-		blip: {
-			name: 'Dealer Auto (Medii)',
-			model: 530,
-			color: 48
-		}
-	},
    {
 		id: 'vip_carshop',
 		vehicles: [
@@ -161,7 +107,7 @@ const shops: CarShopData[] = [
       'entity2',
 		],
 		blip: {
-			name: 'Dealer Auto (Scumpe)',
+			name: 'Showroom',
 			model: 669,
 			color: 50
 		}

@@ -15,6 +15,10 @@ interface Player {
 	admin_duty: boolean;
 	dead: boolean;
 	deathExpiresAt?: number;
+	permisboral?: boolean;
+	permisbpractic?: boolean;
+	examVehicle?: VehicleMp;
+	db?: any;
 
 	account?: string;
 	waypoint?: Vector3Mp;

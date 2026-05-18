@@ -15,9 +15,11 @@ import './basic/mansions';
 import './basic/atasamente';
 import './basic/aduty';
 import './basic/escmenu';
+import './basic/peds';
 import './arataid/index';
 
 import './admin';
+import './admin/jail_work';
 import './auth';
 import './player';
 import './shop';
@@ -47,6 +49,7 @@ import './legitimatii/primarie';
 import './legitimatii/buletin';
 import './legitimatii/politie';
 import './legitimatii/umu';
+import './legitimatii/permis';
 import './notificari';
 
 import './notpolitie';

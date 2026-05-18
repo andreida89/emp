@@ -38,6 +38,8 @@ class Spawn {
 	}
 
 	private selectType(player: Player, type: 'start' | 'house' | 'org', data: any) {
+		if (player.mp.getVariable('isJailed')) return;
+
 		switch (type) {
 			case 'start':
 				this.toStart(player);
@@ -70,6 +72,11 @@ class Spawn {
 	}
 
 	private showMenu(player: Player) {
+		if (player.mp.getVariable('isJailed')) {
+			player.callEvent('Browser-HidePage');
+			return;
+		}
+
 		player.callEvent('Spawn-ShowMenu', [
 			prison.isImprisoned(player),
 			player.houses,

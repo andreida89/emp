@@ -108,7 +108,7 @@ const AdminMenu = () => {
     }
     if (currentView === 'player') {
       const items = ['< INAPOI'];
-      if (lvl >= 1) items.push('WARN', 'KICK', 'FREEZE', 'UNFREEZE');
+      if (lvl >= 1) items.push('JAIL', 'WARN', 'KICK', 'FREEZE', 'UNFREEZE');
       if (lvl >= 2) items.push('BAN >');
       return items;
     }
@@ -526,6 +526,7 @@ const AdminMenu = () => {
           setSelectedIndex(0); 
           if ((window as any).mp) (window as any).mp.invoke('command', 'aduty off');
           break;
+      case 'JAIL': setModal({ ...modal, type: 'jail_input', step: 0 }); break;
       case 'WARN': setModal({ ...modal, type: 'warn', step: 0 }); break;
       case 'KICK': setModal({ ...modal, type: 'kick', step: 0 }); break;
       case 'CU PLATA': 
@@ -633,6 +634,9 @@ const AdminMenu = () => {
             else if (step === 2 && modal.name) setModal(p => ({ ...p, step: 3 }));
             else if (step === 3 && modal.price) submitModal();
         }
+    } else if (type === 'jail_input') {
+        if (step === 0 && modal.id) setModal(p => ({ ...p, step: 1 }));
+        else if (step === 1 && modal.price) submitModal();
     } else if (type === 'giveitem_input') {
         if (step === 0 && modal.id) setModal(p => ({ ...p, step: 1 }));
         else if (step === 1 && modal.name) setModal(p => ({ ...p, step: 2 }));
@@ -847,6 +851,18 @@ const AdminMenu = () => {
     const { type, step } = modal;
     const inputBase: any = { padding: '2vh', background: '#151515', border: `1px solid ${colors.border}`, borderRadius: '6px', color: 'white', outline: 'none', fontSize: '1.2vw', width: '100%', textAlign: 'center' };
     
+    if (type === 'jail_input') {
+        const labels = ["ID JUCATOR", "NUMAR CHECKPOINTURI"];
+        const keys = ['id', 'price'];
+        return (
+            <><div style={{ fontSize: '2.2vw', fontWeight: '900', color: colors.accent, marginBottom: '1vh' }}>JAIL JUCATOR</div>
+            <div style={{ color: '#888', fontWeight: 700 }}>{labels[step]}</div>
+            {/* @ts-ignore */}
+            <input ref={inputRef} style={{...inputBase, fontSize: '1.5vw'}} placeholder={`INTRODU ${labels[step]}`} value={(modal as any)[keys[step]]} onChange={e => setModal({...modal, [keys[step]]: e.target.value})} />
+            <div style={{ fontSize: '0.8vw', color: colors.accent }}>ENTER: {step === 1 ? "CONFIRMA" : "URMATORUL"} / ESC: ANULEAZA</div></>
+        );
+    }
+
     if (type === 'delete_afacere') {
       return (
         <div style={{ background: colors.overlay, padding: '4vh', borderRadius: '12px', border: `1px solid ${colors.accent}`, boxShadow: '0 0 40px rgba(0,0,0,0.5)', width: '30vw', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>

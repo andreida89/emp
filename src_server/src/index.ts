@@ -30,6 +30,11 @@ import './basic/atasamente';
 import './basic/tickets';
 
 import './basic/aduty';
+
+
+// PROPS
+import './props/casinowheel';
+
 import './arataid/index';
 
 import antiCheat from './basic/anti-cheat';
@@ -770,3 +775,6 @@ mp.events.addCommand("shake", (player: PlayerMp, fullText: string) => {
   );
 });
 // COMANDA DE SHAKE CAMERA
+
+
+

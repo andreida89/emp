@@ -13,28 +13,6 @@ type ShopCoords = {
 };
 
 const coords: { [name: string]: ShopCoords } = {
-	cheap_carshop: {
-		spawn: {
-			position: new mp.Vector3(230.192, -987.231, -99.269),
-			heading: 126
-		},
-		camera: {
-			position: new mp.Vector3(227.618, -995.109, -98.224),
-			point: new mp.Vector3(234.116, -974.963, -97.539)
-		},
-		testPosition: new mp.Vector3(-49.913, -1650.858, 28.878)
-	},
-	mid_carshop: {
-		spawn: {
-			position: new mp.Vector3(230.192, -987.231, -99.269),
-			heading: 126
-		},
-		camera: {
-			position: new mp.Vector3(227.618, -995.109, -98.224),
-			point: new mp.Vector3(234.116, -974.963, -97.539)
-		},
-		testPosition: new mp.Vector3(-179.077, -1144.046, 22.692)
-	},
 	premium_carshop: {
 		spawn: {
 			position: new mp.Vector3(-44.651, -1097.625, 26),
@@ -66,26 +44,6 @@ const coords: { [name: string]: ShopCoords } = {
 			position: new mp.Vector3(966.944, -116.108, 74.527),
 			point: new mp.Vector3(980.207, -133.763, 76.456)
 		}
-	},
-	boatshop: {
-		spawn: {
-			position: new mp.Vector3(-813.275, -1507.794, -0.5),
-			heading: 23.169
-		},
-		camera: {
-			position: new mp.Vector3(-826.449, -1506.624, 1.916),
-			point: new mp.Vector3(-760.355, -1515.922, 5.939)
-		}
-	},
-	airshop: {
-		spawn: {
-			position: new mp.Vector3(-1507.744, -2701.061, 14.547),
-			heading: 355.963
-		},
-		camera: {
-			position: new mp.Vector3(-1517.589, -2688.863, 15.358),
-			point: new mp.Vector3(-1508.34, -2701.298, 13.694)
-		}
 	}
 };
 
@@ -105,7 +63,8 @@ class VehicleShop {
 			'VehicleShop-ShowMenu': this.showMenu.bind(this),
 			'VehicleShop-SetVehicle': this.spawnVehicle.bind(this),
 			'VehicleShop-ChangeColor': this.changeColor.bind(this),
-			'VehicleShop-TestDrive': this.startTestDrive.bind(this)
+			'VehicleShop-TestDrive': this.startTestDrive.bind(this),
+			'VehicleShop-Exit': this.exit.bind(this)
 		});
 
 		mp.events.subscribeToDefault({
@@ -131,6 +90,10 @@ class VehicleShop {
 
 		this.type = type;
 		this.prices = prices;
+	}
+
+	exit() {
+		this.closeMenu();
 	}
 
 	closeMenu() {
@@ -204,10 +167,14 @@ class VehicleShop {
 	}
 
 	private changeColor(color: RGB) {
-		if (!this.vehicle) return;
+		if (!this.vehicle || !mp.vehicles.exists(this.vehicle) || !this.vehicle.handle) return;
 
-		this.vehicle.setCustomPrimaryColour(...color);
-		this.vehicle.setCustomSecondaryColour(...color);
+		try {
+			this.vehicle.setCustomPrimaryColour(...color);
+			this.vehicle.setCustomSecondaryColour(...color);
+		} catch (e) {
+			mp.console.logError(`VehicleShop-ChangeColor Error: ${e}`);
+		}
 	}
 
 	private resetPlayer() {

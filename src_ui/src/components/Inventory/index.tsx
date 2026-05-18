@@ -283,13 +283,14 @@ async handleQuickSlotSwap(slot: string) {
 				backend={TouchBackend}
 				options={{ enableTouchEvents: true, enableMouseEvents: true }}
 			>
-				<InventoryContext.Provider
-					value={{
-						onDrop: this.moveItem.bind(this),
-						selectItem: this.selectItem.bind(this),
-						transferItem: this.transferItem.bind(this)
-					}}
-				>
+					<InventoryContext.Provider
+						value={{
+							onDrop: this.moveItem.bind(this),
+							selectItem: this.selectItem.bind(this),
+							transferItem: this.transferItem.bind(this),
+							useItem: this.useItem.bind(this)
+						}}
+					>
 					<div className="inventory">
 						<Hints />
 

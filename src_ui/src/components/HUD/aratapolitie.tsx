@@ -40,11 +40,11 @@ useEffect(() => {
 				<ul className="player-politie_fields">
 					<li className="player-politie_field">
 						<h4 className="player-politie_field-name">Nume:</h4>
-						<span className="player-politie_field-value">{player.firstName}</span>
+						<span className="player-politie_field-value">{player.lastName}</span>
 					</li>
 					<li className="player-politie_field">
 						<h4 className="player-politie_field-name">Prenume:</h4>
-						<span className="player-politie_field-value">{player.lastName}</span>
+						<span className="player-politie_field-value">{player.firstName}</span>
 					</li>
 					<li className="player-politie_field">
 						<h4 className="player-politie_field-name">Rang:</h4>

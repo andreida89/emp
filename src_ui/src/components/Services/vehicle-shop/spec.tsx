@@ -1,14 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import rpc from 'utils/rpc';
-import images from 'utils/images';
 
-const items: { [name: string]: string } = {
-    speed: 'Viteza',
-    acceleration: 'Acceleratie',
-    brakes: 'Franare',
-    clutch: 'Manevrabilitate'
+const Icons = {
+  Gauge: ({ size = 14, color = "currentColor" }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>
+  ),
+  Zap: ({ size = 14, color = "currentColor" }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+  ),
+  Disc: ({ size = 14, color = "currentColor" }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+  ),
+  Activity: ({ size = 14, color = "currentColor" }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+  )
 };
 
+const items: { [name: string]: { label: string, icon: React.ReactNode } } = {
+    speed: { label: 'VITEZA', icon: <Icons.Gauge /> },
+    acceleration: { label: 'ACCELERATIE', icon: <Icons.Zap /> },
+    brakes: { label: 'FRANARE', icon: <Icons.Disc /> },
+    clutch: { label: 'MANEVRABILITATE', icon: <Icons.Activity /> }
+};
 
 type Props = {
 	model: string;
@@ -33,27 +46,22 @@ export default function VehicleShopSpec({ model }: Props) {
 	}, [model]);
 
 	return (
-		<div className="vehicle-shop_spec">
-			{Object.entries(state).map(([name, value]) => (
-				<div className="vehicle-shop_spec-item" key={name}>
-					<img src={images.getImage(`${name}.svg`)} alt={name} />
-
-					<div className="bar">
-						<div className="bar_container">
-							{[...Array(4).keys()].map((item) => (
-								<progress
-									className="bar_part"
-									key={item}
-									value={value <= item * 25 ? 0 : value}
-									max={(item + 1) * 25}
-								/>
-							))}
+		<div className="vshop-stats-grid">
+			{Object.entries(state).map(([name, value]) => {
+				const item = items[name];
+				if (!item) return null;
+				return (
+					<div className="vshop-stat-item" key={name}>
+						<div className="vshop-stat-info">
+							<span>{item.icon} {item.label}</span>
+							<strong>{value}%</strong>
 						</div>
-
-						<h4 className="bar_title">{items[name]}</h4>
+						<div className="vshop-bar-container">
+							<div className="vshop-bar-fill" style={{ width: `${value}%` }} />
+						</div>
 					</div>
-				</div>
-			))}
+				);
+			})}
 		</div>
 	);
 }

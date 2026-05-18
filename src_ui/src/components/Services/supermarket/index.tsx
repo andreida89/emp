@@ -123,6 +123,17 @@ const Supermarket: React.FC<Props> = (props) => {
     }).catch(() => {});
   }, []);
 
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+        if (e.key === 'Escape' || e.keyCode === 27) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    };
+    window.addEventListener('keydown', handleEsc, true);
+    return () => window.removeEventListener('keydown', handleEsc, true);
+  }, []);
+
   const categories = [
     { id: 'TOATE', label: 'TOATE', icon: <Icons.Package size="0.9vw" /> },
     { id: 'ALIMENTE', label: 'ALIMENTE', icon: <Icons.Apple size="0.9vw" /> },

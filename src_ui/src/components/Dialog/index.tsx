@@ -71,7 +71,7 @@ export default class Dialog extends Component<Props, State> {
 							<button
 								key={index}
 								type="button"
-								className={`dialog-inter-btn ${index === 0 ? 'dialog-inter-btn-refuz' : 'dialog-inter-btn-accept'}`}
+								className={`dialog-inter-btn ${index === answers.length - 1 ? 'dialog-inter-btn-refuz' : 'dialog-inter-btn-accept'}`}
 								onClick={() => this.sendAnswer(index)}
 								disabled={item.disabled}
 							>

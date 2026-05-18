@@ -61,6 +61,7 @@
 		"eslint-plugin-react-hooks": "^1.6.1",
 		"file-loader": "4.3.0",
 		"formik": "^2.1.4",
+		"framer-motion": "4.1.17",
 		"framework7": "^6.0.14",
 		"framework7-react": "^6.0.14",
 		"fs-extra": "^8.1.0",

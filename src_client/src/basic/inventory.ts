@@ -69,7 +69,7 @@ class Inventory {
 	// -----------------------------------
 	private setBinds() {
 		binder.bind('inventory', 'I', () => {
-			if (!mp.browsers.hud || player.isCuffed()) return;
+			if (!mp.browsers.hud || player.isCuffed() || player.getVariable('isJailed')) return;
 
 			mp.events.callServer('Inventory-ShowPlayerMenu', null, false);
 		});

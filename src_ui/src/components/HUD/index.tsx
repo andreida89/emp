@@ -31,6 +31,7 @@ import ArataPrimarie from './arataprimarie';
 import ArataBuletin from './aratabuletin';
 import ArataPolitie from './aratapolitie';
 import ArataUMU from './arataumu';
+import ArataPermis from './aratapermis';
 import Notifications from './notifi';
 
 type Props = {} & ReturnType<typeof mapStateToProps>;
@@ -200,6 +201,7 @@ class HUD extends Component<Props, State> {
 				<ArataPrimarie />
 				<ArataPolitie />
 				<ArataUMU />
+				<ArataPermis />
 				<Notifications />
 				<TargetMenu />
 

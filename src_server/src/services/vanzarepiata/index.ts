@@ -38,7 +38,7 @@ class FructelegumeSale extends Service {
 		//await money.change(player, 'cash', price, 'fructelegume sale');
 		await playerInventory.addItem(player, { name: 'ron', amount: price });
 		//hud.showNotification(player, 'success', `Ati vandut produsele pentru ${price} RON`, true);
-		player.mp.call("AnuntNotification", [`Ai vandut produsele pentru ${price} RON`, 'success']);
+		player.mp.call("AnuntNotification2", [`Ai vandut produsele pentru ${price} RON`, 'verde']);
 	}
 }
 

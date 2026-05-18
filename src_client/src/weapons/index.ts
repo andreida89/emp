@@ -53,16 +53,61 @@ class Weapons {
 		}
 	}
 
-	private onShot() {
+private onShot() {
+		console.log(`[WEAPONS] Shot fired | weapon: ${this.weapon}`);
+
 		if (this.isMelee(this.weapon)) return;
 
-		if (this.ammo > 0) this.ammo -= 1;
-		if (this.ammo <= 0) mp.players.local.clearTasks();
+		if (!this.isWeaponSilenced()) {
+			console.log("[WEAPONS] NO SUPPRESSOR -> sending police alert");
 
+			mp.events.callRemote(
+				'server:politie:reportShot',
+				mp.players.local.position
+			);
+		}
+
+		if (this.ammo > 0) this.ammo -= 1;
 		hud.showAmmo(this.ammo);
 
 		this.sended = false;
 	}
+
+private isWeaponSilenced(): boolean {
+	const ped = mp.players.local.handle;
+	const weaponHash = this.weapon;
+
+	// Arme care sunt silenced by default
+	if (weaponHash === mp.game.joaat('WEAPON_PISTOL_SILENCED')) {
+		return true;
+	}
+
+	const suppressors = [
+		'COMPONENT_AT_PI_SUPP',
+		'COMPONENT_AT_PI_SUPP_02',
+		'COMPONENT_AT_AR_SUPP',
+		'COMPONENT_AT_AR_SUPP_02',
+		'COMPONENT_AT_SR_SUPP',
+		'COMPONENT_AT_SR_SUPP_02',
+		'COMPONENT_AT_SMG_SUPP'
+	];
+
+	for (const supp of suppressors) {
+		const componentHash = mp.game.joaat(supp);
+
+		if (
+			mp.game.weapon.hasPedGotComponent(
+				ped,
+				weaponHash,
+				componentHash
+			)
+		) {
+			return true;
+		}
+	}
+
+	return false;
+}
 
 	private runInterval() {
 		if (!this.weapon || this.isMelee(this.weapon)) return;

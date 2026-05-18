@@ -10,12 +10,10 @@ type Product = {
 
 const prices = {
 	flashlight: 400,
-	lockpick: 100,
 	rod: 5000,
-	sack: 150,
-	cable_tie: 250,
-	backpack_small: 3500,
-	backpack_medium: 15500
+	backpack_small: 5000,
+	backpack_medium: 25000,
+	backpack_large: 75000
 };
 
 class ToolShop extends Service {

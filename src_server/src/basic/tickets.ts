@@ -49,11 +49,15 @@ mp.events.subscribe({
         if (!player || !player.dbId) return [];
         
         try {
-            const tickets = await Ticket.find({ status: 'OPEN' }).populate('creator', 'firstName lastName');
+            const tickets = await Ticket.find({ status: 'OPEN' }).populate('creator', 'firstName lastName adminJail jailCheckpoints');
             return tickets.map(t => {
                 const creator = t.creator as any;
                 const playerName = creator ? `${creator.firstName}_${creator.lastName}` : 'Necunoscut';
                 
+                const onlinePlayer = mp.players.toCustomArray().find(p => p.dbId === t.creator._id.toString());
+                const isJailed = onlinePlayer ? onlinePlayer.mp.getVariable('isJailed') : (creator?.adminJail || false);
+                const checkpoints = onlinePlayer ? onlinePlayer.mp.getVariable('jailCheckpoints') : (creator?.jailCheckpoints || 0);
+
                 return {
                     id: t._id.toString(),
                     playerId: t.playerNumericId,
@@ -61,9 +65,11 @@ mp.events.subscribe({
                     category: t.type,
                     title: t.title,
                     message: t.message,
-                isVip: false,
-                status: t.status,
-                createdAt: t.createdAt
+                    isVip: false,
+                    status: t.status,
+                    createdAt: t.createdAt,
+                    adminJail: isJailed,
+                    jailCheckpoints: checkpoints
                 };
             });
         } catch (err) {
@@ -111,7 +117,7 @@ mp.events.subscribe({
             // Teleport admin to player
             const target = mp.players.toArray().find(p => jucator.get(p.id)?.dbId?.toString() === ticket.creator.toString());
             if (target) {
-                admin.mp.position = new mp.Vector3(target.position.x, target.position.y, target.position.z);
+                admin.mp.position = { x: target.position.x, y: target.position.y, z: target.position.z } as any;
                 admin.mp.dimension = target.dimension;
                 
                 target.call('AnuntNotification2', [`Adminul ${admin.getName()} (${admin.fixId}) ti-a preluat ticketul!`, 'galben']);

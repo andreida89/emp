@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-// import notificationSound from 'assets/audio/notificarepolitie.mp3';
+import notificationSound from 'assets/audio/notificarepolitie.mp3';
 
 interface AlertaPolitie {
   id: number;
@@ -15,9 +15,9 @@ const PolitieNotifications: React.FC = () => {
     (window as any).AlertaPolitie = (message: string) => {
       const id = counter++;
 
-      // const audio = new Audio(notificationSound);
-      // audio.volume = 0.2;
-      // audio.play().catch(() => {});
+      const audio = new Audio(notificationSound);
+      audio.volume = 0.2;
+      audio.play().catch(() => {});
 
       setMessages((prev) => [
         ...prev,

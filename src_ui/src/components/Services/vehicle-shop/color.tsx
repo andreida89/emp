@@ -24,21 +24,18 @@ type Props = {
 
 export default function VehicleShopColor({ current, select }: Props) {
 	return (
-		<div className="vehicle-shop_color">
-			<h3 className="vehicle-shop_color-title">Alege culoarea</h3>
-
-			<div className="vehicle-shop_color-container">
-				{colors.map((item, index) => (
-					<div
-						className={classNames('vehicle-shop_color-item', {
-							active: isEqual(item, current)
-						})}
-						style={{ backgroundColor: `rgb(${item})` }}
-						key={index}
-						onClick={() => select(item)}
-					/>
-				))}
-			</div>
+		<div className="vshop-color-picker">
+			<span className="vshop-color-title">Vopsitorie</span>
+			{colors.map((item, index) => (
+				<div
+					key={index}
+					className={classNames('vshop-color-node', {
+						active: isEqual(item, current)
+					})}
+					style={{ background: `rgb(${item})` }}
+					onClick={() => select(item)}
+				/>
+			))}
 		</div>
 	);
 }

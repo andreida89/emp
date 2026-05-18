@@ -18,6 +18,7 @@ import Games from 'components/Games';
 import Trading from 'components/Trading';
 import Admin from 'components/Admin';
 import Factions from 'components/Factions';
+import Exams from 'components/Exams';
 import Garage from 'components/Garage';
 import Construction from 'components/Construction';
 import Shop from 'components/Shop';
@@ -35,7 +36,7 @@ type Props = {
 };
 
 export default function Routes( { history }: Props ) {
-	const routes: IRoute[] = [ ...Player, ...Services, ...Games, ...Trading, ...Factions ];
+	const routes: IRoute[] = [ ...Player, ...Services, ...Games, ...Trading, ...Factions, ...Exams ];
 
 	return (
 		<Router history={history}>

@@ -63,12 +63,12 @@ function logicTick(deltaSec: number) {
         }
     }
 
-    if (sprintLocked && stamina >= MAX_STAMINA - EPS) {
+    if (sprintLocked && stamina >= 10.0) {
         sprintLocked = false;
-        stamina = MAX_STAMINA;
+        // stamina = MAX_STAMINA; // Remove this to keep it at 10%
         announcedLock = false;
         if (!announcedUnlock) {
-            //mp.gui.chat.push("!{#55ff55}[DEBUG] Sprint UNLOCKED la stamina 100");
+            //mp.gui.chat.push("!{#55ff55}[DEBUG] Sprint UNLOCKED la stamina 10%");
             announcedUnlock = true;
         }
     }
